@@ -1,1 +1,0 @@
-Add your all Components in Components folder
