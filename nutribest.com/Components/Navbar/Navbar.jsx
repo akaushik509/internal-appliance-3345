@@ -1,6 +1,6 @@
 
 
-import { Flex, Box, Button, Input, Menu, MenuButton, MenuList, MenuItem, Heading } from "@chakra-ui/react";
+import { Flex, Box, Button, Input, Menu, MenuButton, MenuList, MenuItem, Heading, InputGroup, InputLeftElement, Spacer } from "@chakra-ui/react";
 import Image from "next/image";
 import React from 'react';
 import NutriBest from "./NutriBest.jpeg"
@@ -12,8 +12,8 @@ import { SlBadge } from "react-icons/sl";
 import { TbDiscount2 } from "react-icons/tb";
 import { MdLocationPin } from "react-icons/md";
 import { CgWebsite } from "react-icons/cg";
-import { BiSupport } from "react-icons/bi";
-import Link from "next/link";
+import { BiPhoneIncoming, BiSupport } from "react-icons/bi";
+// import Link from "next/link";
 
 
 
@@ -28,30 +28,30 @@ const Navbar = () => {
                 <Button><BsPersonLinesFill /></Button>
                 <Button><AiOutlineShoppingCart/></Button>
             </Flex> */}
-            <Box  w='10%' h='100%' >
-                <Image src={NutriBest} alt="NutriBest" width='100%' height='50'/>
+            <Box  w='15%' h='100%' >
+                <Image src={NutriBest} alt="NutriBest" width='170' height='50'/>
             </Box>
             <Box  w='35%' h='35' >
                 <Input variant='filled'  placeholder="Search for products and brands..." w='100%' h='35' borderRadius="5px"/>
-                {/* <InputGroup w="100%" h="100%">
+                {/* <InputGroup  w='100%' h='35'>
                     <InputLeftElement
                     pointerEvents='none'
                     // eslint-disable-next-line react/no-children-prop
                     children={<BsSearch color='gray.300' />}
+                    margin='0 auto'
                     />
-                    <Spacer />
-                    <Input type='tel' placeholder='Search for products and brands...'  />
+                    <Input type='tel' placeholder='Search for products and brands...'  w='100%' h='35' />
                 </InputGroup> */}
             </Box>
             {/* <Box  w='180px' h='30'> */}
                 <Flex justifyContent="space-evenly"  w='15%' h='35' >
-                    <Button w="30%" border="none" background="none" fontSize='22px'><BsPersonLinesFill /></Button>
-                    <Button w="30%" border="none" background="none" fontSize='22px'><AiOutlineShoppingCart/></Button>
+                    <Button w="30%" border="none" background="none" fontSize='28px'><BsPersonLinesFill /></Button>
+                    <Button w="30%" border="none" background="none" fontSize='28px'><AiOutlineShoppingCart/></Button>
                 </Flex>
             {/* </Box> */}
         </Flex>
         <hr/>
-        <Flex justifyContent="space-evenly" width='100%' height='45px'  padding="auto">
+        <Flex justifyContent="center" gap='25' width='100%' height='45px'  padding="auto" marginBottom="10px">
             <Menu>
                 <MenuButton
                     px={4}
@@ -79,12 +79,6 @@ const Navbar = () => {
                     <MenuItem>Wellness</MenuItem>
                 </MenuList>
             </Menu>
-            {/* <Heading as="h4">Best Sellers</Heading>
-            <Heading as="h4">Brands</Heading>
-            <Heading as="h4">Deals</Heading>
-            <Heading as="h4">Blogs</Heading>
-            <Heading as="h4">Gift Card</Heading>
-            <Heading as="h4">Customer Support</Heading> */}
             <Button border="none" background="none" fontSize='16px' leftIcon={<FaTag />}>Best Sellers</Button>
             <Button border="none" background="none" fontSize='16px' leftIcon={<SlBadge />}>Brands</Button>
             <Button border="none" background="none" fontSize='16px' leftIcon={<TbDiscount2 />}>Deals</Button>
