@@ -6263,8 +6263,30 @@
         "IsPrime": false,
         "Address": "abc",
         "Orders": [],
-        "Order_status": "Pending",
+        "Order_status": "Pending"
         
+      }
+    ],
+    "carousel": [
+      {
+        "id": 1,
+        "img_url": "https://img9.hkrtcdn.com/22824/bnr_2282348_o.jpg",
+        "caption": "Muscle Blaze Peanut Butter"
+      },
+      {
+        "id": 2,
+        "img_url": "https://img1.hkrtcdn.com/22823/bnr_2282210_o.jpg",
+        "caption": "True Basics"
+      },
+      {
+        "id": 3,
+        "img_url": "https://img9.hkrtcdn.com/22823/bnr_2282218_o.jpg",
+        "caption": "Muscle Blaze"
+      },
+      {
+        "id": 4,
+        "img_url": "https://img1.hkrtcdn.com/22822/bnr_2282190_o.png",
+        "caption": "NitroTech"
       }
     ]
   }
