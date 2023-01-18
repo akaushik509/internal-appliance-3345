@@ -1,0 +1,12 @@
+
+
+.sidebarfixed {
+    position: fixed;
+    /* margin-top: 17%;      // Adjust the navbar hieght */
+    top:0;
+    left: 0;
+    bottom: 0;
+    width: 20%;
+    background-color: #4dc07d;
+    padding: 20px;
+}
