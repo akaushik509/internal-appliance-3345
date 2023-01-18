@@ -2,7 +2,9 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import Carousel from 'Components/Carousel/Carousel'
-import Advertise from 'Components/Advertise/Advertise'
+import Advertise1 from 'Components/Advertise/Advertise1'
+import Footer1 from 'Components/Footer/Footer1'
+import Footer2 from 'Components/Footer/Footer2'
 // import styles from '@/styles/Home.module.css'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -19,30 +21,13 @@ export default function Home() {
       <main >
       {/* className={styles.main} */}
       <Carousel />
-      <Advertise />
+      <Advertise1 />
+      <Footer1 />
+      <Footer2 />
       </main>
     </>
   )
 }
 
 
-export async function getStaticProps() {
-  const res = await fetch('https://.../posts')
-  const posts = await res.json()
- 
-  return {
-    props: {
-      posts,
-    },
-  }
-} 
-
-export async function getStaticPaths() {
-  const res = await fetch('https://.../posts')
-  const posts = await res.json()
-  const paths = posts.map((post) => ({
-    params: { id: post.id },
-  }))
-  return { paths, fallback: false }
- }
  
