@@ -11,7 +11,7 @@ import google from "./google.png";
 const Footer2 = () => {
   return (
     <Flex flexDirection="column" bg="#0d2122" width="100%" height="600px" alignItems='center' textAlign="left">
-        {/* <Box  w='15%' h='100%'> */}
+        {/* <Box  w='15%' h='100%wwsw'> */}
             <Image src={NutriBest} alt="NutriBest" width='200' height='40'/>
         {/* </Box> */}
         <SimpleGrid columns={[2, null, 6]} w="80%" h="60%" gap={6}  color="white"  marginTop="10">
