@@ -2,15 +2,18 @@ import { Box, Button ,Flex,Modal,ModalBody,ModalCloseButton,ModalContent,ModalFo
 import React from 'react'
 import Cursol from './Cursol'
 import Form from './Form'
-
+import {  useSelector } from "react-redux";
+import { useRouter } from 'next/router'
 export default function Signup() {
-  
-         const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isLoggdIn } = useSelector((store)=>store.auth)
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const router = useRouter()
+ 
   return (
     <>
-      <Button onClick={onOpen} color='white' bg='teal.400'_hover={{bg:'teal'}}>Login</Button>
+      <Button onClick={onOpen} color='white' bg='teal.400'_hover={{bg:'teal'}} display={isLoggdIn?'none':'block'}>Login</Button>
 
-      <Modal isOpen={isOpen} onClose={onClose} size='4xl'>
+      <Modal isOpen={isOpen && !isLoggdIn} onClose={onClose} size='4xl'>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader></ModalHeader>
@@ -25,11 +28,6 @@ export default function Signup() {
                     <Form/>
                 </Box>
             </Flex>
-
-
-
-
-
           </ModalBody>
         </ModalContent>
       </Modal>

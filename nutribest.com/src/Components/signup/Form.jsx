@@ -14,12 +14,75 @@ import {
   useColorModeValue,
   Link,
   Image,
+  useToast,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import {Sign} from '../../redux/Signup/sign.action'
+import { useEffect, useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+import { useRouter } from 'next/router'
 
 export default function Form() {
+  const [signCreds,setSigncreds] = useState({
+    id: null,
+    Name: "",
+    Phone: null,
+    Email: "",
+    Image: "",
+    Password: "",
+    IsPrime: false,
+    Address: "",
+    Orders: [],
+  })
   const [showPassword, setShowPassword] = useState(false);
+  const [disbled,setDisble] = useState(true)
+  const { loading,isLoggdIn } = useSelector((store)=>store.auth)
+  const dispatch = useDispatch()
+  const router = useRouter()
+  const toast = useToast()
+  
+  const{Name,Phone,Email,Password}= signCreds
+  
+  
+
+  const onchange = (e)=>{
+    const { name, value } = e.target;
+    setSigncreds({
+      ...signCreds,
+      id:Date.now(),
+      [name]: value,
+    });
+  }
+
+  const submit = ()=>{
+    dispatch(Sign(signCreds))
+    toast({
+      title: `Sucessfull`,
+      status: 'success',
+      duration: 2000,
+      isClosable: true,
+    })
+    setSigncreds({
+      id: null,
+      Name: "",
+      Phone: "",
+      Email: "",
+      Image: "",
+      Password: "",
+      IsPrime: false,
+      Address: "",
+      Orders: [],
+    })
+
+  }
+
+
+
+  useEffect(()=>{
+
+    
+
+  },[])
 
   return (
     <Flex
@@ -44,23 +107,23 @@ export default function Form() {
            
             <FormControl id="name" isRequired>
               <FormLabel>Name</FormLabel>
-              <Input type='text' />
+              <Input onChange={onchange} value={signCreds.Name} name='Name' type='text' />
             </FormControl>
 
             <FormControl id="email" isRequired>
               <FormLabel>Email address</FormLabel>
-              <Input type="email" />
+              <Input onChange={onchange} value={signCreds.Email} name='Email' type="email" />
             </FormControl>
 
             <FormControl id="number" isRequired>
               <FormLabel>Mobile No.</FormLabel>              
-                <Input type='number' />
+                <Input onChange={onchange} value={signCreds.Phone}  name='Phone' type='number' />
             </FormControl>
 
             <FormControl id="password" isRequired>
               <FormLabel>Password</FormLabel>
               <InputGroup>
-                <Input type={showPassword ? 'text' : 'password'} />
+                <Input onChange={onchange} value={signCreds.Password}  name='Password' type={showPassword ? 'text' : 'password'} />
                 <InputRightElement h={'full'}>
                   <Button
                     variant={'ghost'}
@@ -75,8 +138,10 @@ export default function Form() {
             <Stack spacing={8} pt={2}>
               <Button
                 loadingText="Submitting"
-                isLoading={false}
+                isLoading={loading}
                 size="lg"
+                isDisabled={Password ==0}
+                onClick={submit}
                 bg='teal.400'
                 color={'white'}
                 _hover={{
