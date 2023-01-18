@@ -63,7 +63,6 @@ const Navbar = () => {
                     _expanded={{ bg: 'blue.400' }}
                     _focus={{ boxShadow: 'outline' }}
                     background="none"
-                    
                     fontSize='16px'
                 >
                     <MdOutlineSubject />
