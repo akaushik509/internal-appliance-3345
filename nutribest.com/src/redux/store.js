@@ -1,10 +1,12 @@
 import {legacy_createStore,combineReducers,compose ,applyMiddleware} from 'redux'
+import { Reducer } from './UserDetail/reducer'
 
 import thunk from 'redux-thunk'
 import { signreducer } from './Signup/sign.reducer'
 
 const rootReducer = combineReducers({
-    auth:signreducer
+    auth:signreducer,
+    addWatchlist: Reducer,
     
 })
 

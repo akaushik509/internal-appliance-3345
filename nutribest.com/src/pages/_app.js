@@ -13,10 +13,10 @@ export default function App({ Component, pageProps }) {
   const showHeader = router.pathname === "/admin" ? false : true;
   return (
     <Provider store={store}>
-  <ChakraProvider>
+    <ChakraProvider>
       {showHeader && <Navbar />}
       <Component {...pageProps} />
-  </ChakraProvider>
+    </ChakraProvider>
   </Provider>
   );
 
