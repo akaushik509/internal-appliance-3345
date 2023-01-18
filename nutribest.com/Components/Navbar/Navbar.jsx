@@ -13,6 +13,8 @@ import { TbDiscount2 } from "react-icons/tb";
 import { MdLocationPin } from "react-icons/md";
 import { CgWebsite } from "react-icons/cg";
 import { BiPhoneIncoming, BiSupport } from "react-icons/bi";
+import Signup from "Components/signup/Signup";
+
 // import Link from "next/link";
 
 
@@ -45,6 +47,7 @@ const Navbar = () => {
             </Box>
             {/* <Box  w='180px' h='30'> */}
                 <Flex justifyContent="space-evenly"  w='15%' h='35' >
+                    <Signup/>
                     <Button w="30%" border="none" background="none" fontSize='28px'><BsPersonLinesFill /></Button>
                     <Button w="30%" border="none" background="none" fontSize='28px'><AiOutlineShoppingCart/></Button>
                 </Flex>
@@ -63,7 +66,6 @@ const Navbar = () => {
                     _expanded={{ bg: 'blue.400' }}
                     _focus={{ boxShadow: 'outline' }}
                     background="none"
-                    
                     fontSize='16px'
                 >
                     <MdOutlineSubject />

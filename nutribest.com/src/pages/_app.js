@@ -1,16 +1,24 @@
 // import Carousel from 'Components/Carousel/Carousel';
-import Navbar from '../../Components/Navbar/Navbar';
-import { ChakraProvider } from '@chakra-ui/react'
+import { useRouter } from "next/router";
+import Navbar from "../../Components/Navbar/Navbar";
+import { ChakraProvider } from "@chakra-ui/react";
+import { Provider } from "react-redux";
+import { store } from '../redux/store';
 // import '@/styles/globals.css'
 
 
 export default function App({ Component, pageProps }) {
 
-return (
+  const router = useRouter();
+  const showHeader = router.pathname === "/admin" ? false : true;
+  return (
+    <Provider store={store}>
     <ChakraProvider>
-      <Navbar />
+      {showHeader && <Navbar />}
       <Component {...pageProps} />
     </ChakraProvider>
-  )
+  </Provider>
+  );
+
 
 }

@@ -9,10 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.0.16",
     "@chakra-ui/react": "^2.4.9",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@next/font": "13.1.2",
+    "axios": "^1.2.3",
     "eslint": "8.32.0",
     "eslint-config-next": "13.1.2",
     "framer-motion": "^8.4.3",
@@ -21,8 +23,11 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.7.1",
+    "react-redux": "^8.0.5",
     "react-slick": "^0.29.0",
     "react-slideshow-image": "^4.1.1",
+    "redux": "^4.2.0",
+    "redux-thunk": "^2.4.2",
     "slick-carousel": "^1.8.1"
   }
 }

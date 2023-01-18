@@ -2,6 +2,7 @@ import React from 'react'
 import Sidebar from 'Components/ProductPageComp/Sidebar'
 import {Box} from "@chakra-ui/react"
 import ProductSlider from 'Components/ProductPageComp/ProductSlider'
+
 const Product = () => {
   return (
     <>
