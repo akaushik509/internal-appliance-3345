@@ -16,11 +16,13 @@
     "eslint": "8.32.0",
     "eslint-config-next": "13.1.2",
     "framer-motion": "^8.4.3",
+    "mdb-react-ui-kit": "^5.1.0",
     "next": "^13.1.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.7.1",
     "react-slick": "^0.29.0",
-    "react-slideshow-image": "^4.1.1"
+    "react-slideshow-image": "^4.1.1",
+    "slick-carousel": "^1.8.1"
   }
 }
