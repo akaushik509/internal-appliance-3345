@@ -6,7 +6,7 @@ import muscleBlaze from "./muscleBlaze.png"
 import muscleTech from "./muscleTech.png";
 import peanutButter from "./peanutButter.png";
 import trueBasics from "./trueBasics.png";
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Heading, Text } from "@chakra-ui/react";
 
 const slideImages = [
   {
@@ -35,10 +35,10 @@ const slideImages = [
 
 const Carousel = () => {
   // console.log(slideImages.);
-  // backgroundColor="#effbfc" height="400" width="100%" border="1px solid red"
+  // backgroundColor="#effbfc" height="400" width="100%" border="1px solid red" paddingTop="40" marginTop="-28"
     return (
-      <Box backgroundColor="#effbfc" height="400" width="100%"  marginTop="15px" paddingTop="40">
-        <Heading as="h4" alignItems='center' textAlign='center' marginTop="-28">The Fit Republic Sale Is Now Live</Heading>
+      <Box backgroundColor="#effbfc" height="400" width="100%"  marginTop="15px" paddingTop="5">
+        <Text alignItems='center' textAlign='center' marginBottom='10px' >The Fit Republic Sale Is Now Live</Text>
         <Slide >
          {slideImages.map((slideImage, index)=> (
           <Image key={index} src={slideImage.img_url} alt={slideImage.caption} width="100%" height="380"/>
