@@ -5,7 +5,7 @@ const pr =  {
     "active": true,
     "id": "B000QSNYGI",
     "product_title": "Optimum Nutrition Gold Standard 100% Whey Protein Powder, Double Rich Chocolate, 5 Pound (Packaging May Vary)",
-    "product_price": "$84.99",
+    "product_price": "84.99",
     "product_original_price": null,
     "currency": "USD",
     "product_star_rating": 4.7,
@@ -13,7 +13,7 @@ const pr =  {
     "product_url": "https://www.amazon.com/dp/B000QSNYGI",
     "product_photo": "https://m.media-amazon.com/images/I/61u-qC6Z-mL._AC_UL960_QL65_.jpg",
     "product_num_offers": 12,
-    "product_minimum_offer_price": "$78.94",
+    "product_minimum_offer_price": "78.94",
     "is_best_seller": true,
     "is_prime": true,
     "climate_pledge_friendly": false
@@ -28,7 +28,18 @@ function generateRandomNumber(min, max) {
 }
 
 
+
 export default function ProductCard() {
+
+//Function to calculate the discount %
+const DisCountCal = (Myvalue , Totalvalue)=>{
+    var NewValue = (Myvalue/Totalvalue * 100)
+        let finalValue = 100 - NewValue;
+         return(Math.floor(finalValue))
+}
+  
+  
+
 
 const {product_photo,product_star_rating,product_num_ratings,product_title,product_price,product_minimum_offer_price,} = pr
 
@@ -57,16 +68,16 @@ const {product_photo,product_star_rating,product_num_ratings,product_title,produ
         </Box>
         
     </Flex>
-    <Stack textAlign='left' p={'3'}>
+    <Stack textAlign='left' p={'2'} pt={'0'} >
       <Text>
         {product_title}
       </Text>
       <Flex w={'70%'} justifyContent={'space-between'} >
         <Box color='rgb(53, 50, 50)' fontSize='xl' fontWeight={'bold'} >
-        {product_minimum_offer_price} 
+        ₹{Math.floor(Number(product_minimum_offer_price) * 81.46)} 
         </Box>
         <Box display={'flex'} alignItems={'center'} color='grey' fontSize='16px' fontWeight={'600'} textDecoration="line-through" >
-        {product_minimum_offer_price} 
+        ₹{ Math.floor(Number(product_price) * 81.46)} 
         </Box>
         <Box display={'flex'} alignItems={'center'} color='green' fontSize='14px' fontWeight={'600'} >
         {39}% off
@@ -77,7 +88,7 @@ const {product_photo,product_star_rating,product_num_ratings,product_title,produ
         <Box pt={'2px'}>
             <Image src='https://static1.hkrtcdn.com/hknext/static/media/common/premium_member.svg' alt="star for Prime members" />
         </Box>
-        <Flex color='rgb(89, 84, 84)' fontSize='16px' fontWeight={'500'} >{product_minimum_offer_price} for Premium Members</Flex>
+        <Flex color='rgb(89, 84, 84)' fontSize='16px' fontWeight={'500'}>₹{product_minimum_offer_price} for Premium Members</Flex>
       </Flex>
      
     </Stack>
