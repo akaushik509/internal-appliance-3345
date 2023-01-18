@@ -1,4 +1,4 @@
-import { Box, Button, Flex, GridItem, Heading, SimpleGrid, Text, VStack } from '@chakra-ui/react'
+import { Flex, GridItem, Heading, SimpleGrid, Text, VStack } from '@chakra-ui/react'
 import Image from 'next/image'
 import React from 'react'
 import NutriBest from "./NutriBest.jpeg";
