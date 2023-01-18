@@ -20,7 +20,7 @@ import { BiPhoneIncoming, BiSupport } from "react-icons/bi";
 const Navbar = () => {
   return (
     <div>
-        <Flex justifyContent="space-evenly" padding="20" width='100%' height='45px' >
+        <Flex justifyContent="space-evenly" alignItems='center'  width='100%' height='70px' >
         {/* boxShadow="rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px" */}
             {/* <Image src={NutriBest} alt="NutriBest" width='90' height='70'/>
             <Input placeholder="Search for products and brands..." width='500' height='30'/>
@@ -28,12 +28,12 @@ const Navbar = () => {
                 <Button><BsPersonLinesFill /></Button>
                 <Button><AiOutlineShoppingCart/></Button>
             </Flex> */}
-            <Box  w='15%' h='100%' >
-                <Image src={NutriBest} alt="NutriBest" width='170' height='50'/>
+            <Box  w='15%' h='100%'>
+                <Image src={NutriBest} alt="NutriBest" width='100%' height='40%'/>
             </Box>
             <Box  w='35%' h='35' >
-                <Input variant='filled'  placeholder="Search for products and brands..." w='100%' h='35' borderRadius="5px"/>
-                {/* <InputGroup  w='100%' h='35'>
+                {/* <Input variant='filled'  placeholder="Search for products and brands..." w='100%' h='35' borderRadius="5px"/> */}
+                <InputGroup variant='filled'  w='100%' h='35'>
                     <InputLeftElement
                     pointerEvents='none'
                     // eslint-disable-next-line react/no-children-prop
@@ -41,7 +41,7 @@ const Navbar = () => {
                     margin='0 auto'
                     />
                     <Input type='tel' placeholder='Search for products and brands...'  w='100%' h='35' />
-                </InputGroup> */}
+                </InputGroup>
             </Box>
             {/* <Box  w='180px' h='30'> */}
                 <Flex justifyContent="space-evenly"  w='15%' h='35' >
@@ -51,8 +51,8 @@ const Navbar = () => {
             {/* </Box> */}
         </Flex>
         <hr/>
-        <Flex justifyContent="center" gap='25' width='100%' height='45px'  padding="auto" marginBottom="10px">
-            <Menu>
+        <Flex justifyContent="center" alignItems='center' gap='25' width='100%' height='45px'  padding="auto" marginTop="10px">
+            <Menu alignItems='center'>
                 <MenuButton
                     px={4}
                     py={2}
