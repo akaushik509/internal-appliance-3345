@@ -1,19 +1,9 @@
-import { ADDWATCH,REMOVEWATCH } from "./types";
-/* 
-export async function getWatch(dispatch){
-    let res = await fetch("http://localhost:8080/watchlist");
-    let data = await res.json();
-    dispatch({type:GETWATCH, payload:data});
- }; */
+import { ADDPRODUCT } from "./types";
 
- export const addWatch = (item) => ({
-  type: ADDWATCH,
+ export const addProduct = (item) => ({
+  type: ADDPRODUCT,
   payload: item,
 });
 
-export const deleteWatch = (id) => ({
-  type: REMOVEWATCH,
-  payload: id
-});
 
 

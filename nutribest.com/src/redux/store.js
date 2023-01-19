@@ -6,7 +6,7 @@ import { signreducer } from './Signup/sign.reducer'
 
 const rootReducer = combineReducers({
     auth:signreducer,
-    addWatchlist: Reducer,
+    addProductAvi: Reducer,
     
 })
 
