@@ -72,13 +72,12 @@ const pr = [  {
   "is_prime": true,
   "climate_pledge_friendly": false
 },
-
 ]
 
 
-export default function ProductSlider() {
+export default function ProductSlider({data}) {
   var settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 2000,
     slidesToShow: 3,
@@ -98,8 +97,8 @@ export default function ProductSlider() {
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToShow: 1,
+          slidesToScroll: 1,
         }
       },
       {
@@ -114,7 +113,7 @@ export default function ProductSlider() {
   };
   return (
     <Slider {...settings}>
-    {pr.map((el)=>(<ProductCard product={el}  />)) }
+    {data.map((el)=>(<ProductCard product={el} />)) }
     </Slider>
   );
 }
