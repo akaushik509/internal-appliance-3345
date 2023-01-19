@@ -1,5 +1,5 @@
 import { Box, Divider, Flex } from '@chakra-ui/react'
-import Image from 'next/image'
+// import Image from 'next/image'
 import React from 'react'
 // import { Slide } from 'react-slideshow-image'
 
@@ -9,13 +9,12 @@ const AdvertiseMain = ({ data }) => {
           <Divider/>
           <Flex height="400" width="80%" margin="auto" marginTop='20px' gap='10' >
               {data.map((advertiseImage, index)=> (
-                <Image key={index} src={advertiseImage.img_url} alt={advertiseImage.caption} width="15%" height="380"/>
+                <img key={index} src={advertiseImage.img_url} alt={advertiseImage.caption} width="22%" height="100"/>
               ))} 
           </Flex>
         </Box>
-        
-      
   )
 }
 
 export default AdvertiseMain
+
