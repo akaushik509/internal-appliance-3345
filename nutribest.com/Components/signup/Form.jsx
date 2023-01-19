@@ -59,7 +59,7 @@ import {
       toast({
         title: `Sucessfull`,
         status: 'success',
-        duration: 2000,
+        duration: 1000,
         isClosable: true,
       })
       setSigncreds({
