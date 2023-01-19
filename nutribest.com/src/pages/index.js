@@ -28,7 +28,9 @@ export default function Home({  data, adsdata2, adsdata3, adsdata4, adsdata5 }) 
       <AdvertiseMain data={data}/>
       <ProductSlider />
       <AdvertiseMain data={adsdata2}/>
+      <ProductSlider />
       <AdvertiseMain data={adsdata3}/>
+      <ProductSlider />
       <AdvertiseMain data={adsdata4}/>
       {/* <AdvertiseSmall data={adsdata5}/> */}
       <Footer1 />

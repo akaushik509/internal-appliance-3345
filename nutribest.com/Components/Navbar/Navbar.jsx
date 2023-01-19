@@ -3,7 +3,7 @@
 import { Flex, Box, Button, Input, Menu, MenuButton, MenuList, MenuItem, Heading, InputGroup, InputLeftElement, Spacer } from "@chakra-ui/react";
 import Image from "next/image";
 import React from 'react';
-import NutriBest from "./NutriBest.jpeg"
+import NutriBest from "./NutriBest.png"
 import { BsPersonLinesFill, BsSearch } from "react-icons/bs";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { MdOutlineSubject } from "react-icons/md";
