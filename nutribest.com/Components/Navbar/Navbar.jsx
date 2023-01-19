@@ -56,8 +56,9 @@ const Navbar = () => {
         </Flex>
         <hr/>
         <Flex justifyContent="center" alignItems='center' gap='25' width='100%' height='45px'  padding="auto" marginTop="10px">
-            <Menu alignItems='center'>
+            <Menu alignItems='center'  >
                 <MenuButton
+                    // border="1px solid red"  
                     px={4}
                     py={2}
                     transition='all 0.2s'
@@ -68,9 +69,12 @@ const Navbar = () => {
                     _focus={{ boxShadow: 'outline' }}
                     background="none"
                     fontSize='16px'
+                    width="12%"
+                    // leftIcon={<MdOutlineSubject />}
                 >
-                    <MdOutlineSubject />
-                    Shop by Category 
+                    {/* <MdOutlineSubject /> */}
+                     Shop by Category 
+                    
                 </MenuButton>
                 <MenuList>
                     <MenuItem>Sports Nutrition</MenuItem>

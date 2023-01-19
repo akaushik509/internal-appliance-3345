@@ -61,3 +61,13 @@ export default Carousel
 //       props: { errorCode, data },
 //   };
 // }
+
+
+// export async function getServerSideProps() {
+//   let response = await fetch(`http://localhost:8080/carousel`);
+//   let data = await response.json();
+//   console.log(data);
+//   return {
+//     props: {data}
+//   }
+// }
