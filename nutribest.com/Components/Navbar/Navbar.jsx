@@ -14,6 +14,7 @@ import { MdLocationPin } from "react-icons/md";
 import { CgWebsite } from "react-icons/cg";
 import { BiPhoneIncoming, BiSupport } from "react-icons/bi";
 import Signup from "Components/signup/Signup";
+import Link from "next/link";
 
 // import Link from "next/link";
 
@@ -49,7 +50,7 @@ const Navbar = () => {
                 <Flex justifyContent="space-evenly"  w='15%' h='35' >
                     <Signup/>
                     <Button w="30%" border="none" background="none" fontSize='28px'><BsPersonLinesFill /></Button>
-                    <Button w="30%" border="none" background="none" fontSize='28px'><AiOutlineShoppingCart/></Button>
+                    <Button w="30%" border="none" background="none" fontSize='28px'><Link href={'/cart'}><AiOutlineShoppingCart/></Link></Button>
                 </Flex>
             {/* </Box> */}
         </Flex>
