@@ -2,14 +2,17 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import Carousel from 'Components/Carousel/Carousel'
-import Advertise1 from 'Components/Advertise/Advertise1'
+// import AdvertiseSmall from 'Components/Advertise/AdvertiseSmall'
 import Footer1 from 'Components/Footer/Footer1'
 import Footer2 from 'Components/Footer/Footer2'
+// import ProductCard from 'Components/ProductPageComp/ProductCard'
+import ProductSlider from 'Components/ProductPageComp/ProductSlider'
+import AdvertiseMain from 'Components/Advertise/AdvertiseMain'
 // import styles from '@/styles/Home.module.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+export default function Home({  data, adsdata2, adsdata3, adsdata4, adsdata5 }) {
   return (
     <>
       <Head>
@@ -21,7 +24,13 @@ export default function Home() {
       <main >
       {/* className={styles.main} */}
       <Carousel />
-      <Advertise1 />
+      {/* <Advertise1 /> */}
+      <AdvertiseMain data={data}/>
+      <ProductSlider />
+      <AdvertiseMain data={adsdata2}/>
+      <AdvertiseMain data={adsdata3}/>
+      <AdvertiseMain data={adsdata4}/>
+      {/* <AdvertiseSmall data={adsdata5}/> */}
       <Footer1 />
       <Footer2 />
       </main>
@@ -31,3 +40,33 @@ export default function Home() {
 
 
  
+
+export async function getStaticProps() {
+  // Fetch data from external API
+  const res = await fetch(`http://localhost:8080/Advertise1?_limit=4`)
+  const data = await res.json()
+
+  const res2 = await fetch(`http://localhost:8080/Advertise2`)
+  const adsdata2 = await res2.json()
+
+  const res3 = await fetch(`http://localhost:8080/Advertise3`)
+  const adsdata3 = await res3.json()
+
+  const res4 = await fetch(`http://localhost:8080/Advertise4`)
+  const adsdata4 = await res4.json()
+
+  const res5 = await fetch(`http://localhost:8080/Advertise5`)
+  const adsdata5 = await res5.json()
+  console.log(adsdata2);
+  // Pass data to the page via props
+  return { 
+    props: { 
+      data: data ,
+      adsdata2: adsdata2,
+      adsdata3: adsdata3,
+      adsdata4: adsdata4,
+      adsdata5: adsdata5,
+    } 
+  }
+}
+
