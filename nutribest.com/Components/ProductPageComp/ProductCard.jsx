@@ -3,7 +3,6 @@ import {Box,Flex,Card,CardBody,Image,Stack,Heading,Text,Divider,CardFooter,Butto
 import { BsCart } from "react-icons/bs";
 import style from "./ProductCard.module.css"
 
-
   // For veg(green) and red(Non-veg) icon;
  const Veg_Non_veg_Icon = ["https://static1.hkrtcdn.com/hknext/static/media/common/variant/Non-Vegetarian.svg","https://static1.hkrtcdn.com/hknext/static/media/common/variant/Vegetarian.svg"] 
 
@@ -20,11 +19,11 @@ const DiscountValue = (currVal , actualVal)=>{
        return (Math.floor(100 - exactVal))
 }
 
-
 export default function ProductCard({product}) {
 
 const {product_photo,product_star_rating,product_num_ratings,product_title,product_price,product_minimum_offer_price,} = product
 
+ 
   return (
   <Card border='0px solid red' m='15px' maxW='sm' _hover={{boxShadow:"rgba(0, 0, 0, 0.35) 0px 5px 15px"}} >
   <CardBody p='0'>
@@ -56,6 +55,7 @@ const {product_photo,product_star_rating,product_num_ratings,product_title,produ
       </Text>
       <Flex w={'60%'} justifyContent={'space-between'} >
         <Box color='rgb(53, 50, 50)' fontSize='xl' fontWeight={'bold'} >
+
         ₹{Math.floor(Number(product_minimum_offer_price)*81.3)} 
         </Box>
         <Box display={'flex'} alignItems={'center'} color='grey' fontSize='16px' fontWeight={'600'} textDecoration="line-through" >
@@ -70,7 +70,9 @@ const {product_photo,product_star_rating,product_num_ratings,product_title,produ
         <Box pt={'2px'}>
             <Image src='https://static1.hkrtcdn.com/hknext/static/media/common/premium_member.svg' alt="star for Prime members" />
         </Box>
+
         <Flex color='rgb(89, 84, 84)' fontSize='16px' fontWeight={'500'}>₹{Math.floor(Number(product_minimum_offer_price - 6)*81.3)} for Premium Members</Flex>
+
       </Flex>
     </Stack>
   </CardBody>
