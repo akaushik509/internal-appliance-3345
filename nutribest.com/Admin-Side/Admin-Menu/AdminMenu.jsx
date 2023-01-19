@@ -19,7 +19,7 @@ import {
 import { FiLogOut } from "react-icons/fi";
 import { AiFillInfoCircle } from "react-icons/ai";
 import React, { useRef } from "react";
-import Products from "../products";
+import Products from "../Products-Cat/products";
 import Orders from "../orders";
 import Customers from "../customers";
 import Discounts from "../discounts";
@@ -41,7 +41,7 @@ const AdminMenu = () => {
           textAlign={"center"}
           flexDirection={"column"}
           w={{ md: "30%", lg: "20%" }}
-          padding={"10px"}
+          padding={"15px"}
           backgroundColor={"#0c0e1f"}
           color={"white"}
           position={"fixed"}
@@ -52,7 +52,7 @@ const AdminMenu = () => {
           <Box width={"60%"} m={"auto"} mt={0} mb={0}>
             <Image
               alt="logo"
-              src="https://i.ibb.co/xDLFwBR/Nutribest-Logo.png"
+              src="https://i.ibb.co/6Yh8BDX/Nutribest-Logo3.png"
             ></Image>
           </Box>
 
@@ -68,7 +68,13 @@ const AdminMenu = () => {
             ref={dashboardRef}
             mb={"5px"}
             borderRadius={"5px"}
-            _selected={{ color: "white", bg: "blue.500" }}
+            // transition={"0.8s"}
+            _selected={{
+              color: "white",
+              bg: "#00b5b8",
+              transform: "scale(1.05)",
+              transition: "0.8s",
+            }}
           >
             Dashboard
           </Tab>
@@ -77,15 +83,27 @@ const AdminMenu = () => {
             ref={prodRef}
             mb={"5px"}
             borderRadius={"5px"}
-            _selected={{ color: "white", bg: "blue.500" }}
+            // transition={"0.8s"}
+            _selected={{
+              color: "white",
+              bg: "#00b5b8",
+              transform: "scale(1.05)",
+              transition: "0.8s",
+            }}
           >
-            Products
+            Listings
           </Tab>
           <Tab
             ref={orderRef}
             mb={"5px"}
             borderRadius={"5px"}
-            _selected={{ color: "white", bg: "blue.500" }}
+            // transition={"0.8s"}
+            _selected={{
+              color: "white",
+              bg: "#00b5b8",
+              transform: "scale(1.05)",
+              transition: "0.8s",
+            }}
           >
             Orders
           </Tab>
@@ -93,7 +111,13 @@ const AdminMenu = () => {
             ref={customerRef}
             mb={"5px"}
             borderRadius={"5px"}
-            _selected={{ color: "white", bg: "blue.500" }}
+            // transition={"0.8s"}
+            _selected={{
+              color: "white",
+              bg: "#00b5b8",
+              transform: "scale(1.05)",
+              transition: "0.8s",
+            }}
           >
             Customers
           </Tab>
@@ -101,7 +125,13 @@ const AdminMenu = () => {
             ref={discountRef}
             mb={"5px"}
             borderRadius={"5px"}
-            _selected={{ color: "white", bg: "blue.500" }}
+            // transition={"0.8s"}
+            _selected={{
+              color: "white",
+              bg: "#00b5b8",
+              transform: "scale(1.05)",
+              transition: "0.8s",
+            }}
           >
             Discounts
           </Tab>
@@ -112,7 +142,13 @@ const AdminMenu = () => {
             ref={accountRef}
             mb={"5px"}
             borderRadius={"5px"}
-            _selected={{ color: "white", bg: "blue.500" }}
+            // transition={"0.8s"}
+            _selected={{
+              color: "white",
+              bg: "#00b5b8",
+              transform: "scale(1.05)",
+              transition: "0.8s",
+            }}
           >
             Account Info
           </Tab>
@@ -126,23 +162,23 @@ const AdminMenu = () => {
           </Button>
         </TabList>
 
-        <TabPanels ml={{ md: "30%", lg: "20%" }}>
-          <TabPanel>
+        <TabPanels pl={{ md: "32%", lg: "21%" }}>
+          <TabPanel p={0}>
             <Dashboard />
           </TabPanel>
-          <TabPanel>
+          <TabPanel p={0}>
             <Products />
           </TabPanel>
-          <TabPanel>
+          <TabPanel p={0}>
             <Orders />
           </TabPanel>
-          <TabPanel>
+          <TabPanel p={0}>
             <Customers />
           </TabPanel>
-          <TabPanel>
+          <TabPanel p={0}>
             <Discounts />
           </TabPanel>
-          <TabPanel>
+          <TabPanel p={0}>
             <AccountInfo />
           </TabPanel>
         </TabPanels>
