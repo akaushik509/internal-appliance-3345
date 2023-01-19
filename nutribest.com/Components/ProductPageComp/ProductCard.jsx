@@ -1,6 +1,7 @@
 import React from "react";
 import {Box,Flex,Card,CardBody,Image,Stack,Heading,Text,Divider,CardFooter,ButtonGroup,Button} from "@chakra-ui/react"
 import { BsCart } from "react-icons/bs";
+import style from "./ProductCard.module.css"
 
 
   // For veg(green) and red(Non-veg) icon;
@@ -20,18 +21,16 @@ const DiscountValue = (currVal , actualVal)=>{
 }
 
 
-
-
 export default function ProductCard({product}) {
 
 const {product_photo,product_star_rating,product_num_ratings,product_title,product_price,product_minimum_offer_price,} = product
 
   return (
-  <Card border='1px solid red' m='15px' maxW='sm' _hover={{boxShadow:"rgba(0, 0, 0, 0.35) 0px 5px 15px"}} >
+  <Card border='0px solid red' m='15px' maxW='sm' _hover={{boxShadow:"rgba(0, 0, 0, 0.35) 0px 5px 15px"}} >
   <CardBody p='0'>
     <Image
       bg={'#F7F7F7'}
-      p={'10% 25% 10% 25%'}
+      p={'15% 25% 15% 25%'}
       src={product_photo}
       borderRadius='5px'
       width={'100%'}
@@ -52,7 +51,7 @@ const {product_photo,product_star_rating,product_num_ratings,product_title,produ
         
     </Flex>
     <Stack textAlign='left' p={'2'} pt={'0'} >
-      <Text>
+      <Text className={style.title} >
         {product_title}
       </Text>
       <Flex w={'60%'} justifyContent={'space-between'} >
@@ -75,7 +74,7 @@ const {product_photo,product_star_rating,product_num_ratings,product_title,produ
       </Flex>
     </Stack>
   </CardBody>
-  <CardFooter p={'0% 2% 2.5% 2%'}  >
+  <CardFooter p={'2% 2% 5% 2%'}  >
       <Button border={'1px solid #ff8914'} color={'#ff8914'} fontWeight={'bold'} w={"100%"} _hover={{color:'white', background:"#ff8914"}} >
        <BsCart style={{marginRight:"7px",fontSize:'17px', fontWeight:"bold"}} /> Add to cart
       </Button>
