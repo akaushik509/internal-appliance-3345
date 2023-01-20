@@ -26,11 +26,11 @@ export default function Home({  data, adsdata2, adsdata3, adsdata4, adsdata5 }) 
       <Carousel />
       {/* <Advertise1 /> */}
       <AdvertiseMain data={data}/>
-      <ProductSlider />
+      {/* <ProductSlider /> */}
       <AdvertiseMain data={adsdata2}/>
-      <ProductSlider />
+      {/* <ProductSlider /> */}
       <AdvertiseMain data={adsdata3}/>
-      <ProductSlider />
+      {/* <ProductSlider /> */}
       <AdvertiseMain data={adsdata4}/>
       {/* <AdvertiseSmall data={adsdata5}/> */}
       <Footer1 />
