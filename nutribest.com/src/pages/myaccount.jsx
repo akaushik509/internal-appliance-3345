@@ -1,5 +1,5 @@
-import MyOrder from 'Components/MyOrder';
-import UserDetail from 'Components/UserDetail';
+import MyOrder from 'Components/MyAccount/MyOrder';
+import UserDetail from 'Components/MyAccount/UserDetail';
 import { Box, Flex, Button, Heading, Text } from '@chakra-ui/react';
 
 import React,{useState} from 'react';
@@ -23,12 +23,8 @@ const MyAccount = () => {
 
   return (
     <div>
-        <Box id="avibox1" border={"1px solid red"} height="500px">
-            <Flex w={"80%"} border="1 px solid black" margin={"auto"} gap="30px">
-                <img src="https://i.ibb.co/hRcRVbR/logo.jpg" width={"120px"} height={"30px"} style={{padding:"-30px"}}/>
-                <Button>Home</Button> 
-                <Button>Go Back</Button>      
-            </Flex>
+        <Box id="myaccountbox1">
+            
             <Box>
               <Heading>Accounts</Heading>
             </Box>

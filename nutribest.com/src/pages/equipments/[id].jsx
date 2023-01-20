@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-import { addWatch } from '@/redux/UserDetail/action';
+import { addWatch } from '@/redux/SingleProduct/action';
 import { Flex, Box } from '@chakra-ui/react';
 
 const Page = ({product}) => {
