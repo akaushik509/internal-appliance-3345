@@ -56,7 +56,7 @@ const Product = () => {
     <>
       <SidebarDrawer PriceChange={PriceChange} />
 
-      <div style={{ display: "flex" }}>
+      <div style={{ display: "flex", marginTop:"120px" }}>
         <Sidebar PriceChange={PriceChange}  />
 
         <Box
