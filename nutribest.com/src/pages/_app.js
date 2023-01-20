@@ -18,7 +18,7 @@ export default function App({ Component, pageProps }) {
   return (
     <Provider store={store}>
     <ChakraProvider>
-      {showHeader && showHeader2 && showHeader3 && showHeader4 && <Navbar />}
+       {showHeader && showHeader2 && showHeader3 && showHeader4 && <Navbar />}
       <Component {...pageProps} />
     </ChakraProvider>
   </Provider>
