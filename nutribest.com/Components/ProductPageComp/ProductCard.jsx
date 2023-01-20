@@ -95,7 +95,7 @@ const {product_photo,product_star_rating,product_num_ratings,product_title,produ
             justifyContent={"space-between"}
           >
             <Box color="rgb(53, 50, 50)" fontSize="xl" fontWeight={"bold"}>
-              ₹{Math.floor(Number(product_price) * 60)}
+              $ {Number(product_price)}
             </Box>
             <Box
               display={"flex"}
@@ -105,7 +105,7 @@ const {product_photo,product_star_rating,product_num_ratings,product_title,produ
               fontWeight={"600"}
               textDecoration="line-through"
             >
-              ₹{Math.floor(Number(product_minimum_offer_price) * 100)}
+              $ {Math.floor(Number(product_minimum_offer_price) * 3)}
             </Box>
             <Box
               display={"flex"}
