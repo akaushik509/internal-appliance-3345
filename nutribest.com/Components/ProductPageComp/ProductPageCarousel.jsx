@@ -19,9 +19,9 @@ const ProductPageCarousel = () => {
     return (
       <Stack direction={{ base: "column", md: "column", lg: "row" }}>
         <Box
-          h={"100%"}
+          h={{ lg: "fit-content" }}
           border={"0px solid blue"}
-          w={["100%", "100%", "60%"]}
+          w={["100%", "100%", "100%", "60%"]}
           p={"2"}
         >
           <Slide>
@@ -39,7 +39,9 @@ const ProductPageCarousel = () => {
 
         <Box
           border={"0px solid red"}
-          w={["100%", "100%", "40%"]}
+          h={{ lg: "385px" }}
+          display={{ base: "none", md: "none", lg: "block" }}
+          w={["100%", "100%", "100%", "40%"]}
           p={"2"}
         >
           <Image

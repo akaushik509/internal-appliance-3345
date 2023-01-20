@@ -14,14 +14,14 @@ import { BsFillArrowRightCircleFill } from 'react-icons/bs';
 
 const Footer1 = () => {
   return (
-    <Box width="100%" height={["2000px","2400px","1300px"]} marginTop="25px" padding="10px" justifyContent='center'>
+    <Box width="100%" height={["3000px","2400px","1300px"]} marginTop="25px" padding="10px" justifyContent='center'>
         <Divider />
-        <Box width="100%" height={["1000px","1200px","550px"]} >
-            <SimpleGrid columns={{sm: 1, md: 1, lg:2}} justifyContent='center' height={["1200px","1200px","300px"]}>
+        <Box width="100%" height={["1500px","1500px","550px"]} >
+            <SimpleGrid columns={{sm: 1, md: 1, lg:2}} justifyContent='center' height={["1200px","1500px","300px"]}>
                 <Flex  width={["400px","800px"]} height="600px" justifyContent='flex-end'>
-                    <Image src={mobile} alt='mobile' width={["450px","600px","800px"]} />
+                    <Image src={mobile} alt='mobile' width={["450px","300px","800px"]} />
                 </Flex>
-                <Flex flexDirection="column" fontSize={["sm","sm", "md"]} height={["1000px","550px"]}  justifyContent="space-around" padding="30px"  width="90%" >
+                <Flex flexDirection="column" fontSize={["sm","sm", "md"]} height={["1500px","1000px","550px"]}  justifyContent="space-around" padding="30px"  width="90%" >
                     <Heading as="h2" fontSize={["sm", "md", "2xl"]} >Download the Healthkart Mobile app</Heading>
                     <Flex gap='5' >
                         <Image src={cart} alt='cart' width="50" />
@@ -53,7 +53,7 @@ const Footer1 = () => {
             </SimpleGrid>
         </Box>
         <Divider />
-        <Box width="100%" marginTop="25px" height={["1800px","2400px","620px"]} margin="50" >
+        <Box width="100%" marginTop="55px" height={["2800px","1900px","620px"]} margin="50">
             <SimpleGrid columns={{sm: 1, md: 1, lg:2}} justifyContent='center' height={["300px"]} >
                 <Flex flexDirection="column" width="70%" height="100%"  gap="20" >
                     <Flex bg="#00b5b7"  borderRadius="15" height="45%" gap="10" width="100" padding="10">

@@ -22,7 +22,6 @@ import {
 import React, { useEffect, useState } from "react";
 import ProductItems from "./products-item";
 import axios from "axios";
-import ProductEditModal from "./products-modal";
 
 const Products = () => {
   const toast = useToast();
@@ -69,7 +68,7 @@ const Products = () => {
   // ``````````````````````````````````````````````````````` Editable Modal ````````````````````````````````
   const handleOpenDetails = (id, image, price, title) => {
     setTitle(title);
-    setPrice(Math.floor(Number(price) * 60));
+    setPrice(price);
     SetImage(image);
     msetId(id);
     onOpen();
@@ -92,7 +91,7 @@ const Products = () => {
     // console.log(`http://localhost:8080/${category}/${mid}`);
     let dataToSend = {
       product_title: title,
-      product_price: String(Number(price / 60).toFixed(2)),
+      product_price: String(price),
       product_photo: image,
     };
 
@@ -139,14 +138,14 @@ const Products = () => {
           ></Input>
           {/* select option */}
           <Select
-            variant="flushed"
+            // variant="flushed"
             bg="#0c0e1f"
             w={{ base: "45%", md: "25%", lg: "20%" }}
             cursor={"pointer"}
             onChange={(e) => setCategory(e.target.value)}
           >
             <option style={{ backgroundColor: "#0c0e1f" }} value="WheyProtien">
-              Protiens
+              Proteins
             </option>
             <option style={{ backgroundColor: "#0c0e1f" }} value="Equipments">
               Gym Equipment
