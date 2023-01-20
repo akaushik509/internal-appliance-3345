@@ -4,7 +4,8 @@ import Navbar from "../../Components/Navbar/Navbar";
 import { ChakraProvider } from "@chakra-ui/react";
 import { Provider } from "react-redux";
 import { store } from '../redux/store';
-// import '@/styles/globals.css'
+/* import '@/styles/globals.css' */
+import "../styles/globals.css"
 
 
 export default function App({ Component, pageProps }) {
@@ -18,7 +19,7 @@ export default function App({ Component, pageProps }) {
   return (
     <Provider store={store}>
     <ChakraProvider>
-      {showHeader && showHeader2 && showHeader3 && showHeader4 && <Navbar />}
+       {showHeader && showHeader2 && showHeader3 && showHeader4 && <Navbar />}
       <Component {...pageProps} />
     </ChakraProvider>
   </Provider>

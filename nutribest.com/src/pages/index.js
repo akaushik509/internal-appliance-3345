@@ -1,17 +1,21 @@
-import Head from 'next/head'
-import { Inter } from '@next/font/google'
-import Carousel from 'Components/Carousel/Carousel'
+
+import Head from "next/head";
+import Image from "next/image";
+import { Inter } from "@next/font/google";
+import Carousel from "Components/Carousel/Carousel";
 // import AdvertiseSmall from 'Components/Advertise/AdvertiseSmall'
-import Footer1 from 'Components/Footer/Footer1'
-import Footer2 from 'Components/Footer/Footer2'
+import Footer1 from "Components/Footer/Footer1";
+import Footer2 from "Components/Footer/Footer2";
 // import ProductCard from 'Components/ProductPageComp/ProductCard'
-import ProductSlider from 'Components/ProductPageComp/ProductSlider'
-import AdvertiseMain from 'Components/Advertise/AdvertiseMain'
+import ProductSlider from "Components/ProductPageComp/ProductSlider";
+import AdvertiseMain from "Components/Advertise/AdvertiseMain";
 // import styles from '@/styles/Home.module.css'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
+
 
 export default function Home({  data, adsdata2, adsdata3, adsdata4, adsdata5, Sliderdata1, Sliderdata2, Sliderdata3, Sliderdata4 }) {
+
   return (
     <>
       <Head>
@@ -20,6 +24,7 @@ export default function Home({  data, adsdata2, adsdata3, adsdata4, adsdata5, Sl
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/images/logo.png" />
       </Head>
+
       <main >
       {/* className={styles.main} */}
       <Carousel />
@@ -35,27 +40,26 @@ export default function Home({  data, adsdata2, adsdata3, adsdata4, adsdata5, Sl
       {/* <AdvertiseSmall data={adsdata5}/> */}
       <Footer1 />
       <Footer2 />
+
       </main>
     </>
-  )
+  );
 }
-
-
- 
 
 export async function getStaticProps() {
   // Fetch data from external API
-  const res = await fetch(`http://localhost:8080/Advertise1?_limit=4`)
-  const data = await res.json()
+  const res = await fetch(`http://localhost:8080/Advertise1?_limit=4`);
+  const data = await res.json();
 
-  const res2 = await fetch(`http://localhost:8080/Advertise2`)
-  const adsdata2 = await res2.json()
+  const res2 = await fetch(`http://localhost:8080/Advertise2`);
+  const adsdata2 = await res2.json();
 
-  const res3 = await fetch(`http://localhost:8080/Advertise3`)
-  const adsdata3 = await res3.json()
+  const res3 = await fetch(`http://localhost:8080/Advertise3`);
+  const adsdata3 = await res3.json();
 
-  const res4 = await fetch(`http://localhost:8080/Advertise4`)
-  const adsdata4 = await res4.json()
+  const res4 = await fetch(`http://localhost:8080/Advertise4`);
+  const adsdata4 = await res4.json();
+
 
   const res5 = await fetch(`http://localhost:8080/Advertise5`)
   const adsdata5 = await res5.json()
@@ -73,10 +77,12 @@ export async function getStaticProps() {
 
   const resProdSlider4 = await fetch(`http://localhost:8080/Healthy_Juice`)
   const Sliderdata4 = await resProdSlider4.json()
+
+
   // Pass data to the page via props
-  return { 
-    props: { 
-      data: data ,
+  return {
+    props: {
+      data: data,
       adsdata2: adsdata2,
       adsdata3: adsdata3,
       adsdata4: adsdata4,
@@ -85,7 +91,6 @@ export async function getStaticProps() {
       Sliderdata2: Sliderdata2,
       Sliderdata3: Sliderdata3,
       Sliderdata4: Sliderdata4,
-    } 
-  }
+    },
+  };
 }
-

@@ -1,5 +1,5 @@
 import {legacy_createStore,combineReducers,compose ,applyMiddleware} from 'redux'
-import { Reducer } from './UserDetail/reducer'
+import { Reducer } from './SingleProduct/reducer'
 
 import thunk from 'redux-thunk'
 import { signreducer } from './Signup/sign.reducer'
