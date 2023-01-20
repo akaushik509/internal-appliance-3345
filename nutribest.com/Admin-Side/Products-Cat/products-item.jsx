@@ -61,7 +61,7 @@ const ProductItems = ({
           width={{ base: "5%", md: "15%", lg: "15%" }}
           fontSize={{ base: "12px", md: "12px", lg: "md" }}
         >
-          <Text>{category}</Text>
+          <Text>{category === "WheyProtien" ? "WheyProtein" : category}</Text>
         </Box>
         <Box w={{ base: "5%", md: "15%", lg: "10%" }}>
           <Button
@@ -131,7 +131,7 @@ const ProductItems = ({
               {product_title}
             </Text>
             <Text mt={"10px"} fontSize={{ base: "12px", sm: "13px" }}>
-              {category}
+              {category === "WheyProtien" ? "WheyProtein" : category}
             </Text>
             <Text mt={"10px"} fontSize={{ base: "12px", sm: "13px" }}>
               ID- {id}
