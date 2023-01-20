@@ -22,7 +22,6 @@ import {
 import React, { useEffect, useState } from "react";
 import ProductItems from "./products-item";
 import axios from "axios";
-import ProductEditModal from "./products-modal";
 
 const Products = () => {
   const toast = useToast();
@@ -139,14 +138,14 @@ const Products = () => {
           ></Input>
           {/* select option */}
           <Select
-            variant="flushed"
+            // variant="flushed"
             bg="#0c0e1f"
             w={{ base: "45%", md: "25%", lg: "20%" }}
             cursor={"pointer"}
             onChange={(e) => setCategory(e.target.value)}
           >
             <option style={{ backgroundColor: "#0c0e1f" }} value="WheyProtien">
-              Protiens
+              Proteins
             </option>
             <option style={{ backgroundColor: "#0c0e1f" }} value="Equipments">
               Gym Equipment
