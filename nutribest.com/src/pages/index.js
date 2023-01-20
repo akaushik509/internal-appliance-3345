@@ -21,6 +21,7 @@ export default function Home({ data, adsdata2, adsdata3, adsdata4, adsdata5 }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/images/logo.png" />
       </Head>
+
       <main>
         {/* className={styles.main} */}
         <Carousel />
