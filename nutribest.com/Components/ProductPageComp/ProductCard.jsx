@@ -95,7 +95,7 @@ const {product_photo,product_star_rating,product_num_ratings,product_title,produ
             justifyContent={"space-between"}
           >
             <Box color="rgb(53, 50, 50)" fontSize="xl" fontWeight={"bold"}>
-              ₹{Math.floor(Number(product_minimum_offer_price) * 81.3)}
+              ₹{Math.floor(Number(product_price) * 60)}
             </Box>
             <Box
               display={"flex"}
@@ -105,7 +105,7 @@ const {product_photo,product_star_rating,product_num_ratings,product_title,produ
               fontWeight={"600"}
               textDecoration="line-through"
             >
-              ₹{Math.floor(Number(product_price) * 81.3)}
+              ₹{Math.floor(Number(product_minimum_offer_price) * 100)}
             </Box>
             <Box
               display={"flex"}
@@ -114,7 +114,7 @@ const {product_photo,product_star_rating,product_num_ratings,product_title,produ
               fontSize="14px"
               fontWeight={"600"}
             >
-              {DiscountValue(+product_minimum_offer_price, +product_price)}% off
+              {DiscountValue( +product_price, +product_minimum_offer_price)}% off
             </Box>
           </Flex>
 
@@ -138,7 +138,7 @@ const {product_photo,product_star_rating,product_num_ratings,product_title,produ
               fontSize={["11px", "11px", "12px", "16px"]}
               fontWeight={"500"}
             >
-              ₹{Math.floor(Number(product_minimum_offer_price - 6) * 81.3)} for
+              ₹{Math.floor(Number(product_price - 6) * 60)} for
               Premium Members
             </Flex>
           </Flex>

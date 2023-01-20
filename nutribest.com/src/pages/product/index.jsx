@@ -35,7 +35,7 @@ const Product = () => {
 
   useEffect(()=>{
     getData()
-  },[])
+  },[WheyProtien, Ayurvedic,Healthy_Juice,Gainers ])
 
   // Funtion to get all the categories data with certain limit
   const getData = async()=>{
