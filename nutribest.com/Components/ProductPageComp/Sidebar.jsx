@@ -1,13 +1,22 @@
 import React from 'react';
 import style from "./Sidebar.module.css"
+import {
+  Box,
+} from "@chakra-ui/react";
+import SideBarContent from './SidebarContent';
 
-const Sidebar = () => {
-    return (
-        <div className={style.sidebarfixed}>
-            <h3>Sidebar Content</h3>
-            <p>This sidebar is fixed and always visible on the page.</p>
-        </div>
-    );
-}
+
+const Sidebar = ({ PriceChange }) => {
+  return (
+    <Box
+      display={{ base: "none", md: "block", lg: "block" }}
+      w={{ base: "0", md: "25%", lg: "20%" }}
+      p={["0", "10px", "10px", "25px"]}
+      className={style.sidebarfixed}
+    >
+      <SideBarContent PriceChange={PriceChange} />
+    </Box>
+  );
+};
 
 export default Sidebar;

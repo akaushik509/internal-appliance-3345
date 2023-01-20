@@ -12,10 +12,14 @@ export default function App({ Component, pageProps }) {
 
   const router = useRouter();
   const showHeader = router.pathname === "/admin" ? false : true;
+  const showHeader2 = router.pathname === "/cart" ? false : true;
+  const showHeader3 = router.pathname === "/address" ? false : true;
+  const showHeader4 = router.pathname === "/payment" ? false : true;
+  console.log(showHeader)
   return (
     <Provider store={store}>
     <ChakraProvider>
-      {showHeader && <Navbar />}
+       {showHeader && showHeader2 && showHeader3 && showHeader4 && <Navbar />}
       <Component {...pageProps} />
     </ChakraProvider>
   </Provider>

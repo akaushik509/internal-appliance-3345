@@ -64,7 +64,7 @@ const AdminDrawer = ({
               }}
               _hover={{ backgroundColor: "blue.500" }}
             >
-              Products
+              Listings
             </Box>
             <Box
               mt={"20px"}
