@@ -169,9 +169,7 @@ const Pending = ({ GetUserOrderDetails, userDetails }) => {
                   fontSize={{ base: "12px", md: "12px", lg: "14px" }}
                   textAlign={"center"}
                 >
-                  <Text color={"gold"}>
-                    Rs {Math.ceil(Number(order.product_price) * 60)}
-                  </Text>
+                  <Text color={"gold"}>$ {order.product_price}</Text>
                 </Box>
                 <Box
                   width={{ base: "10%", md: "10%" }}
@@ -222,7 +220,7 @@ const Pending = ({ GetUserOrderDetails, userDetails }) => {
                     alt={order.category}
                   ></Image>
                   <Text fontWeight={"bold"} fontSize={"lg"} mt={"20px"}>
-                    Rs {Math.ceil(Number(order.product_price) * 60)}
+                    $ {order.product_price}
                   </Text>
                 </Box>
                 {/* ```````````````````````````````````right Div````````````````````````````` */}

@@ -68,7 +68,7 @@ const Products = () => {
   // ``````````````````````````````````````````````````````` Editable Modal ````````````````````````````````
   const handleOpenDetails = (id, image, price, title) => {
     setTitle(title);
-    setPrice(Math.floor(Number(price) * 60));
+    setPrice(price);
     SetImage(image);
     msetId(id);
     onOpen();
@@ -91,7 +91,7 @@ const Products = () => {
     // console.log(`http://localhost:8080/${category}/${mid}`);
     let dataToSend = {
       product_title: title,
-      product_price: String(Number(price / 60).toFixed(2)),
+      product_price: String(price),
       product_photo: image,
     };
 

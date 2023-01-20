@@ -55,7 +55,7 @@ const ProductItems = ({
             handleOpenDetails(id, product_photo, product_price, product_title);
           }}
         >
-          <Text>Rs {Math.ceil(Number(product_price) * 60)}</Text>
+          <Text>$ {product_price}</Text>
         </Box>
         <Box
           width={{ base: "5%", md: "15%", lg: "15%" }}
@@ -116,7 +116,7 @@ const ProductItems = ({
             alt={category}
           ></Image>
           <Text fontWeight={"bold"} fontSize={"lg"} mt={"20px"}>
-            Rs {Math.ceil(Number(product_price) * 60)}
+            $ {product_price}
           </Text>
         </Box>
         {/* ```````````````````````````````````right Div````````````````````````````` */}
