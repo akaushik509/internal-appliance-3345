@@ -18,14 +18,15 @@ import {
 } from "@chakra-ui/react";
 import { FiLogOut } from "react-icons/fi";
 import { AiFillInfoCircle } from "react-icons/ai";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Products from "../Products-Cat/products";
-import Orders from "../orders";
+import Orders from "../Orders/orders";
 import Customers from "../customers";
 import Discounts from "../discounts";
 import AccountInfo from "../accountInfo";
 import AdminDrawer from "Admin-Side/AdminDrawer";
 import Dashboard from "Admin-Side/dashboard";
+import axios from "axios";
 const AdminMenu = () => {
   const prodRef = useRef();
   const dashboardRef = useRef();
@@ -33,6 +34,15 @@ const AdminMenu = () => {
   const orderRef = useRef();
   const accountRef = useRef();
   const discountRef = useRef();
+  const [admin, setAdmin] = useState({});
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8080/Admin-Details`)
+      .then((res) => setAdmin(res.data))
+      .catch((err) => console.log(err));
+  }, []);
+  // console.log(admin);
   return (
     <>
       <Tabs display={"flex"}>
@@ -57,11 +67,14 @@ const AdminMenu = () => {
           </Box>
 
           <Box textAlign={"center"} mt={"20px"}>
-            <Avatar size={"2xl"}></Avatar>
+            <Avatar
+              size={"2xl"}
+              //  src={admin.Image}
+            ></Avatar>
           </Box>
           <Box textAlign={"center"} mt={"20px"} mb={"20px"}>
-            <Text>Sarfraj Ahmad Raza</Text>
-            <Text color={"gray.400"}>abc@gmail.com</Text>
+            <Text>{admin.Name}</Text>
+            <Text color={"gray.400"}>{admin.EmailId}</Text>
           </Box>
 
           <Tab
