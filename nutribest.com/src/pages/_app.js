@@ -4,7 +4,8 @@ import Navbar from "../../Components/Navbar/Navbar";
 import { ChakraProvider } from "@chakra-ui/react";
 import { Provider } from "react-redux";
 import { store } from '../redux/store';
-// import '@/styles/globals.css'
+/* import '@/styles/globals.css' */
+import "../styles/globals.css"
 
 
 export default function App({ Component, pageProps }) {
