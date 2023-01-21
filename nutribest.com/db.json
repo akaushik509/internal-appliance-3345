@@ -3258,7 +3258,7 @@
       "climate_pledge_friendly": true,
       "Order_status": "Pending",
       "category": "Healthy_Juice",
-      "cart": false,
+      "cart": true,
       "isOrdered": false
     },
     {
@@ -6607,92 +6607,13 @@
   ],
   "User-Details": [
     {
-      "id": 1,
-      "Name": "Avinash",
-      "Phone": "784859610",
-      "Email": "abc@gmail.com",
-      "Image": "https://avatars.githubusercontent.com/u/26029251?v=4",
-      "Password": "abcded",
-      "IsPrime": false,
-      "Address": "BIhar",
-      "Orders": [
-        {
-          "active": true,
-          "id": "B00C0BLDWQ",
-          "product_title": "BSN TRUE-MASS Weight Gainer, Muscle Mass Gainer Protein Powder, Vanilla Ice Cream, 10.25 Pound",
-          "product_price": 81.54,
-          "product_original_price": null,
-          "currency": "USD",
-          "product_star_rating": 4.5,
-          "product_num_ratings": 5768,
-          "product_url": "https://www.amazon.com/dp/B00C0BLDWQ",
-          "product_photo": "https://m.media-amazon.com/images/I/61h90JRJaFL._AC_UL960_QL65_.jpg",
-          "product_num_offers": 1,
-          "product_minimum_offer_price": "81.54",
-          "is_best_seller": false,
-          "is_prime": true,
-          "climate_pledge_friendly": false,
-          "Order_status": "Completed",
-          "category": "Gainers",
-          "cart": true,
-          "isOrdered": true,
-          "date": "09:30 A.M, Friday"
-        },
-        {
-          "active": true,
-          "id": "B07RFKFTSM",
-          "product_title": "Rivalus Clean Gainer, Chocolate Peanut Butter, 10 Pound",
-          "product_price": 53.35,
-          "product_original_price": "56.99",
-          "currency": "USD",
-          "product_star_rating": 4.5,
-          "product_num_ratings": 3039,
-          "product_url": "https://www.amazon.com/dp/B07RFKFTSM",
-          "product_photo": "https://m.media-amazon.com/images/I/61BVx1OZxmL._AC_UL960_QL65_.jpg",
-          "product_num_offers": 1,
-          "product_minimum_offer_price": "53.35",
-          "is_best_seller": false,
-          "is_prime": true,
-          "climate_pledge_friendly": false,
-          "Order_status": "Pending",
-          "category": "Gainers",
-          "cart": true,
-          "isOrdered": true,
-          "date": "09:30 A.M, Friday"
-        },
-        {
-          "active": true,
-          "id": "B00VZ02QO2",
-          "product_title": "MuscleMeds Carnivor Mass Anabolic Beef Protein Gainer, Strawberry, 6 Pound",
-          "product_price": 36.97,
-          "product_original_price": null,
-          "currency": "USD",
-          "product_star_rating": 4.5,
-          "product_num_ratings": 1830,
-          "product_url": "https://www.amazon.com/dp/B00VZ02QO2",
-          "product_photo": "https://m.media-amazon.com/images/I/71tDvkz4mKL._AC_UL960_QL65_.jpg",
-          "product_num_offers": 1,
-          "product_minimum_offer_price": "36.97",
-          "is_best_seller": false,
-          "is_prime": true,
-          "climate_pledge_friendly": false,
-          "Order_status": "Shipped",
-          "category": "Gainers",
-          "cart": true,
-          "isOrdered": true,
-          "date": "09:30 A.M, Friday"
-        }
-      ]
-    },
-    {
-      "id": 1674104858446,
+      "id": 1674157564056,
       "Name": "ONKAR KASHINATH KALSANNAWAR",
-      "Phone": "7066990273",
+      "Phone": "111111",
       "Email": "onkarOK0273@email.com",
       "Image": "",
-      "Password": "pistol22",
+      "Password": "pistol",
       "IsPrime": false,
-      "Address": "Bihar",
       "Orders": [
         {
           "active": true,
@@ -6712,9 +6633,42 @@
           "climate_pledge_friendly": false,
           "Order_status": "Cancelled",
           "category": "Gainers",
-          "cart": true,
+          "cart": false,
           "isOrdered": false,
           "date": "09:30 A.M, Friday"
+        }
+      ]
+    },
+    {
+      "id": 1674310108863,
+      "Name": "Avinash Kaushik",
+      "Phone": "48565741",
+      "Email": "akaushik509@gmail.com",
+      "Image": "https://avatars.githubusercontent.com/u/26029251?v=4",
+      "Password": "123456789",
+      "IsPrime": false,
+      "Address": "Patna",
+      "Orders": [
+        {
+          "active": true,
+          "id": "B00VZ02QO2",
+          "product_title": "MuscleMeds Carnivor Mass Anabolic Beef Protein Gainer, Strawberry, 6 Pound",
+          "product_price": "36.97",
+          "product_original_price": null,
+          "currency": "USD",
+          "product_star_rating": 4.6,
+          "product_num_ratings": 1293,
+          "product_url": "https://www.amazon.com/dp/B00JYG1IRA",
+          "product_photo": "https://m.media-amazon.com/images/I/71TJXl3eEpL._AC_UL960_QL65_.jpg",
+          "product_num_offers": 1,
+          "product_minimum_offer_price": "4.19",
+          "is_best_seller": false,
+          "is_prime": false,
+          "climate_pledge_friendly": true,
+          "Order_status": "Pending",
+          "category": "Healthy_Juice",
+          "cart": false,
+          "isOrdered": false
         }
       ]
     }
