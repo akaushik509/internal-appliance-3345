@@ -30,7 +30,7 @@ const Products = () => {
   const [category, setCategory] = useState("WheyProtien");
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [title, setTitle] = useState("");
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useState();
   const [image, SetImage] = useState("");
   const [mid, msetId] = useState("");
 
@@ -91,7 +91,7 @@ const Products = () => {
     // console.log(`http://localhost:8080/${category}/${mid}`);
     let dataToSend = {
       product_title: title,
-      product_price: String(price),
+      product_price: +price,
       product_photo: image,
     };
 
@@ -276,7 +276,7 @@ const Products = () => {
         size={{ base: "sm", md: "md" }}
       >
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent bg={"#0c0e1f"} color={"white"}>
           <ModalHeader>Edit Listing</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6} textAlign={"center"}>
@@ -315,7 +315,7 @@ const Products = () => {
                 cursor={"pointer"}
                 value={price}
                 onChange={(e) => {
-                  setPrice(e.target.value);
+                  setPrice(Number(e.target.value));
                   console.log(e.target.value);
                 }}
               >
@@ -335,7 +335,9 @@ const Products = () => {
             >
               Save
             </Button>
-            <Button onClick={onClose}>Cancel</Button>
+            <Button colorScheme={"red"} onClick={onClose}>
+              Cancel
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
