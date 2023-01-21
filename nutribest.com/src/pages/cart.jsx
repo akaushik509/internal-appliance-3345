@@ -1,19 +1,72 @@
 import Nav from 'Components/Cart/Nav'
 import Head from 'next/head'
 import React, { useEffect, useState } from 'react'
-import { data } from 'Components/Cart/cart.data'
-import { Box, Heading, HStack, Stack } from '@chakra-ui/react'
+
+import { Box, Heading, HStack, Image, Stack, Text, VStack } from '@chakra-ui/react'
 import Cards from 'Components/Cart/Cards'
+import { data } from 'Components/Cart/cart.data.js'
+import Coupan from 'Components/Cart/Coupan'
+import OrderSummary from 'Components/Cart/OrderSummary'
+import Footer from 'Components/Cart/Footer'
 export default function Cart() {
     const [session,setSession] = useState([])
+    const [maxprice,setMaxprice] = useState(0)
+    const [totalprice,setTotalprice] = useState(0)
+    // console.log(session)
 
-    console.log(session)
     
 
-    useEffect(()=>{
-        sessionStorage.setItem("data", JSON.stringify(data))
+    const handlequantity=(id,val)=>{
+
+        let arr = session.map((el)=>{
+                if(el.id==id){
+                    el.quantity += val
+                }
+
+                return el
+        })
+
+        setSession(arr)
+        handleTotalprice()
+        handleMaxprice()
+    }
+
+    const handleTotalprice = ()=>{
+        let ans = 0
+        session.map((el)=>{
+            return ans+= el.price * el.quantity
+        })
+
+        setTotalprice(ans)
+
+    }
+
+    const handleMaxprice = ()=>{
+        let ans = 0
+        session.map((el)=>{
+            return ans+= el.maxprice * el.quantity
+        })
+
+        setMaxprice(ans)
+
+    }
+    // console.log("total",totalprice)
+
+    const handleDelete=(id)=>{
+        const deletetodos = session.filter((todo)=>todo.id !== id)
+
+        sessionStorage.setItem("data", JSON.stringify(deletetodos))
         let ss = JSON.parse(sessionStorage.getItem("data"))
         setSession(ss)
+
+    }
+
+    useEffect(()=>{
+        let ss = JSON.parse(sessionStorage.getItem("data"))
+        setSession(ss)
+        handleTotalprice()
+        handleMaxprice()
+        sessionStorage.setItem("data", JSON.stringify(data))
     },[])
   return (
     <div>
@@ -25,26 +78,45 @@ export default function Cart() {
       </Head>
       <main>
         <Nav/>
-        <Box border={'1px'} pl={'40px'} pr={'40px'} pt='10px' pb='10px'>
-            <Stack direction={{base:'column',lg:'row'}}>
+        <Box border={'0px'} p='20px' bg='#F4F4F4'>
+            <Stack direction={{base:'column',lg:'row'}} m='auto' border={'0px'}  >
 
-                <Box  boxShadow='md' p='6' rounded='md' bg='white' >
-                    <Heading size='md' p='10px'>shopping Cart ({session.length},item)</Heading>
-                    <Box p='10px' border={'0px'}>
-                        <Cards data={session}/>
+            
+                <Box  boxShadow='md' p='9px' rounded='md' bg='white'm='auto' w={{base:'100%',lg:'60%'}} >
+                    <Heading size='md' p='10px'>shopping Cart ({session.length} items )</Heading>
+                    <Box p='0px' border={'0px'}>
+                        <Cards data={session} handlequantity={handlequantity} handleDelete={handleDelete} />
                     </Box>
 
 
                 </Box>
-                <Box>
-                    reeeeeee
+               
+
+                <Box m='auto' w={{base:'100%',lg:'40%'}} >
+                    <Box p='5px' boxShadow='sm' rounded='md' bg='white' >
+                        <Coupan/>
+                    </Box>
+                    <Box p='5px' boxShadow='sm' rounded='md' bg='white' mt='10px' >
+                        <Box p='5px'>
+                            <Heading  size='md'>Order Summary({session.length} items )</Heading>
+                        </Box>
+                        <Box p='5px'>
+                           <OrderSummary maxprice={maxprice}  totalprice={totalprice} />
+                        </Box>
+
+                        <Box p='5px'>
+                           
+                        </Box>
+                        
+                    </Box>
+                    
                 </Box>
 
 
 
             </Stack>
         </Box>
-
+        <Footer/>
       </main>
     </div>
   )

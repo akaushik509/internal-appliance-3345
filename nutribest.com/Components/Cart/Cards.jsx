@@ -2,12 +2,12 @@ import { VStack } from '@chakra-ui/react'
 import React from 'react'
 import Carditem from './Carditem'
 
-export default function Cards({data=[]}) {
+export default function Cards({data=[],handlequantity,handleDelete}) {
   return (
     <div>
-        <VStack>
+        <VStack >
             {
-                data.map((el)=>(<Carditem {...el}/>))
+                data.map((el)=>(<Carditem key={el.id} {...el} handlequantity={handlequantity} handleDelete={handleDelete} />))
             }
 
         </VStack>

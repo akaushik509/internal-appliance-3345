@@ -1,5 +1,8 @@
-import { Heading } from '@chakra-ui/react'
+import { Box, Heading, Stack } from '@chakra-ui/react'
+import AddressForm from 'Components/Address/AddressForm'
+import Footer from 'Components/Cart/Footer'
 import Nav from 'Components/Cart/Nav'
+import Form from 'Components/signup/Form'
 import Head from 'next/head'
 import React from 'react'
 
@@ -14,8 +17,14 @@ export default function Address() {
         </Head>
         <main>
             <Nav/>
-            <Heading>Address page</Heading>
-
+            <Box bg='#F4F4F4'>
+              <Stack >
+                <Box >
+                  <AddressForm/>
+                </Box>
+              </Stack>
+            </Box>
+            <Footer/>
         </main>
     </div>
   )
