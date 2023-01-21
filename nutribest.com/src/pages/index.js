@@ -8,7 +8,7 @@ import Footer2 from "Components/Footer/Footer2";
 // import ProductCard from 'Components/ProductPageComp/ProductCard'
 import ProductSlider from "Components/ProductPageComp/ProductSlider";
 import AdvertiseMain from "Components/Advertise/AdvertiseMain";
-
+// import Chat from "Components/Chat";
 // import styles from '@/styles/Home.module.css'
 
 const inter = Inter({ subsets: ["latin"] });
@@ -37,9 +37,8 @@ export default function Home({  data, adsdata2, adsdata3, adsdata4, adsdata5, Sl
       <ProductSlider data={Sliderdata3}/>
       <AdvertiseMain data={adsdata4}/>
       <ProductSlider data={Sliderdata4}/>
-      {/* <AdvertiseSmall data={adsdata5}/> */}
+      <AdvertiseMain data={adsdata5}/>
       <Footer1 />
-      {/* <Footer1b /> */}
       <Footer2 />
       </main>
     </>
@@ -61,7 +60,7 @@ export async function getStaticProps() {
   const adsdata4 = await res4.json();
 
 
-  const res5 = await fetch(`http://localhost:8080/Advertise5`)
+  const res5 = await fetch(`http://localhost:8080/Advertise5?_limit=4`)
   const adsdata5 = await res5.json()
   // console.log(adsdata2);
 

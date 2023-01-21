@@ -54,7 +54,7 @@ const Footer1 = () => {
                     </Flex>
                 </Flex>
             </SimpleGrid>
-            
+            <Divider />
         {/* </Box> */}
     </Box>
   )
