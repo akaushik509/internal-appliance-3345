@@ -11,6 +11,7 @@ import {
   Th,
   Thead,
   Tr,
+  Select,
 } from "@chakra-ui/react";
 import { deleteWatch } from "@/redux/SingleProduct/action";
 import { getProduct } from "@/redux/SingleProduct/action";
@@ -18,6 +19,7 @@ import { getProduct } from "@/redux/SingleProduct/action";
 const MyOrder = () => {
     const productlist = useSelector((store) => store.addProductAvi.productlist);
     const dispatch = useDispatch();
+    
     
     const [data, setData] = useState();
     const getData = () => {
@@ -35,13 +37,19 @@ const MyOrder = () => {
 
      const handleDelete = (id) => {
         
-          const res = axios.delete(`http://localhost:8080/User-Details/${id}`);
-          
+          const res = axios.delete(`http://localhost:8080/User-Details`);
+          res.data[0].Orders
+          getProduct(dispatch);
       }; 
+
+     
 
   return (
     <div>
         <Box id="myorderbox1">
+          <Box>
+            
+          </Box>
           <Table>
           <Thead>
             <Tr>
@@ -50,6 +58,7 @@ const MyOrder = () => {
               <Th>PRODUCT NAME</Th>
               <Th>PRICE</Th>
               <Th>RATING</Th>
+              <Th>STATUS</Th>
               <Th>DELETE</Th>
             </Tr>
           </Thead>
@@ -58,14 +67,16 @@ const MyOrder = () => {
               <Tr key={el.id}>
                 <Td>{i + 1}</Td>
                 <Td width="15%">
-                  <Image width="100%" src={el.product_photo} alt="img"></Image>
+                  <Image width="50%" src={el.product_photo} alt="img"></Image>
                 </Td>
                 <Td>{el.product_title}</Td>
                 
-                <Td>{el.product_price}</Td>
+                <Td>${el.product_price}</Td>
                 <Td>{el.product_star_rating}</Td>
+                
+                <Td><Button colorScheme='teal' >{el.Order_status}</Button></Td>
                 <Td>
-                  <Button onClick={()=>dispatch(deleteWatch(el.id))}>Delete</Button>
+                  <Button onClick={() => {handleDelete(el.id)}}>Delete</Button>
                 </Td>
               </Tr> 
             ))}
