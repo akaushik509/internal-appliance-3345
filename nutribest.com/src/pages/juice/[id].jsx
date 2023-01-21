@@ -3,7 +3,7 @@ import style from "./avijuice.module.css"
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { addProduct } from '@/redux/SingleProduct/action';
-import { Flex, Box, Heading, Button, Text } from '@chakra-ui/react';
+import { Flex, Box, Heading, Button, Text, useToast  } from '@chakra-ui/react';
 
 import Footer2 from 'Components/Footer/Footer2';
 
@@ -36,23 +36,13 @@ const workflow1 = [
   },
 ];
 
-const handleAddToCart = (todo) => {
-  return fetch("http://localhost:8080/Cart", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(todo)
-  }).then((res) =>{ 
-    res.json()
-    alert("Added")
-  });
-};
+
 
 
 const Page = ({product}) => {
-
+  
   const [dataWorkflow, setDataWorkFlow] = useState(workflow1[0]);
+  const toast = useToast()
     const handleChangeWorkflow=(value)=>{
         workflow1.map((el)=>{
          if(el.title===value){
@@ -61,8 +51,29 @@ const Page = ({product}) => {
         })
        }
 
-    console.log(product);
-    const {active,id,product_title,product_price,product_star_rating,climate_pledge_friendly,product_num_ratings,product_photo,product_minimum_offer_price,is_best_seller,is_prime} = product[0];
+       const handleAddToCart = (id, newCartStatus) => {
+        
+        return fetch(`http://localhost:8080/Healthy_Juice/${id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body:JSON.stringify({cart:newCartStatus})
+        }).then((res) =>{ 
+          res.json()   
+          toast({
+            title: 'Added To Cart.',
+            status: 'success',
+            duration: 5000,
+            isClosable: true,
+          })
+        });
+        
+
+      };
+
+    /* console.log(product); */
+    const {active,id,product_title,product_price,product_star_rating,climate_pledge_friendly,product_num_ratings,product_photo,product_minimum_offer_price,is_best_seller,cart} = product[0];
   return (
     <div>
         <Box width={"85%"} margin="auto" marginTop={"150px"} id={style.juice1} key={id}>
@@ -82,7 +93,7 @@ const Page = ({product}) => {
                     <Heading size={"md"} id={style.head} marginBottom="20px"> Star Rating ⭐⭐⭐⭐{product_star_rating}</Heading>
                     <Heading size={"md"} id={style.head} marginBottom="20px"> Min. Price: $ {(product_minimum_offer_price)}</Heading>
                     <Heading size={"md"} id={style.head} marginBottom="20px"> Price: $ {(product_price)}</Heading>
-                    <center><Button marginBottom="20px"  onClick={()=>handleAddToCart(product[0])}><img src="https://static1.hkrtcdn.com/hknext/static/media/pdp/Buy.svg" /> Add To Cart</Button></center> 
+                    <center><Button marginBottom="20px"  onClick={()=>handleAddToCart(id,true)}><img src="https://static1.hkrtcdn.com/hknext/static/media/pdp/Buy.svg" />Add To Cart</Button></center> 
                     {/* <Flex gap={"30px"}>
                       <img src="https://static1.hkrtcdn.com/hknext/static/media/pdp/weight.svg" alt="err" />
                       <Heading id={style.head} size={"md"} marginTop="7px"> Weight</Heading>
