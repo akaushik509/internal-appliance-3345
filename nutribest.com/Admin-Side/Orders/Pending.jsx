@@ -122,7 +122,7 @@ const Pending = ({ GetUserOrderDetails, userDetails }) => {
 
       {userDetails.map((user) =>
         user.Orders.map((order) =>
-          order.Order_status === "Pending" ? (
+          order.Order_status === "Pending" && order.isOrdered == true ? (
             <Box
               key={Math.random()}
               boxShadow="rgba(0, 0, 0, 0.4) 0px 1px 4px, rgba(0, 0, 0, 0.3) 0px 5px 10px -1px, rgba(0, 0, 0, 0.2) 0px -1px 0px inset"

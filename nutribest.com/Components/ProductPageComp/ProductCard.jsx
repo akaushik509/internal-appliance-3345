@@ -19,13 +19,20 @@ const DiscountValue = (currVal , actualVal)=>{
        return (Math.floor(100 - exactVal))
 }
 
-export default function ProductCard({product}) {
+export default function ProductCard({ product, handleClick }) {
+  const {
+    product_photo,
+    product_star_rating,
+    product_num_ratings,
+    product_title,
+    product_price,
+    product_minimum_offer_price,
+    id,
+  } = product;
 
-const {product_photo,product_star_rating,product_num_ratings,product_title,product_price,product_minimum_offer_price,} = product
-
- 
   return (
     <Card
+      onClick={()=>handleClick(id)}
       p={"3"}
       border="0px solid red"
       m="15px"
@@ -64,7 +71,7 @@ const {product_photo,product_star_rating,product_num_ratings,product_title,produ
               textAlign="center"
               m={"2px"}
             >
-              {+(product_star_rating)} ☆
+              {+product_star_rating} ☆
             </Box>
             <Box
               fontWeight={"600"}
@@ -76,13 +83,13 @@ const {product_photo,product_star_rating,product_num_ratings,product_title,produ
             </Box>
           </Flex>
           <Box
-          p={'1.5'}
+            p={"1.5"}
             border={"0px solid black"}
             h={{ base: "14px", md: "17px" }}
             w={{ base: "20%", md: "13%", lg: "10%" }}
           >
             <Image
-              h={{ base: "20px"}}
+              h={{ base: "20px" }}
               src={Veg_Non_veg_Icon[generateRandomNumber(0, 1)]}
               alt="n-veg"
             />
@@ -105,7 +112,7 @@ const {product_photo,product_star_rating,product_num_ratings,product_title,produ
               fontWeight={"600"}
               textDecoration="line-through"
             >
-              $ {Math.floor(Number(product_minimum_offer_price) * 3)}
+              $ {Math.floor(Number(product_minimum_offer_price))}
             </Box>
             <Box
               display={"flex"}
@@ -114,7 +121,7 @@ const {product_photo,product_star_rating,product_num_ratings,product_title,produ
               fontSize="14px"
               fontWeight={"600"}
             >
-              {DiscountValue( +product_price, +product_minimum_offer_price)}% off
+              {DiscountValue(+product_minimum_offer_price, +product_price)}% off
             </Box>
           </Flex>
 
@@ -138,8 +145,7 @@ const {product_photo,product_star_rating,product_num_ratings,product_title,produ
               fontSize={["11px", "11px", "12px", "16px"]}
               fontWeight={"500"}
             >
-              ₹{Math.floor(Number(product_price - 6) * 60)} for
-              Premium Members
+              $ {Math.floor(Number(product_price - 6))} for Premium Members
             </Flex>
           </Flex>
         </Stack>
