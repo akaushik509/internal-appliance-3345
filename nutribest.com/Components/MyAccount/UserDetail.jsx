@@ -1,9 +1,10 @@
 import { Heading, Box, Text, Button, Flex, FormControl,
     FormLabel, Input,Alert,AlertIcon,
-    FormErrorMessage,
+    FormErrorMessage,useToast,
     FormHelperText, } from '@chakra-ui/react';
 import axios from 'axios';
 import React,{ useState, useEffect } from 'react'
+
 
 
 
@@ -23,15 +24,23 @@ import React,{ useState, useEffect } from 'react'
 
 const UserDetail = () => {
     const [user, setUser] = useState([]);
-    const [formData, setFormData] = useState({address:user.Address, phone:user.Phone});
+    const toast = useToast()
 
-    const getData = () => {
-        return axios.get(`http://localhost:8080/User-Details`)
-    }
+    const [formData, setFormData] = useState({address:user.Address, phone:user.Phone});
+    
+    
+
+    const getData = (userid) => {
+      return fetch(
+        `http://localhost:8080/User-Details/${userid}`
+      ).then((res) => res.json());
+    };
     useEffect(() => {
-        getData().then((res) => {
-            console.log(res.data[0])
-            setUser(res.data[0])}); 
+      let userid = localStorage.getItem("user_id");
+      
+      getData(userid).then((res) => {
+            console.log(res)
+            setUser(res)}); 
     }, []);  
 
     const handleChange = (e) => {
@@ -41,11 +50,20 @@ const UserDetail = () => {
     const handleToggle = (id) => {
         toggleUserData(id, formData)
           .then((res) => {
-            getData();
-            
+            let userid = localStorage.getItem("user_id");
+          
+            getData(userid); 
+            toast({
+              title: 'Applied',
+              description: "Your data has been changed successfully.",
+              status: 'success',
+              duration: 5000,
+              isClosable: true,
+            })         
           })
           .catch((err) => {
             console.log("error")
+            
           });
       };
 
@@ -65,7 +83,7 @@ const UserDetail = () => {
                         <Input placeholder={user.Address} name="address" type="text" value={address} onChange={handleChange} />
                         <FormLabel margin="10px 0px 10px 0px">Mobile</FormLabel>
                         <Input placeholder={user.Phone} type="number" name="phone" value={phone} onChange={handleChange} />
-                        <Button colorScheme='teal' margin="20px 0px 10px 0px" onClick={handleToggle(user.id)}>Apply Changes</Button>
+                        <Button colorScheme='teal' margin="20px 0px 10px 0px" onClick={()=>handleToggle(user.id)}>Apply Changes</Button>
                         <FormHelperText>We'll never share your Address, Email, Phone Number.</FormHelperText>
                     </FormControl>
                     
