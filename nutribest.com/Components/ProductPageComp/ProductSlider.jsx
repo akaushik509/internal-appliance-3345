@@ -5,14 +5,14 @@ import Slider from "react-slick";
 import ProductCard from "./ProductCard";
 
 
-export default function ProductSlider({data}) {
+export default function ProductSlider({ data, handleClick }) {
   var settings = {
     dots: false,
     infinite: true,
-    speed: 2000,
+    speed: 3000,
     slidesToShow: 3,
     slidesToScroll: 3,
-    autoplay: false,
+    autoplay: true,
     autoplaySpeed: 3000,
     responsive: [
       {
@@ -21,31 +21,38 @@ export default function ProductSlider({data}) {
           slidesToShow: 2,
           slidesToScroll: 2,
           infinite: true,
-          dots: false
-        }
+          dots: false,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-        }
+        },
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
-
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
   return (
     <Slider {...settings}>
-      {data.map((el) => (
-        <ProductCard product={el} key={el.product_num_ratings} />
-      ))}
+      {data.map((el) => 
+        {if(el.active){
+          return (
+<ProductCard
+  handleClick={handleClick}
+  product={el}
+  key={el.product_num_ratings}
+/>)
+        }}
+        
+      )}
     </Slider>
   );
 }

@@ -22,7 +22,7 @@ const ProductPageCarousel = () => {
           h={{ lg: "fit-content" }}
           border={"0px solid blue"}
           w={["100%", "100%", "100%", "60%"]}
-          p={"2"}
+          p={"3"}
         >
           <Slide>
             {ImgArray.map((slideImage, index) => (
@@ -39,13 +39,13 @@ const ProductPageCarousel = () => {
 
         <Box
           border={"0px solid red"}
-          h={{ lg: "385px" }}
+          h={{ lg: "328px" }}
           display={{ base: "none", md: "none", lg: "block" }}
           w={["100%", "100%", "100%", "40%"]}
-          p={"2"}
+          p={"3"}
         >
           <Image
-            h={"83.5%"}
+            h={"100%"}
             w={"100%"}
             src={
               "https://masai-course.s3.ap-south-1.amazonaws.com/editor/uploads/2023-01-19/Screenshot%20%2888%29_590720.png"

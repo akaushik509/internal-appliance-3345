@@ -56,8 +56,11 @@ import {
   
     const submit = ()=>{
       dispatch(Sign(signCreds))
+
       console.log(signCreds.id)
       localStorage.setItem("user_id", signCreds.id);
+
+
       toast({
         title: `Sucessfull`,
         status: 'success',
