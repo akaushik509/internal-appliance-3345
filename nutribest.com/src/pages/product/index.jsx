@@ -28,14 +28,13 @@ const Product = () => {
     console.log('invoked index')
     console.log("event", event);
     console.log('checkval', checkval);
-    
   }
 
 
 
   useEffect(()=>{
     getData()
-  },[WheyProtien, Ayurvedic,Healthy_Juice,Gainers ])
+  },[WheyProtien, Ayurvedic,Healthy_Juice,Gainers])
 
   // Funtion to get all the categories data with certain limit
   const getData = async()=>{
@@ -56,13 +55,16 @@ const Product = () => {
     <>
       <SidebarDrawer PriceChange={PriceChange} />
 
-      <div style={{ display: "flex", marginTop:"120px" }}>
-        <Sidebar PriceChange={PriceChange}  />
+      <Box
+        style={{ display: "flex" }}
+        mt={{ base: "0px", md: "120px", lg: "120px" }}
+      >
+        <Sidebar PriceChange={PriceChange} />
 
         <Box
           w={{ base: "100%", md: "75%", lg: "80%" }}
           ml={{ base: "0px", md: "25%", lg: "20%" }}
-          border={"2px solid blue"}
+          border={"0px solid blue"}
           p={["15px"]}
         >
           <ProductPageCarousel />
@@ -121,7 +123,7 @@ const Product = () => {
           </Flex>
           <ProductSlider data={Ayurvedic} />
         </Box>
-      </div>
+      </Box>
     </>
   );
 }
