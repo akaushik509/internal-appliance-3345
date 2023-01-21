@@ -6714,7 +6714,7 @@
     {
       "id": 1,
       "Name": "Avinash",
-      "Phone": "3",
+      "Phone": "234234",
       "Email": "abc@gmail.com",
       "Image": "https://avatars.githubusercontent.com/u/26029251?v=4",
       "Password": "abc",
@@ -6808,8 +6808,6 @@
       "Image": "",
       "Password": "pistol",
       "IsPrime": false,
-      "Address": "",
-      "Orders": []
       "Address": "Bihar",
       "Orders": [
         {
@@ -7001,5 +6999,4 @@
   }
 
 }
-
 
