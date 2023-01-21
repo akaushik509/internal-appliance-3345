@@ -76,6 +76,7 @@ const Product = () => {
 
 
   
+  // Function to add the product to cart
    const AddedToCart = async (id, item) => {
      setcartArray([...cartArray, { ...item, quantity: 1, cart: true }]);
     console.log("cartarray", cartArray);
