@@ -2,7 +2,7 @@
 
 import { Flex, Box, Button, Input, Menu, MenuButton, MenuList, MenuItem, Heading, InputGroup, InputLeftElement, Spacer, Stack, VStack, HStack } from "@chakra-ui/react";
 import Image from "next/image";
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import NutriBest from "../../public/images/logo_withname.png";
 import { BsPersonLinesFill, BsSearch } from "react-icons/bs";
 import { AiOutlineShoppingCart } from "react-icons/ai";
@@ -16,11 +16,18 @@ import { BiPhoneIncoming, BiSupport } from "react-icons/bi";
 import Signup from "Components/signup/Signup";
 import Link from "next/link";
 import Styles from "./Navbar.module.css";
+import { debounce } from "lodash";
+
 // import Link from "next/link";
 
 
 
 const Navbar = () => {
+
+ 
+   
+
+
   return (
     <div className={Styles.navbar}>
         <Flex justifyContent="space-evenly" alignItems='center'  width='100%' height='70px' >
@@ -45,7 +52,7 @@ const Navbar = () => {
                     children={<BsSearch color='gray.300' />}
                     margin='0 auto'
                     />
-                    <Input type='tel' placeholder='Search for products and brands...'  w='100%' h='35' />
+                    <Input type='text' placeholder='Search for products and brands...' w='100%' h='35' />
                 </InputGroup>
             </Box>
             {/* <Box  w='180px' h='30'> */}
