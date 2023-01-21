@@ -4,6 +4,7 @@ import { Flex, Box, Button, Input, Menu, MenuButton, MenuList, MenuItem, Heading
 import Image from "next/image";
 import React, { useCallback, useEffect, useState } from 'react';
 import NutriBest from "../../public/images/logo_withname.png";
+import logo from "../../public/images/logo.png";
 import { BsPersonLinesFill, BsSearch } from "react-icons/bs";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { MdOutlineSubject } from "react-icons/md";
@@ -21,7 +22,6 @@ import { debounce } from "lodash";
 // import Link from "next/link";
 
 
-
 const Navbar = () => {
 
  
@@ -36,15 +36,21 @@ const Navbar = () => {
             <Input placeholder="Search for products and brands..." width='500' height='30'/>
             <Flex justifyContent="space-between">
                 <Button><BsPersonLinesFill /></Button>
-                <Button><AiOutlineShoppingCart/></Button>
+                <Button><AiOutlineShoppingCart/></Button>  display={{base:"none", md:"flex"}}
             </Flex> */}
-            <Box  w={['70px','100px','180px']}>
+            <Box  w={['100px','100px','180px']}>
                 <Image src={NutriBest} alt="NutriBest"  />
-                {/* width='50px' */}
             </Box>
+            {/* <Box  w={['100px','100px','180px']}> */}
+                {/* <picture>
+                    <source media="(max-width: 799px)" srcset={logo} />
+                    <source media="(min-width: 800px)" srcset={NutriBest} />
+                    <img src={NutriBest} alt="NutriBest" />
+                </picture> */}
+            {/* </Box> */}
             {/* <Image src={NutriBest} alt="NutriBest" width='10px' /> */}
-            <Box  w={["10%","20%","35%"]} h='35' >
-                {/* <Input variant='filled'  placeholder="Search for products and brands..." w='100%' h='35' borderRadius="5px"/> */}
+            <Box display={["none","none","flex" ]} w={["30%"]} h='35' >
+                {/* <Input variant='filled' w={["10%","20%","35%"]} placeholder="Search for products and brands..." w='100%' h='35' borderRadius="5px"/> */}
                 <InputGroup variant='filled'  w='100%' h='35'>
                     <InputLeftElement
                     pointerEvents='none'

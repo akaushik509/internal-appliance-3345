@@ -1,6 +1,5 @@
 
 import Head from "next/head";
-import Image from "next/image";
 import { Inter } from "@next/font/google";
 import Carousel from "Components/Carousel/Carousel";
 // import AdvertiseSmall from 'Components/Advertise/AdvertiseSmall'
@@ -9,6 +8,7 @@ import Footer2 from "Components/Footer/Footer2";
 // import ProductCard from 'Components/ProductPageComp/ProductCard'
 import ProductSlider from "Components/ProductPageComp/ProductSlider";
 import AdvertiseMain from "Components/Advertise/AdvertiseMain";
+
 // import styles from '@/styles/Home.module.css'
 
 const inter = Inter({ subsets: ["latin"] });
@@ -39,8 +39,8 @@ export default function Home({  data, adsdata2, adsdata3, adsdata4, adsdata5, Sl
       <ProductSlider data={Sliderdata4}/>
       {/* <AdvertiseSmall data={adsdata5}/> */}
       <Footer1 />
+      {/* <Footer1b /> */}
       <Footer2 />
-
       </main>
     </>
   );
