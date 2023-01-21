@@ -3,11 +3,11 @@ import { Button, Image,CardBody, CardFooter, Heading, Stack, Text, Card, Box, HS
 
 import React, { useEffect, useState } from 'react'
 
-export default function Carditem({id,img,name,price}) {
-    const [count,setCount] = useState(1)
+export default function Carditem({id,img,name,price,handlequantity,quantity,handleDelete }) {
+    
     const [amount,setPrice] = useState(price)
-   
-  
+//    console.log(handlequantity)
+//    console.log('quantity ',quantity )
    
   return (
     <div>
@@ -31,7 +31,7 @@ export default function Carditem({id,img,name,price}) {
                 />
             </Box>
 
-            <Stack w='90%' m='auto'>
+            <Stack w='99%' m='auto'>
                 <VStack border='0px' alignItems={'left'} >
                 <Heading size='md'>The perfect latte</Heading>
 
@@ -39,26 +39,26 @@ export default function Carditem({id,img,name,price}) {
                     {name}
                 </Text>
 
-                <Text>₹{price*count}</Text>
+                <Text>₹{price*quantity}</Text>
                 </VStack>
 
-                <HStack border='0px' p='5px' justifyContent={'space-between'}>
-                    <Box>
-                        <Button size='sm' isDisabled={count==1} onClick={()=>{setCount(count-1)}}>
+                <Stack border='0px' direction={{ base: 'column', sm: 'row' }} p='5px'  justifyContent={'space-between'} alignItems={'center'}>
+                    <Box border='0px' >
+                        <Button size='sm' colorScheme={'teal'} variant='outline' isDisabled={quantity==1} onClick={()=>{handlequantity(id,-1)}}>
                             <MinusIcon/>
                         </Button>
-                        <Button size='sm'>{count}</Button>
-                        <Button size='sm'isDisabled={count==5} onClick={()=>{setCount(count+1)}}>
+                        <Button m='10px' size='sm'>{quantity}</Button>
+                        <Button size='sm' colorScheme={'teal'} variant='outline' isDisabled={quantity==5} onClick={()=>{handlequantity(id,1)}}>
                             <AddIcon/>
                         </Button>
                     </Box>
                     <Box>
-                        <Button variant='solid' size='sm' colorScheme='red'>
+                        <Button variant='solid' size='sm' p='20px' colorScheme='red' onClick={()=>{handleDelete(id)}}>
                             Remove
                         </Button>
                     </Box>
 
-                </HStack>
+                </Stack>
             </Stack>
         </Card>
     </div>
