@@ -1,5 +1,5 @@
 import { Heading, Box, Text, Button, Flex, FormControl,
-    FormLabel, Input,
+    FormLabel, Input,Alert,AlertIcon,
     FormErrorMessage,
     FormHelperText, } from '@chakra-ui/react';
 import axios from 'axios';
@@ -42,6 +42,7 @@ const UserDetail = () => {
         toggleUserData(id, formData)
           .then((res) => {
             getData();
+            
           })
           .catch((err) => {
             console.log("error")
@@ -68,14 +69,14 @@ const UserDetail = () => {
                         <FormHelperText>We'll never share your Address, Email, Phone Number.</FormHelperText>
                     </FormControl>
                     
+                    
                 </Box>
                 <Box id="userdetailbox3">
                     <Box w="30%">
-                        <img src={user.Image} alt="Error" />
+                        <img src={user.Image} style={{boxShadow: "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;"}} alt="Error" />
                     </Box>
-                    <Box>
-                        <h3>Hello,</h3>
-                        <Heading size={"md"}>{user.Name}</Heading>
+                    <Box marginTop={"15px"}>
+                        <Heading size={"md"}>Hello, {user.Name}</Heading>
                     </Box>
                 </Box>
             </Box>

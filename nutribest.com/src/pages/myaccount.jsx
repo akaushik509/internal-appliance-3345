@@ -22,7 +22,7 @@ const MyAccount = () => {
    }
 
   return (
-    <div>
+    <div style={{marginTop:"140px"}}>
         <Box id="myaccountbox1">
             
             <Box>
