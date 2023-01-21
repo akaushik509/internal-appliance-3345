@@ -6164,8 +6164,6 @@
       "Image": "",
       "Password": "pistol",
       "IsPrime": false,
-      "Address": "",
-      "Orders": []
       "Address": "Bihar",
       "Orders": [
         {
@@ -6342,9 +6340,6 @@
       "img_url": "https://img3.hkrtcdn.com/22083/bnr_2208242_o.png",
       "caption": "sale7"
     }
-
-  ]
-
   ],
   "Admin-Details": {
     "id": 1,
@@ -6355,5 +6350,4 @@
     "Password": "abc@123",
     "isAuth": true
   }
-
 }

@@ -1,3 +1,5 @@
+
+
 .navbar{
     position: -webkit-sticky;
     position: fixed;
@@ -7,3 +9,20 @@
     z-index: 1;
     background-color: white;
 }
+
+/* #main-img {
+  
+    height: 250px;
+    width:100%
+  } 
+
+@media (min-width: 992px) {      
+    #main-img{        
+        background-image: url(public\images\logo.png);
+    } 
+}
+@media (min-width: 1200px) {    
+   #main-img{         
+       background-image: url(public\images\logo_withname.png);
+   } 
+} */
