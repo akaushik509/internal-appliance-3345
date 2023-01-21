@@ -1,24 +1,54 @@
 import Nav from 'Components/Cart/Nav'
 import Head from 'next/head'
 import React, { useEffect, useState } from 'react'
-
 import { Box, Heading, HStack, Image, Stack, Text, VStack } from '@chakra-ui/react'
 import Cards from 'Components/Cart/Cards'
-import { data } from 'Components/Cart/cart.data.js'
+import { data1 } from 'Components/Cart/cart.data.js'
 import Coupan from 'Components/Cart/Coupan'
 import OrderSummary from 'Components/Cart/OrderSummary'
 import Footer from 'Components/Cart/Footer'
+import { useDispatch, useSelector } from "react-redux"; //getCard
+import {getCard,userPrice,userMaxprice} from '../redux/card/card.action'
+import axios from "axios";
 export default function Cart() {
     const [session,setSession] = useState([])
     const [maxprice,setMaxprice] = useState(0)
     const [totalprice,setTotalprice] = useState(0)
-    // console.log(session)
+
+    // redux
+    const [user_id,setId]=useState(0)
+    const {data,totalPrice,totalMaxprice} = useSelector((store)=>store.card)
+    const dispatch = useDispatch()
+
+    console.log(totalPrice,totalMaxprice)
+
+
+    const patchCardapi =(user_id,arr) => {
+        return axios(`http://localhost:8080/User-Details/${user_id}`,{
+          method: "patch",
+          data:{Orders: arr}
+        });
+    }
+
+    const handlepatch = async (user_id,arr)=>{
+
+        try{
+
+            let res = await patchCardapi(user_id,arr)
+
+        }
+        catch(err){
+            console.log(err)
+        }
+
+    }
+
 
     
 
-    const handlequantity=(id,val)=>{
+    const handlequantity=(id,val,user_id)=>{
 
-        let arr = session.map((el)=>{
+        let arr = data.Orders.map((el)=>{
                 if(el.id==id){
                     el.quantity += val
                 }
@@ -26,47 +56,79 @@ export default function Cart() {
                 return el
         })
 
-        setSession(arr)
+        // setSession(arr)
+        handlepatch(user_id,arr)
+        // dispatch(getCard(user_id))
         handleTotalprice()
         handleMaxprice()
     }
 
     const handleTotalprice = ()=>{
         let ans = 0
-        session.map((el)=>{
-            return ans+= el.price * el.quantity
+        data.Orders.map((el)=>{
+            return ans+= el.product_price * el.quantity
         })
 
         setTotalprice(ans)
+        dispatch(userPrice(totalprice))
 
     }
 
     const handleMaxprice = ()=>{
         let ans = 0
-        session.map((el)=>{
-            return ans+= el.maxprice * el.quantity
+        data.Orders.map((el)=>{
+            return ans+= (el.product_minimum_offer_price) * el.quantity
         })
 
         setMaxprice(ans)
+        dispatch(userMaxprice(maxprice))
 
     }
-    // console.log("total",totalprice)
+    console.log("total",totalprice)
 
-    const handleDelete=(id)=>{
+    const handleDelete=(id,user_id)=>{
+        /*
         const deletetodos = session.filter((todo)=>todo.id !== id)
-
         sessionStorage.setItem("data", JSON.stringify(deletetodos))
         let ss = JSON.parse(sessionStorage.getItem("data"))
         setSession(ss)
+        */
+        let arr = data.Orders.map((el)=>{
+            if(el.id==id){
+                el.cart = false
+            }
+
+            return el
+        })
+
+        handlepatch(user_id,arr)
+
+        dispatch(getCard(user_id))
 
     }
 
     useEffect(()=>{
-        let ss = JSON.parse(sessionStorage.getItem("data"))
-        setSession(ss)
-        handleTotalprice()
-        handleMaxprice()
-        sessionStorage.setItem("data", JSON.stringify(data))
+        // localstorage
+        // let ss = JSON.parse(sessionStorage.getItem("data"))
+        // setSession(ss)
+        
+        // sessionStorage.setItem("data", JSON.stringify(data1))
+
+        // redux
+
+        
+        const userId = localStorage.getItem('user_id')
+        setId(userId)
+       
+
+        dispatch(getCard(userId))
+        
+
+        
+
+        // handleTotalprice()
+        //  handleMaxprice()
+
     },[])
   return (
     <div>
@@ -83,9 +145,9 @@ export default function Cart() {
 
             
                 <Box  boxShadow='md' p='9px' rounded='md' bg='white'm='auto' w={{base:'100%',lg:'60%'}} >
-                    <Heading size='md' p='10px'>shopping Cart ({session.length} items )</Heading>
+                    <Heading size='md' p='10px'>shopping Cart ({0} items )</Heading>
                     <Box p='0px' border={'0px'}>
-                        <Cards data={session} handlequantity={handlequantity} handleDelete={handleDelete} />
+                        <Cards data={data.Orders} handlequantity={handlequantity} handleDelete={handleDelete} />
                     </Box>
 
 
@@ -98,10 +160,10 @@ export default function Cart() {
                     </Box>
                     <Box p='5px' boxShadow='sm' rounded='md' bg='white' mt='10px' >
                         <Box p='5px'>
-                            <Heading  size='md'>Order Summary({session.length} items )</Heading>
+                            <Heading  size='md'>Order Summary({0} items )</Heading>
                         </Box>
                         <Box p='5px'>
-                           <OrderSummary maxprice={maxprice}  totalprice={totalprice} />
+                           <OrderSummary maxprice={totalMaxprice}  totalprice={totalPrice} />
                         </Box>
 
                         <Box p='5px'>

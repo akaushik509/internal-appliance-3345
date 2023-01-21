@@ -7,7 +7,7 @@ export default function Cards({data=[],handlequantity,handleDelete}) {
     <div>
         <VStack >
             {
-                data.map((el)=>(<Carditem key={el.id} {...el} handlequantity={handlequantity} handleDelete={handleDelete} />))
+                data.map((el)=>el.cart?(<Carditem key={el.id} {...el} handlequantity={handlequantity} handleDelete={handleDelete} />):false)
             }
 
         </VStack>
