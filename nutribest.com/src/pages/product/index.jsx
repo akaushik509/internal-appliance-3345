@@ -1,4 +1,4 @@
-import React, { useEffect , useState } from 'react'
+import React, { useCallback, useEffect , useState } from 'react'
 import Sidebar from 'Components/ProductPageComp/Sidebar'
 import { Box, Heading, Flex, onOpen, Button } from "@chakra-ui/react";
 import ProductSlider from 'Components/ProductPageComp/ProductSlider'
@@ -34,21 +34,27 @@ const Product = () => {
 
   useEffect(()=>{
     getData()
-  },[WheyProtien, Ayurvedic,Healthy_Juice,Gainers])
+  },[])
 
   // Funtion to get all the categories data with certain limit
-  const getData = async()=>{
-    let resWheyProtien = await axios.get('http://localhost:8080/WheyProtien?_limit=15');
-    let resAyurvedic = await axios.get('http://localhost:8080/Ayurvedic?_limit=15');
-    let resHealthy_Juice = await axios.get('http://localhost:8080/Healthy_Juice?_limit=15');
-    let resGainers = await axios.get('http://localhost:8080/Gainers?_limit=15');
-    
-    setWheyProtien(resWheyProtien.data)
-    setAyurvedic(resAyurvedic.data)
-    setHealthy_Juice(resHealthy_Juice.data)
-    setGainers(resGainers.data)
+  const getData = async () => {
+    let resWheyProtien = await axios.get(
+      "http://localhost:8080/WheyProtien?_limit=15"
+    );
+    let resAyurvedic = await axios.get(
+      "http://localhost:8080/Ayurvedic?_limit=15"
+    );
+    let resHealthy_Juice = await axios.get(
+      "http://localhost:8080/Healthy_Juice?_limit=15"
+    );
+    let resGainers = await axios.get(
+      "http://localhost:8080/Gainers?_limit=15");
 
-  }
+    setWheyProtien(resWheyProtien.data);
+    setAyurvedic(resAyurvedic.data);
+    setHealthy_Juice(resHealthy_Juice.data);
+    setGainers(resGainers.data);
+  };
 
 
   return (
