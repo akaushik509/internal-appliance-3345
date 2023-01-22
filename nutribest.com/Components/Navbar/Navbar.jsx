@@ -20,6 +20,7 @@ import {
 // import Image from "next/image";
 import React, { useCallback, useEffect, useState } from "react";
 
+
 import { BsPersonLinesFill, BsSearch } from "react-icons/bs";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { MdOutlineSubject } from "react-icons/md";
@@ -33,6 +34,7 @@ import Signup from "Components/signup/Signup";
 import Link from "next/link";
 import Styles from "./Navbar.module.css";
 import { useRouter } from "next/router";
+import SignupAdmin from "Components/adminlogin/signup/SignupAdmin";
 
 const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -65,7 +67,10 @@ const Navbar = () => {
   };
 
   return (
+    
     <div className={Styles.navbar}>
+
+        
       <Flex
         justifyContent={["space-around", "space-evenly"]}
         alignItems="center"
@@ -157,7 +162,8 @@ const Navbar = () => {
         </Box>
         {/* <Box  w='180px' h='30'> */}
         <Flex justifyContent="space-evenly" w={["50%", "15%"]} h="35">
-          <Signup />
+          {/* <Signup /> */}
+          <SignupAdmin/>
           {/* "40%","80%","30%" BsPersonLinesFill*/}
           <Button
             w={["40px", "80px", "100px"]}
@@ -270,8 +276,11 @@ const Navbar = () => {
             Customer Support
           </Button>
         </Box>
-      </Flex>
+      </Flex> 
+      
+
     </div>
+  
   );
 };
 
