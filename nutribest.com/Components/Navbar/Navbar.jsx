@@ -38,7 +38,7 @@ import SignupAdmin from "Components/adminlogin/signup/SignupAdmin";
 
 
 const authWorkflow =[
-  {title:"Signup", page:<Signup/>},{ title:"adminSignup", page:<adminSignup/>}
+  {title:"Signup", page:<Signup/>},{ title:"adminSignup", page:<SignupAdmin/>}
 ];
 
 
@@ -184,7 +184,7 @@ const Navbar = () => {
         <Flex justifyContent="space-evenly" w={["50%", "15%"]} h="35">
 
           {/* <Signup /> */}
-          <SignupAdmin/>
+          {/* <SignupAdmin/> */}
           {/* "40%","80%","30%" BsPersonLinesFill*/}
 
         <Menu closeOnSelect={false}>
@@ -194,7 +194,7 @@ const Navbar = () => {
           <MenuList minWidth='240px' >
             <MenuOptionGroup defaultValue='asc' title='Login' type='radio'>
               <MenuItemOption value='asc' isOpen={isOpen} onClose={onClose}><Signup /></MenuItemOption>
-              {/* <MenuItemOption value='desc' isOpen={isOpen} onClose={onClose}><AdminSignUp /></MenuItemOption> */}
+              <MenuItemOption value='desc' isOpen={isOpen} onClose={onClose}><SignupAdmin /></MenuItemOption>
             </MenuOptionGroup>
           
           </MenuList>
@@ -316,12 +316,7 @@ const Navbar = () => {
         </Box>
 
       </Flex>
-    </Box>
-
-      </Flex> 
-      
-
-
+    </Box>   
   );
 };
 
