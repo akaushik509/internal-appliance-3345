@@ -1,3 +1,36 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Codespaces
+Marketplace
+Explore
+ 
+@rohan28107 
+akaushik509
+/
+internal-appliance-3345
+Public
+Fork your own copy of akaushik509/internal-appliance-3345
+Code
+Issues
+4
+Pull requests
+2
+Actions
+Projects
+Wiki
+Security
+Insights
+internal-appliance-3345/nutribest.com/Components/Navbar/Navbar.jsx /
+@akaushik509
+akaushik509 Merge branch 'main' into fw19_0028_Day05
+Latest commit 50ed64a 1 hour ago
+ History
+ 4 contributors
+@rohan28107@akaushik509@OnkarK0273@sarfraj0304
+280 lines (271 sloc)  8.46 KB
+
 import {
   Flex,
   Box,
@@ -278,3 +311,18 @@ const Navbar = () => {
 };
 
 export default Navbar;
+Footer
+© 2023 GitHub, Inc.
+Footer navigation
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+internal-appliance-3345/Navbar.jsx at fw19_0028_Day05 · akaushik509/internal-appliance-3345
