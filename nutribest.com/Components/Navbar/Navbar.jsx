@@ -17,13 +17,13 @@ import Signup from "Components/signup/Signup";
 import Link from "next/link";
 import Styles from "./Navbar.module.css";
 import { debounce } from "lodash";
-
+import { useRouter } from "next/router";
 
 const Navbar = () => {
-
- 
-   
-
+    const router = useRouter();
+    const handleClick = (page) => {
+        router.push(`/${page}`)
+    }
 
   return (
     <div className={Styles.navbar}>
@@ -35,11 +35,11 @@ const Navbar = () => {
                 <Button><BsPersonLinesFill /></Button>
                 <Button><AiOutlineShoppingCart/></Button>  display={{base:"none", md:"flex"}}
             </Flex> */}
-            <Box display={{base:"none", md:"block"}}  w={['100px','100px','180px']}>
+            <Box onClick={() => handleClick("")} display={{base:"none", md:"block"}}  w={['100px','100px','180px']}>
                 {/* <Image src={NutriBest} alt="NutriBest" ></Image> */}
                 <Image src={"https://i.ibb.co/KNkk7GQ/logo-withname.png"} alt="NutriBest"></Image>
             </Box>
-            <Box display={{base:"block", md:"none"}}  w={['50px','80px','180px']} float="left">
+            <Box onClick={() => handleClick("")} display={{base:"block", md:"none"}}  w={['50px','80px','180px']} float="left">
                 <Image src={"https://i.ibb.co/C2pCDcf/logo.png"} alt="NutriBest" ></Image>
             </Box>
             {/* <Box  w={['100px','100px','180px']}> */}
@@ -94,13 +94,12 @@ const Navbar = () => {
                     
                 </MenuButton>
                 <MenuList>
-                    <MenuItem>Sports Nutrition</MenuItem>
-                    <MenuItem>Vitamins & Supplements</MenuItem>
-                    {/* <MenuDivider /> */}
-                    <MenuItem>Ayurveda & Herbs</MenuItem>
-                    <MenuItem>Health Food & Drinks</MenuItem>
-                    <MenuItem>Fitness</MenuItem>
-                    <MenuItem>Wellness</MenuItem>
+                    <MenuItem onClick={() => handleClick("ayurvedic")}>Ayurvedic</MenuItem>
+                    <MenuItem onClick={() => handleClick("wheyprotien")}>Whey protien</MenuItem>
+                    <MenuItem onClick={() => handleClick("protienfoods")}>Protien foods</MenuItem> 
+                    <MenuItem onClick={() => handleClick("juice")}>Health Food & Drinks</MenuItem> 
+                    <MenuItem onClick={() => handleClick("equipments")}>Equipments</MenuItem>
+                    <MenuItem onClick={() => handleClick("gainers")}>Gainers</MenuItem>
                 </MenuList>
             </Menu>
             <Box display={{ base: "none", md: "flex" }}>
