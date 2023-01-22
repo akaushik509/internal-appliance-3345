@@ -53,7 +53,7 @@ const Page = ({product}) => {
 
        const handleAddToCart = (id, newCartStatus) => {
         
-        return fetch(`http://localhost:8080/Protien-Foods/${id}`, {
+        return fetch(`http://localhost:8080/AllProducts/${id}`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json"
@@ -161,10 +161,10 @@ const Page = ({product}) => {
 }
 
  export async function getStaticPaths(){
-    let res = await fetch("http://localhost:8080/Protien-Foods");
+    let res = await fetch("http://localhost:8080/AllProducts");
     let data = await res.json();
     return {
-      paths:data.map((movie)=>({params:{id:movie.id.toString()}})),
+      paths:data?.map((movie)=>({params:{id:movie.id.toString()}})),
       fallback:false,
     };
   } 
@@ -174,7 +174,7 @@ const Page = ({product}) => {
     const {
       params:{id},
     } = context;
-    let res = await fetch(`http://localhost:8080/Protien-Foods/?id=${id}`);
+    let res = await fetch(`http://localhost:8080/AllProducts/?id=${id}`);
     let data = await res.json();
     return {
       props:{
@@ -188,7 +188,7 @@ const Page = ({product}) => {
     const {
       params:{id},
     } = context;
-    let res = await fetch(`http://localhost:8080/Protien-Foods/?id=${id}`);
+    let res = await fetch(`http://localhost:8080/AllProducts/?id=${id}`);
     let data = await res.json();
     return {
       props:{

@@ -1,4 +1,4 @@
-import React, { useEffect , useState } from 'react'
+import React, { useCallback, useEffect , useState } from 'react'
 import Sidebar from 'Components/ProductPageComp/Sidebar'
 import { Box, Heading, Flex, onOpen, Button } from "@chakra-ui/react";
 import ProductSlider from 'Components/ProductPageComp/ProductSlider'
@@ -28,41 +28,49 @@ const Product = () => {
     console.log('invoked index')
     console.log("event", event);
     console.log('checkval', checkval);
-    
   }
 
 
 
   useEffect(()=>{
     getData()
-  },[WheyProtien, Ayurvedic,Healthy_Juice,Gainers ])
+  },[])
 
   // Funtion to get all the categories data with certain limit
-  const getData = async()=>{
-    let resWheyProtien = await axios.get('http://localhost:8080/WheyProtien?_limit=15');
-    let resAyurvedic = await axios.get('http://localhost:8080/Ayurvedic?_limit=15');
-    let resHealthy_Juice = await axios.get('http://localhost:8080/Healthy_Juice?_limit=15');
-    let resGainers = await axios.get('http://localhost:8080/Gainers?_limit=15');
-    
-    setWheyProtien(resWheyProtien.data)
-    setAyurvedic(resAyurvedic.data)
-    setHealthy_Juice(resHealthy_Juice.data)
-    setGainers(resGainers.data)
+  const getData = async () => {
+    let resWheyProtien = await axios.get(
+      "http://localhost:8080/WheyProtien?_limit=15"
+    );
+    let resAyurvedic = await axios.get(
+      "http://localhost:8080/Ayurvedic?_limit=15"
+    );
+    let resHealthy_Juice = await axios.get(
+      "http://localhost:8080/Healthy_Juice?_limit=15"
+    );
+    let resGainers = await axios.get(
+      "http://localhost:8080/Gainers?_limit=15");
 
-  }
+    setWheyProtien(resWheyProtien.data);
+    setAyurvedic(resAyurvedic.data);
+    setHealthy_Juice(resHealthy_Juice.data);
+    setGainers(resGainers.data);
+  };
 
 
   return (
     <>
       <SidebarDrawer PriceChange={PriceChange} />
 
-      <div style={{ display: "flex", marginTop:"120px" }}>
-        <Sidebar PriceChange={PriceChange}  />
+      <Box
+        style={{ display: "flex" }}
+        mt={{ base: "0px", md: "120px", lg: "120px" }}
+      >
+        <Sidebar PriceChange={PriceChange} />
 
         <Box
           w={{ base: "100%", md: "75%", lg: "80%" }}
           ml={{ base: "0px", md: "25%", lg: "20%" }}
-          border={"2px solid blue"}
+          border={"0px solid blue"}
           p={["15px"]}
         >
           <ProductPageCarousel />
@@ -121,7 +129,7 @@ const Product = () => {
           </Flex>
           <ProductSlider data={Ayurvedic} />
         </Box>
-      </div>
+      </Box>
     </>
   );
 }

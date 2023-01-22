@@ -30,17 +30,30 @@ const Products = () => {
   const [category, setCategory] = useState("WheyProtien");
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [title, setTitle] = useState("");
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useState();
   const [image, SetImage] = useState("");
   const [mid, msetId] = useState("");
 
   // on enter Search
-  const handleKeyDown = (event) => {
-    if (event.key === "Enter") {
-      console.log(event.target.value);
+  const handleKeyDown = (e) => {
+    let data_input = e.target.value.split("");
+    let convert = data_input[0]?.toUpperCase();
+    data_input[0] = convert;
+    let searchedData = data_input.join("");
+    if (e.key === "Enter") {
+      searchTheData(searchedData);
     }
   };
-
+  const searchTheData = async (searchedData) => {
+    let res = await axios.get(`http://localhost:8080/AllProducts`);
+    let data = await res.data;
+    data = data.filter((el) => {
+      return el.product_title.match(searchedData);
+    });
+    setDatas(data);
+    // console.log(data);
+  };
+  // `````````````````````````````````toggle Status```````````````````
   const handleToggleStatus = (id, active) => {
     axios
       .patch(`http://localhost:8080/${category}/${id}`, {
@@ -91,7 +104,7 @@ const Products = () => {
     // console.log(`http://localhost:8080/${category}/${mid}`);
     let dataToSend = {
       product_title: title,
-      product_price: String(price),
+      product_price: +price,
       product_photo: image,
     };
 
@@ -276,7 +289,7 @@ const Products = () => {
         size={{ base: "sm", md: "md" }}
       >
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent bg={"#0c0e1f"} color={"white"}>
           <ModalHeader>Edit Listing</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6} textAlign={"center"}>
@@ -315,7 +328,7 @@ const Products = () => {
                 cursor={"pointer"}
                 value={price}
                 onChange={(e) => {
-                  setPrice(e.target.value);
+                  setPrice(Number(e.target.value));
                   console.log(e.target.value);
                 }}
               >
@@ -335,7 +348,9 @@ const Products = () => {
             >
               Save
             </Button>
-            <Button onClick={onClose}>Cancel</Button>
+            <Button colorScheme={"red"} onClick={onClose}>
+              Cancel
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

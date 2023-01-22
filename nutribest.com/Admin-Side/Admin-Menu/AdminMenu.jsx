@@ -22,7 +22,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Products from "../Products-Cat/products";
 import Orders from "../Orders/orders";
 import Customers from "../customers";
-import Discounts from "../discounts";
+// import Discounts from "../discounts";
 import AccountInfo from "../accountInfo";
 import AdminDrawer from "Admin-Side/AdminDrawer";
 import Dashboard from "Admin-Side/dashboard";
@@ -33,16 +33,27 @@ const AdminMenu = () => {
   const customerRef = useRef();
   const orderRef = useRef();
   const accountRef = useRef();
-  const discountRef = useRef();
-  const [admin, setAdmin] = useState({});
+  // const discountRef = useRef();
+  const [admin, setAdmin] = useState([]);
 
-  useEffect(() => {
+  const getAdminData = () => {
     axios
       .get(`http://localhost:8080/Admin-Details`)
       .then((res) => setAdmin(res.data))
       .catch((err) => console.log(err));
+  };
+  useEffect(() => {
+    getAdminData();
   }, []);
   // console.log(admin);
+  const handleLogoutAdmin = () => {
+    axios
+      .patch(`http://localhost:8080/Admin-Details`, { isAuth: !admin.isAuth })
+      .then((res) => {
+        getAdminData();
+        console.log(res);
+      });
+  };
   return (
     <>
       <Tabs display={"flex"}>
@@ -67,10 +78,7 @@ const AdminMenu = () => {
           </Box>
 
           <Box textAlign={"center"} mt={"20px"}>
-            <Avatar
-              size={"2xl"}
-              //  src={admin.Image}
-            ></Avatar>
+            <Avatar size={"2xl"} src={admin.Image}></Avatar>
           </Box>
           <Box textAlign={"center"} mt={"20px"} mb={"20px"}>
             <Text>{admin.Name}</Text>
@@ -134,7 +142,7 @@ const AdminMenu = () => {
           >
             Customers
           </Tab>
-          <Tab
+          {/* <Tab
             ref={discountRef}
             mb={"5px"}
             borderRadius={"5px"}
@@ -147,7 +155,7 @@ const AdminMenu = () => {
             }}
           >
             Discounts
-          </Tab>
+          </Tab> */}
           <Box padding={"5px 0px"}>
             <Divider />
           </Box>
@@ -170,6 +178,7 @@ const AdminMenu = () => {
             variant={"solid"}
             borderRadius={"5px"}
             colorScheme={"red"}
+            onClick={handleLogoutAdmin}
           >
             Logout
           </Button>
@@ -188,9 +197,9 @@ const AdminMenu = () => {
           <TabPanel p={0}>
             <Customers />
           </TabPanel>
-          <TabPanel p={0}>
+          {/* <TabPanel p={0}>
             <Discounts />
-          </TabPanel>
+          </TabPanel> */}
           <TabPanel p={0}>
             <AccountInfo />
           </TabPanel>
@@ -214,13 +223,13 @@ const AdminMenu = () => {
           orderRef={orderRef}
           dashboardRef={dashboardRef}
           customerRef={customerRef}
-          discountRef={discountRef}
+          // discountRef={discountRef}
           prodRef={prodRef}
         />
         <Box>
           <Menu>
             <MenuButton>
-              <Avatar></Avatar>
+              <Avatar src={admin.Image} name={admin.Name}></Avatar>
             </MenuButton>
             <MenuList backgroundColor={"#0c0e1f"} border={"1px solid #27293a"}>
               <MenuItem backgroundColor={"#0c0e1f"}>
@@ -250,7 +259,7 @@ const AdminMenu = () => {
                 >
                   {" "}
                   <FiLogOut />{" "}
-                  <Text ml={"20px"} fontSize={"md"}>
+                  <Text ml={"20px"} fontSize={"md"} onClick={handleLogoutAdmin}>
                     Logout
                   </Text>
                 </Box>

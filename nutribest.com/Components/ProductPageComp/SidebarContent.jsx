@@ -11,16 +11,23 @@ import {
 } from "@chakra-ui/react";
 
 
-const SideBarContent = ({ PriceChange }) => {
-
-  const myvalchange = (e)=>{
+const SideBarContent = ({ PriceChange, RatingChange }) => {
+  // For Price Update
+  const myPricevalchange = (e) => {
     // console.log("Invoked")
     // console.log(e.target.value, e.target.checked)
     PriceChange(e.target.value, e.target.checked);
-  }
+  };
+
+  // For Rating Update
+  const myRatingchange = (e) => {
+    // console.log("Invoked Rating");
+    //console.log(e.target.value, e.target.checked);
+    RatingChange(e.target.value, e.target.checked);
+  };
 
   return (
-    <>
+    <Box border={"0px solid red"} pt={"20px"}>
       {/* Browse By */}
 
       <Box>
@@ -48,13 +55,13 @@ const SideBarContent = ({ PriceChange }) => {
               </AccordionButton>
             </h2>
             <AccordionPanel pb={4}>
-              <Checkbox>Checkbox</Checkbox>
+              <Checkbox>Creatine Monohydrate 250g @Rs 1079</Checkbox>
               <br />
-              <Checkbox>Checkbox</Checkbox>
               <br />
-              <Checkbox>Checkbox</Checkbox>
+              <Checkbox>MB-VITE Daily Multivitamin 60 Tabs @ Rs 503</Checkbox>
               <br />
-              <Checkbox>Checkbox</Checkbox>
+              <br />
+              <Checkbox>MuscleBlaze Fish Oil 60 Softgels @ Rs 474</Checkbox>
             </AccordionPanel>
           </AccordionItem>
         </Accordion>
@@ -89,13 +96,21 @@ const SideBarContent = ({ PriceChange }) => {
               </AccordionButton>
             </h2>
             <AccordionPanel pb={4}>
-              <Checkbox>4 Ratings & Above</Checkbox>
+              <Checkbox onChange={(e) => myRatingchange(e)} value={4}>
+                4 Ratings & Above
+              </Checkbox>
               <br />
-              <Checkbox>3 Ratings & Above</Checkbox>
+              <Checkbox onChange={(e) => myRatingchange(e)} value={3}>
+                3 Ratings & Above
+              </Checkbox>
               <br />
-              <Checkbox>2 Ratings & Above</Checkbox>
+              <Checkbox onChange={(e) => myRatingchange(e)} value={2}>
+                2 Ratings & Above
+              </Checkbox>
               <br />
-              <Checkbox>1 Ratings & Above</Checkbox>
+              <Checkbox onChange={(e) => myRatingchange(e)} value={1}>
+                1 Ratings & Above
+              </Checkbox>
               <br />
             </AccordionPanel>
           </AccordionItem>
@@ -118,39 +133,24 @@ const SideBarContent = ({ PriceChange }) => {
               </AccordionButton>
             </h2>
             <AccordionPanel pb={4}>
-              <Checkbox
-                onChange={(e) => myvalchange(e)}
-                value={1000}
-              >
-                Upto 1000
+              <Checkbox onChange={(e) => myPricevalchange(e)} value={10}>
+                Above $10
               </Checkbox>
               <br />
-              <Checkbox
-                onChange={(e) => myvalchange(e)}
-                value={3000}
-              >
-                Upto 3000
+              <Checkbox onChange={(e) => myPricevalchange(e)} value={20}>
+                Above $20
               </Checkbox>
               <br />
-              <Checkbox
-                onChange={(e) => myvalchange(e)}
-                value={5000}
-              >
-                Upto 5000
+              <Checkbox onChange={(e) => myPricevalchange(e)} value={35}>
+                Above $35
               </Checkbox>
               <br />
-              <Checkbox
-                onChange={(e) => myvalchange(e)}
-                value={7000}
-              >
-                Upto 7000
+              <Checkbox onChange={(e) => myPricevalchange(e)} value={45}>
+                Above $45
               </Checkbox>
               <br />
-              <Checkbox
-                onChange={(e) => myvalchange(e)}
-                value={Infinity}
-              >
-                7000 And Above
+              <Checkbox onChange={(e) => myPricevalchange(e)} value={0}>
+                Reset
               </Checkbox>
               <br />
             </AccordionPanel>
@@ -176,7 +176,8 @@ const SideBarContent = ({ PriceChange }) => {
             <AccordionPanel pb={4}>
               <Checkbox>0-20%</Checkbox>
               <br />
-              <Checkbox>20% And Above</Checkbox>
+              <Checkbox>Above 20%</Checkbox>
+              <br />
             </AccordionPanel>
           </AccordionItem>
 
@@ -205,6 +206,34 @@ const SideBarContent = ({ PriceChange }) => {
             </AccordionPanel>
           </AccordionItem>
 
+          {/* Reviews */}
+
+          <AccordionItem>
+            <h2>
+              <AccordionButton>
+                <Heading
+                  fontWeight={"600"}
+                  fontSize={"17px"}
+                  as="span"
+                  flex="1"
+                  textAlign="left"
+                >
+                  Reviews
+                </Heading>
+                <AccordionIcon />
+              </AccordionButton>
+            </h2>
+            <AccordionPanel pb={4}>
+              <Checkbox>Above 1000</Checkbox>
+              <br />
+              <Checkbox>Above 2000</Checkbox>
+              <br />
+              <Checkbox>Above 3000</Checkbox>
+              <br />
+              <Checkbox>Above 4000</Checkbox>
+            </AccordionPanel>
+          </AccordionItem>
+
           {/* Stock Availability */}
 
           <AccordionItem>
@@ -230,7 +259,7 @@ const SideBarContent = ({ PriceChange }) => {
           </AccordionItem>
         </Accordion>
       </Box>
-    </>
+    </Box>
   );
 };
 

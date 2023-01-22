@@ -9,10 +9,10 @@ export default function ProductSlider({ data, handleClick }) {
   var settings = {
     dots: false,
     infinite: true,
-    speed: 2000,
+    speed: 3000,
     slidesToShow: 3,
     slidesToScroll: 3,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 3000,
     responsive: [
       {
@@ -42,13 +42,17 @@ export default function ProductSlider({ data, handleClick }) {
   };
   return (
     <Slider {...settings}>
-      {data.map((el) => (
-        <ProductCard
-          handleClick={handleClick}
-          product={el}
-          key={el.product_num_ratings}
-        />
-      ))}
+      {data.map((el) => 
+        {if(el.active){
+          return (
+<ProductCard
+  handleClick={handleClick}
+  product={el}
+  key={el.product_num_ratings}
+/>)
+        }}
+        
+      )}
     </Slider>
   );
 }
