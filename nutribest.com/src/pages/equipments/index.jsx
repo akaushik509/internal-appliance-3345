@@ -1,16 +1,15 @@
-import React, { useEffect , useState } from 'react'
-import Sidebar from 'Components/ProductPageComp/Sidebar'
-import { Box, Heading, Flex, onOpen, Button, SimpleGrid } from "@chakra-ui/react";
-import axios from 'axios'
-import ProductCard from 'Components/ProductPageComp/ProductCard';
-import ProductPageCarousel from 'Components/ProductPageComp/ProductPageCarousel'
-import SidebarDrawer from 'Components/ProductPageComp/SidebarDrawer'
-import { useRouter } from 'next/router';
-import Pagination from 'Components/ProductPageComp/Pagination';
-
+import React, { useEffect, useState } from "react";
+import Sidebar from "Components/ProductPageComp/Sidebar";
+import { Box, Heading, Flex, SimpleGrid } from "@chakra-ui/react";
+import axios from "axios";
+import ProductCard from "Components/ProductPageComp/ProductCard";
+import ProductPageCarousel from "Components/ProductPageComp/ProductPageCarousel";
+import SidebarDrawer from "Components/ProductPageComp/SidebarDrawer";
+import { useRouter } from "next/router";
+import Pagination from "Components/ProductPageComp/Pagination";
 
 const Product = () => {
-  const [Healthy_Juice, setHealthy_Juice] = useState([]);
+  const [Equipments, setEquipments] = useState([]);
   const [maxPrice, setmaxPrice] = useState(0); //Setting the maxprice for filter
   const [Rating, setRating] = useState(1); //Setting the Rating for filter
   const [PageNo, setPageNo] = useState(1); // Page State (Default value is 1)
@@ -18,8 +17,10 @@ const Product = () => {
   const [TotalPage, setTotalPage] = useState(0); // TotalPage according to limit and data;
   const [cartArray, setcartArray] = useState([]); // For adding to cart
   const [Review, setReview] = useState(0); // For setting the review;
+  const [Discount, setDiscount] = useState(0); // For setting the discount;
+  const [DiscountAccordingTo, setDiscountAccordingTo] = useState(""); // For setting the DiscountAccordingTo;
 
-  console.log("Healthy_Juice", Healthy_Juice); // My data Array
+  console.log("Equipments", Equipments); // My data Array
 
   // Filter function of Product Price
   const PriceChange = (event, checkval) => {
@@ -30,7 +31,7 @@ const Product = () => {
     if (checkval) {
       setmaxPrice(event);
     }
-    console.log("Maxprice", maxPrice);
+    // console.log("Maxprice", maxPrice);
   };
 
   // Fiter function of Rating
@@ -42,19 +43,32 @@ const Product = () => {
     if (checkval) {
       setRating(event);
     }
-    console.log("Rating", Rating);
+    // console.log("Rating", Rating);
   };
 
   //Filter Function for Review
-const changeReview = (event, checkval) => {
- event = Number(event);
- console.log("Invoked Review function");
- console.log("event", event);
+  const changeReview = (event, checkval) => {
+    event = Number(event);
+    console.log("Invoked Review function");
+    console.log("checkval", checkval);
+    console.log("event", event);
+    if (checkval) {
+      setDiscount(event);
+    }
+  };
 
- if (checkval) {
-   setReview(event);
- }
-};
+  //Filter Function for Discount  (Cuuently not using this function we dont have discount key in backend)
+  const changeDiscount = (event, checkval, accordingTo) => {
+    event = Number(event);
+    console.log("Invoked Discount function");
+    console.log("event", event);
+    console.log("accordingTo", accordingTo);
+
+    if (checkval) {
+      setReview(event);
+      setDiscountAccordingTo(accordingTo);
+    }
+  };
 
   //For changing the DataLimit Per Page;
   const handleLimit = (DataLimit) => {
@@ -71,7 +85,6 @@ const changeReview = (event, checkval) => {
     setPageNo(changeBy);
   };
 
-  
   useEffect(() => {
     FetchingDataForTotalPage();
     getData();
@@ -79,10 +92,10 @@ const changeReview = (event, checkval) => {
 
   // Funtion to get data of Healty juice
   const getData = async () => {
-    let resHealthy_Juice = await axios.get(
-      `http://localhost:8080/Healthy_Juice?product_num_ratings_gte=${Review}&product_star_rating_gte=${Rating}&product_price_gte=${maxPrice}&_page=${PageNo}&_limit=${DataLimit}`
+    let resEquipments = await axios.get(
+      `http://localhost:8080/Equipments?product_num_ratings_gte=${Review}&product_star_rating_gte=${Rating}&product_price_gte=${maxPrice}&_page=${PageNo}&_limit=${DataLimit}`
     );
-    setHealthy_Juice(resHealthy_Juice.data);
+    setEquipments(resEquipments.data);
   };
 
   // Function to add the product to cart
@@ -102,7 +115,7 @@ const changeReview = (event, checkval) => {
   //Fetching all the data for getting TotalPage for pagination
   const FetchingDataForTotalPage = async () => {
     try {
-      let res = await fetch(`http://localhost:8080/Healthy_Juice`);
+      let res = await fetch(`http://localhost:8080/Equipments`);
       let data = await res.json();
       // console.log("Total data of this Page", data);
       const val = Math.ceil(data.length / DataLimit);
@@ -115,7 +128,7 @@ const changeReview = (event, checkval) => {
   const router = useRouter(); // Navigating to Single Product Page
   const handleClick = (id) => {
     // console.log("id", id);
-    router.push(`/juice/${id}`);
+    router.push(`/ayurvedic/${id}`);
   };
 
   return (
@@ -124,6 +137,7 @@ const changeReview = (event, checkval) => {
         RatingChange={RatingChange}
         PriceChange={PriceChange}
         changeReview={changeReview}
+        changeDiscount={changeDiscount}
       />
       <Box
         style={{ display: "flex" }}
@@ -133,6 +147,7 @@ const changeReview = (event, checkval) => {
           RatingChange={RatingChange}
           PriceChange={PriceChange}
           changeReview={changeReview}
+          changeDiscount={changeDiscount}
         />
 
         <Box
@@ -148,7 +163,7 @@ const changeReview = (event, checkval) => {
               fontWeight={["600", "500"]}
               fontSize={["21px", "23px", "30px"]}
             >
-              Healthy Juice
+              Equipments
             </Heading>
           </Flex>
           <SimpleGrid
@@ -156,7 +171,7 @@ const changeReview = (event, checkval) => {
             spacing="20px"
             border={"0px solid green"}
           >
-            {Healthy_Juice.map((item) => (
+            {Equipments.map((item) => (
               <ProductCard
                 AddedToCart={AddedToCart}
                 product={item}
@@ -186,9 +201,4 @@ const changeReview = (event, checkval) => {
   );
 };
 
-export default Product
-
-
-
-
-  
+export default Product;
