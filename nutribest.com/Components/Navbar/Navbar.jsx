@@ -1,6 +1,6 @@
 
 import { Flex, Box, Button, Input, Menu,useDisclosure, MenuButton, MenuList, MenuItem, Heading, InputGroup, InputLeftElement, Spacer, Stack, VStack, HStack,Image } from "@chakra-ui/react";
-import Image from "next/image";
+
 import React, { useCallback, useEffect, useState } from 'react';
 
 // import NutriBest from "../../public/images/logo_withname.png";
