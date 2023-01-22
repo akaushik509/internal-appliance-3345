@@ -80,7 +80,7 @@ const Page = ({product}) => {
             <Flex gap={"40px"} width={"90%"} margin="auto" id={style.juice2}>
                 <Box w="40%" h={"700px"} id={style.juice21}>
                   <Box w={"100%"} h="70%" id={style.juice211}  overflow={"hidden"} display="inline-flex"  >
-                    <center><img src={product_photo} width="100%" height={"100%"} style={{objectFit:"cover"}} /></center>
+                    <center><img src={product_photo} width="45%" style={{objectFit:"cover"}} /></center>
                   </Box>
                   <Box id={style.juice212} width="40%" margin={"auto"} marginTop="30px" gap={"20px"} >
                     <Heading id={style.head} size={"md"}>Product Benefits</Heading>
@@ -115,6 +115,11 @@ const Page = ({product}) => {
                         </Box>
                       </Flex>
                     </Box>
+                    <Box>
+                    <Heading size={"sm"} marginTop="50px">Description</Heading>
+                      <p style={{marginTop:"5px"}}>
+If there’s a match made in (nature) heaven, it has to be of Bitter Gourd and Jamun. There are endless health benefits of Karela Jamun Juice — and more so for people with diabetes. Here’s why Karela Jamun Juice should make it into your diet: Karela or Bitter Gourd is rich in phyto-nutrients like minerals, vitamins and antioxidants and has a hypoglycemic agent called "Charantin" that regulates natural sugar levels in the body. Jamun fruit regulates the body's metabolism by converting starch into sugar and prevents sudden sugar spikes and is also a rich source of Vitamin A and Vitamin C. Quick fact: Both Karela and Jamun are used in Ayurvedic practices for centuries and are safe to consume</p>
+                    </Box>
                 </Box>
             </Flex>
 
@@ -148,7 +153,7 @@ const Page = ({product}) => {
                       <Box >    
                           <Text color="#6d6dff" fontSize="30px" >{dataWorkflow.title}</Text>
                       </Box>
-                      <Text color="grey" marginTop="20px" fontSize="20px">{dataWorkflow.content}</Text>
+                      <p color="grey" marginTop="20px" fontSize="20px">{dataWorkflow.content}</p>
                       <img width="100%" height={"3%"} src={dataWorkflow.logo}></img>
                   </Box>
               </Flex>
