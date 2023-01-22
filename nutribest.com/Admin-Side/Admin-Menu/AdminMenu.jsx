@@ -17,6 +17,7 @@ import {
   MenuDivider,
 } from "@chakra-ui/react";
 import { FiLogOut } from "react-icons/fi";
+import { useRouter } from "next/router";
 import { AiFillInfoCircle } from "react-icons/ai";
 import React, { useEffect, useRef, useState } from "react";
 import Products from "../Products-Cat/products";
@@ -36,6 +37,9 @@ const AdminMenu = () => {
   // const discountRef = useRef();
   const [admin, setAdmin] = useState([]);
 
+
+  const route = useRouter()
+
   const getAdminData = () => {
     axios
       .get(`http://localhost:8080/Admin-Details`)
@@ -48,10 +52,11 @@ const AdminMenu = () => {
   // console.log(admin);
   const handleLogoutAdmin = () => {
     axios
-      .patch(`http://localhost:8080/Admin-Details`, { isAuth: !admin.isAuth })
+      .patch(`http://localhost:8080/Admin-Details`, { isAuth: false })
       .then((res) => {
         getAdminData();
         console.log(res);
+        route.push('/')
       });
   };
   return (

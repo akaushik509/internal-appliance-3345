@@ -69,6 +69,7 @@ const Product = () => {
       console.log(e);
     }
   };
+  
 
   useEffect(() => {
     getData();

@@ -1,13 +1,19 @@
-import React, { useEffect , useState } from 'react'
-import Sidebar from 'Components/ProductPageComp/Sidebar'
-import { Box, Heading, Flex, onOpen, Button, SimpleGrid } from "@chakra-ui/react";
-import axios from 'axios'
-import ProductCard from 'Components/ProductPageComp/ProductCard';
-import ProductPageCarousel from 'Components/ProductPageComp/ProductPageCarousel'
-import SidebarDrawer from 'Components/ProductPageComp/SidebarDrawer'
-import { useRouter } from 'next/router';
-import Pagination from 'Components/ProductPageComp/Pagination';
-
+import React, { useCallback, useEffect, useState } from "react";
+import Sidebar from "Components/ProductPageComp/Sidebar";
+import {
+  Box,
+  Heading,
+  Flex,
+  onOpen,
+  Button,
+  SimpleGrid,
+} from "@chakra-ui/react";
+import axios from "axios";
+import ProductCard from "Components/ProductPageComp/ProductCard";
+import ProductPageCarousel from "Components/ProductPageComp/ProductPageCarousel";
+import SidebarDrawer from "Components/ProductPageComp/SidebarDrawer";
+import { useRouter } from "next/router";
+import Pagination from "Components/ProductPageComp/Pagination";
 
 const Product = () => {
   const [Healthy_Juice, setHealthy_Juice] = useState([]);
@@ -18,7 +24,6 @@ const Product = () => {
   const [TotalPage, setTotalPage] = useState(0); // TotalPage according to limit and data;
   const [cartArray, setcartArray] = useState([]); // For adding to cart
   const [Review, setReview] = useState(0); // For setting the review;
-
   console.log("Healthy_Juice", Healthy_Juice); // My data Array
 
   // Filter function of Product Price
@@ -75,14 +80,17 @@ const changeReview = (event, checkval) => {
   useEffect(() => {
     FetchingDataForTotalPage();
     getData();
+
   }, [PageNo, DataLimit, Rating, maxPrice, Review]);
+
 
   // Funtion to get data of Healty juice
   const getData = async () => {
     let resHealthy_Juice = await axios.get(
       `http://localhost:8080/Healthy_Juice?product_num_ratings_gte=${Review}&product_star_rating_gte=${Rating}&product_price_gte=${maxPrice}&_page=${PageNo}&_limit=${DataLimit}`
     );
-    setHealthy_Juice(resHealthy_Juice.data);
+    let res = await resHealthy_Juice.data;
+    setHealthy_Juice(res);
   };
 
   // Function to add the product to cart
@@ -185,10 +193,4 @@ const changeReview = (event, checkval) => {
     </Box>
   );
 };
-
-export default Product
-
-
-
-
-  
+export default Product;
