@@ -1,0 +1,54 @@
+#myorderbox1{
+    
+    
+}
+#myorderbox2{
+    
+    
+    width: 100%;
+    justify-content: space-between;
+    
+}
+#myorderbox3{
+    
+    
+}
+
+
+/* Media query Tablet form */
+@media screen and (max-width: 1070px){
+    #userdetailbox1{
+      display: flex;
+      flex-direction: column-reverse;
+      width: 200%;
+    }
+    #userdetailbox2{
+      margin-top: 15px;
+    }
+    
+  }
+  
+  /* Media query Mobile form */
+  
+  @media screen and (max-width: 730px){
+    #myorderbox1{
+        
+    }
+    #myorderbox3{
+      visibility: hidden;
+    }
+    #myorderbox4{
+        
+        border: 1px solid red;
+        display: flex;
+        width: 100%;
+    }
+    #myorderbox5{
+        
+        width: 100%;
+    }
+    #myorderbox6{
+        
+        width: 100%;
+    }
+  }

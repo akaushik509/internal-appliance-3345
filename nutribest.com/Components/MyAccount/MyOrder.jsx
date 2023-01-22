@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector,useDispatch } from 'react-redux';
-import axios from "axios";
+import Styles from "./myOrder.module.css"
 import {
   Box,
   Button,
@@ -12,6 +12,8 @@ import {
   Thead,
   Tr,
   Select,
+  background,
+  AlertIcon,Alert,AlertTitle,AlertDescription,useToast,
 } from "@chakra-ui/react";
 
 
@@ -34,6 +36,7 @@ const MyOrder = () => {
       
     
     const [data, setData] = useState();
+    const toast = useToast()
 
     const getData = (userid) => {
       return fetch(
@@ -44,66 +47,96 @@ const MyOrder = () => {
       let userid = localStorage.getItem("user_id");
       
       getData(userid).then((res) => {
-            console.log(res.Orders)
+            //console.log(res.Orders)
             setData(res.Orders)});
         
-    }, []);
-
+    }, [data]);
+    
       const handleDelete = (id) => {
-        const afterUpdate = data.filter((p)=>p.id!==id);
-        setData(afterUpdate)  
+        data.map((e)=>{
+          if(e.id==id){
+            e.Order_status="Cancelled";
+            e.isOrdered=false; 
+          }
+          setData(data)
+          
+        })
+        console.log(data)
+        
+        /* const afterUpdate = data.filter((p)=>p.id!==id);*/
+        setData(data)  
         let userid = localStorage.getItem("user_id");
         return fetch(`http://localhost:8080/User-Details/${userid}`,{
           method:"PATCH",
           headers:{
             "Content-Type":"application/json"
           },
-          body: JSON.stringify({Orders:afterUpdate})
-        }).then((res)=>res.json());
+          body: JSON.stringify({Orders:data})
+        }).then((res)=>{
+          toast({
+            title: 'Cancelled.',
+            status: 'success',
+            duration: 5000,
+            isClosable: true,
+          })
+          res.json()
+        }); 
 
       };
 
       /*  */
-
+      const breakpoints = {
+        sm: '30em',
+        md: '48em',
+        lg: '62em',
+        xl: '80em',
+        '2xl': '96em',
+      }
      
 
   return (
     <div>
-        <Box id="myorderbox1">
-          <Box>
-          </Box>
-          <Table>
+      <Box>
+        <Table>
+        <Box>
           <Thead>
-            <Tr>
-              <Th>S.NO.</Th>
-              <Th>IMAGE</Th>
-              <Th>PRODUCT NAME</Th>
-              <Th>PRICE</Th>
-             
-              <Th>STATUS</Th>
-              <Th>DELETE</Th>
-            </Tr>
+            
+              <Tr width={{base:"25px", sm:"10px", lg:"56px"}}>
+                <Th>S.NO.</Th>
+                <Th>IMAGE</Th>
+                <Th>PRODUCT NAME</Th>
+                <Th>PRICE</Th>
+                <Th>STATUS</Th>
+                <Th>DELETE</Th>
+              </Tr>
+            
+            
           </Thead>
           
-          <Tbody>
+          
+          <Tbody >
+            
             {data?.map((el, i) => (
-              el.isOrdered? ( <Tr key={el.id}>
+               ( <Tr key={el.id}>
                 <Td>{i + 1}</Td>
                 <Td width="15%">
                   <Image width="50%" src={el.product_photo} alt="img"></Image>
                 </Td>
-                <Td>{el.product_price}</Td>
-                <Td>${el.product_title}</Td>               
-                <Td><Button colorScheme='teal' >{el.Order_status}</Button></Td>
+                <Td>{el.product_title}</Td>
+                <Td>${el.product_price}</Td>               
+                <Td><Alert status='success' backgroundColor={el.Order_status=="Cancelled"?"red.500":el.Order_status=="Shipped"?"teal.500":el.Order_status=="Pending"?"yellow.500":"green.500"} color="white" borderRadius={"10px"}>{el.Order_status}</Alert>{/* <Button backgroundColor={el.Order_status=="Cancelled"?"red.500":el.Order_status=="Shipped"?"teal.500":el.Order_status=="Pending"?"yellow.500":"green.500"} isDisabled={true} >{el.Order_status}</Button> */}</Td>
                 <Td>
-                  <Button onClick={() => {handleDelete(el.id)}}>Delete</Button>
+                  <Button backgroundColor={el.Order_status=="Cancelled"?"red.500":el.Order_status=="Shipped"?"teal.500":el.Order_status=="Pending"?"yellow.500":"green.500"} isDisabled={el.Order_status=="Completed"?true:el.Order_status=="Cancelled"?true:false} color="white" onClick={() => {handleDelete(el.id)}}>Cancel</Button>
                 </Td>
-              </Tr> ) : false
+              </Tr> )
               
               
             ))}
+            
           </Tbody>
+          </Box>
         </Table>
+          
         </Box>
     </div>
   )

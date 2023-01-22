@@ -1,5 +1,6 @@
 
-import { Flex, Box, Button, Input, Menu, MenuButton, MenuList, MenuItem, Heading, InputGroup, InputLeftElement, Image} from "@chakra-ui/react";
+import { Flex, Box, Button, Input, Menu,useDisclosure, MenuButton, MenuList, MenuItem, Heading, InputGroup, InputLeftElement, Spacer, Stack, VStack, HStack,Image } from "@chakra-ui/react";
+import Image from "next/image";
 import React, { useCallback, useEffect, useState } from 'react';
 
 // import NutriBest from "../../public/images/logo_withname.png";
@@ -16,10 +17,42 @@ import { BiPhoneIncoming, BiSupport } from "react-icons/bi";
 import Signup from "Components/signup/Signup";
 import Link from "next/link";
 import Styles from "./Navbar.module.css";
-import { debounce } from "lodash";
+import { useRouter } from "next/router";
+
 
 
 const Navbar = () => {
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const [suggestions, setSuggestions] = useState([]);
+
+    const handleSearchData = (e) => {
+        let data_input = e.target.value.split("");
+        let convert = data_input[0]?.toUpperCase();
+        data_input[0] = convert;
+        let searchedData = data_input.join("");
+        
+            handleChange(searchedData);
+        
+      };
+
+    const handleChange = async(value) => {
+      let res = await fetch(`http://localhost:8080/AllProducts`)
+      let data = await res.json();
+      console.log(data)
+      data = data.filter((el)=>{
+        return(el.product_title.includes(value))
+      })
+      setSuggestions(data)
+        
+    }
+
+    const router = useRouter();
+    
+    const handleClick = (id) =>{
+      console.log("visiting page", id)
+      router.push(`/product/${id}`);
+    
+    }
 
  
    
@@ -50,7 +83,9 @@ const Navbar = () => {
                 </picture> */}
             {/* </Box> */}
             {/* <Image src={NutriBest} alt="NutriBest" width='10px' /> */}
-            <Box display={["none","none","flex" ]} w={["30%"]} h='35' >
+            <Box onClick={(()=>{
+                onClose()
+            })} display={["none","none","flex" ]} w={["30%"]} h='35' >
                 {/* <Input variant='filled' w={["10%","20%","35%"]} placeholder="Search for products and brands..." w='100%' h='35' borderRadius="5px"/> */}
                 <InputGroup variant='filled'  w='100%' h='35'>
                     <InputLeftElement
@@ -59,7 +94,23 @@ const Navbar = () => {
                     children={<BsSearch color='gray.300' />}
                     margin='0 auto'
                     />
-                    <Input type='text' placeholder='Search for products and brands...' w='100%' h='35' />
+                    <Input type='text' placeholder='Search for products and brands...' onClick={onOpen} onChange={handleSearchData} w='100%' h='35' />
+                    {
+                        suggestions?.length>0 && (
+                            <Box onClose={onClose} isOpen={isOpen} className={Styles.autocomplete}>
+                                {
+                                    suggestions?.map((el,i)=>(
+                                        <Box onClick={()=>handleClick(el.id)} key={i} className={Styles.autocompleteItems}>
+                                            <Flex height={"50px"}>
+                                                <img width={"30%"} src={el.product_photo}/>
+                                                <Heading size={"xs"} overflow="hidden" >{el.product_title}</Heading>
+                                            </Flex>
+                                        </Box>
+                                    ))
+                                }
+                            </Box>
+                        )
+                    }
                 </InputGroup>
             </Box>
             {/* <Box  w='180px' h='30'> */}
@@ -103,13 +154,13 @@ const Navbar = () => {
                     <MenuItem>Wellness</MenuItem>
                 </MenuList>
             </Menu>
-            <Box display={{ base: "none", md: "flex" }}>
-                <Button border="none" background="none" fontSize={{md:'10px', lg:'16px'}} leftIcon={<FaTag />}>Best Sellers</Button>
-                <Button border="none" background="none" fontSize={{md:'10px', lg:'16px'}} leftIcon={<SlBadge />}>Brands</Button>
-                <Button border="none" background="none" fontSize={{md:'10px', lg:'16px'}} leftIcon={<TbDiscount2 />}>Deals</Button>
-                <Button border="none" background="none" fontSize={{md:'10px', lg:'16px'}} leftIcon={<CgWebsite />}>Blogs</Button>
-                <Button border="none" background="none" fontSize={{md:'10px', lg:'16px'}} leftIcon={<BiSupport />}>Gift Card</Button>
-                <Button border="none" background="none" fontSize={{md:'10px', lg:'16px'}} leftIcon={<MdLocationPin />}>Customer Support</Button>
+            <Box display={{ base: "none", md: "flex" }} >
+                <Button zIndex={-1} border="none" background="none" fontSize={{md:'10px', lg:'16px'}} leftIcon={<FaTag />}>Best Sellers</Button>
+                <Button zIndex={-1} border="none" background="none" fontSize={{md:'10px', lg:'16px'}} leftIcon={<SlBadge />}>Brands</Button>
+                <Button zIndex={-1} border="none" background="none" fontSize={{md:'10px', lg:'16px'}} leftIcon={<TbDiscount2 />}>Deals</Button>
+                <Button zIndex={-1} border="none" background="none" fontSize={{md:'10px', lg:'16px'}} leftIcon={<CgWebsite />}>Blogs</Button>
+                <Button zIndex={-1} border="none" background="none" fontSize={{md:'10px', lg:'16px'}} leftIcon={<BiSupport />}>Gift Card</Button>
+                <Button zIndex={-1} border="none" background="none" fontSize={{md:'10px', lg:'16px'}} leftIcon={<MdLocationPin />}>Customer Support</Button>
             </Box>
             
         </Flex>
