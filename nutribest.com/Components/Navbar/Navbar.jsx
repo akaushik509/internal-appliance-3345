@@ -11,10 +11,6 @@ import {
   Heading,
   InputGroup,
   InputLeftElement,
-  Spacer,
-  Stack,
-  VStack,
-  HStack,
   Image,
 } from "@chakra-ui/react";
 // import Image from "next/image";
@@ -89,6 +85,7 @@ const Navbar = () => {
         <Box
           display={{ base: "none", md: "block" }}
           w={["100px", "100px", "180px"]}
+          onClick={() => handlePage("")}
         >
           {/* <Image src={NutriBest} alt="NutriBest" ></Image> */}
           <Image
@@ -100,6 +97,7 @@ const Navbar = () => {
           display={{ base: "block", md: "none" }}
           w={["50px", "80px", "180px"]}
           float="left"
+          onClick={() => handlePage("")}
         >
           <Image
             src={"https://i.ibb.co/C2pCDcf/logo.png"}
