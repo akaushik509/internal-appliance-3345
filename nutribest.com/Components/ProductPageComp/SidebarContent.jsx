@@ -134,18 +134,22 @@ const SideBarContent = ({ PriceChange, RatingChange }) => {
             </h2>
             <AccordionPanel pb={4}>
               <Checkbox onChange={(e) => myPricevalchange(e)} value={10}>
-                Upto $10
+                Above $10
               </Checkbox>
               <br />
               <Checkbox onChange={(e) => myPricevalchange(e)} value={20}>
-                Upto $20
+                Above $20
               </Checkbox>
               <br />
               <Checkbox onChange={(e) => myPricevalchange(e)} value={35}>
-                Upto $35
+                Above $35
               </Checkbox>
               <br />
-              <Checkbox onChange={(e) => myPricevalchange(e)} value={Infinity}>
+              <Checkbox onChange={(e) => myPricevalchange(e)} value={45}>
+                Above $45
+              </Checkbox>
+              <br />
+              <Checkbox onChange={(e) => myPricevalchange(e)} value={0}>
                 Reset
               </Checkbox>
               <br />
@@ -172,7 +176,8 @@ const SideBarContent = ({ PriceChange, RatingChange }) => {
             <AccordionPanel pb={4}>
               <Checkbox>0-20%</Checkbox>
               <br />
-              <Checkbox>20% And Above</Checkbox>
+              <Checkbox>Above 20%</Checkbox>
+              <br />
             </AccordionPanel>
           </AccordionItem>
 
@@ -198,6 +203,34 @@ const SideBarContent = ({ PriceChange, RatingChange }) => {
               <br />
               <Checkbox>Female</Checkbox>
               <br />
+            </AccordionPanel>
+          </AccordionItem>
+
+          {/* Reviews */}
+
+          <AccordionItem>
+            <h2>
+              <AccordionButton>
+                <Heading
+                  fontWeight={"600"}
+                  fontSize={"17px"}
+                  as="span"
+                  flex="1"
+                  textAlign="left"
+                >
+                  Reviews
+                </Heading>
+                <AccordionIcon />
+              </AccordionButton>
+            </h2>
+            <AccordionPanel pb={4}>
+              <Checkbox>Above 1000</Checkbox>
+              <br />
+              <Checkbox>Above 2000</Checkbox>
+              <br />
+              <Checkbox>Above 3000</Checkbox>
+              <br />
+              <Checkbox>Above 4000</Checkbox>
             </AccordionPanel>
           </AccordionItem>
 

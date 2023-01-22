@@ -1,4 +1,4 @@
-import React, { useEffect , useState } from 'react'
+import React, { useCallback, useEffect , useState } from 'react'
 import Sidebar from 'Components/ProductPageComp/Sidebar'
 import { Box, Heading, Flex, onOpen, Button, SimpleGrid } from "@chakra-ui/react";
 import axios from 'axios'
@@ -11,7 +11,7 @@ import Pagination from 'Components/ProductPageComp/Pagination';
 
 const Product = () => {
   const [Healthy_Juice, setHealthy_Juice] = useState([]);
-  const [maxPrice, setmaxPrice] = useState(Infinity); //Setting the maxprice for filter
+  const [maxPrice, setmaxPrice] = useState(0); //Setting the maxprice for filter
   const [Rating, setRating] = useState(1); //Setting the Rating for filter
   const [PageNo, setPageNo] = useState(1); // Page State (Default value is 1)
   const [DataLimit, setDataLimit] = useState(12); // Limit State (Default value is 12);
@@ -64,15 +64,16 @@ const Product = () => {
   useEffect(() => {
     FetchingDataForTotalPage();
     getData();
-  }, [PageNo, DataLimit, Rating, maxPrice,]);
+  }, [PageNo, DataLimit, Rating, maxPrice, Healthy_Juice]);
 
-  // Funtion to get all the categories data with certain limit
+  // Funtion to get data of Healty juice
   const getData = async () => {
     let resHealthy_Juice = await axios.get(
-      `http://localhost:8080/Healthy_Juice?product_star_rating_gte=${Rating}&_page=${PageNo}&_limit=${DataLimit}`
+      `http://localhost:8080/Healthy_Juice?product_star_rating_gte=${Rating}&product_price_gte=${maxPrice}&_page=${PageNo}&_limit=${DataLimit}`
     );
     setHealthy_Juice(resHealthy_Juice.data);
-  };
+
+  }
 
 
   

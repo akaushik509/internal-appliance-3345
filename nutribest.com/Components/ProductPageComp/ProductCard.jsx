@@ -128,7 +128,7 @@ export default function ProductCard({ product, handleClick, AddedToCart }) {
               fontSize="14px"
               fontWeight={"600"}
             >
-              {DiscountValue(+product_minimum_offer_price, +product_price)}% off
+              {DiscountValue(+product_minimum_offer_price-Math.random(), +product_price)}% off
             </Box>
           </Flex>
 
@@ -159,7 +159,7 @@ export default function ProductCard({ product, handleClick, AddedToCart }) {
       </CardBody>
       <CardFooter p={"2% 2% 5% 2%"}>
         <Button
-          onClick={() => AddedToCart(1, product)}
+          onClick={() => AddedToCart(userId, product)}
           border={"1px solid #ff8914"}
           color={"#ff8914"}
           fontWeight={"bold"}

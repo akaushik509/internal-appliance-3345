@@ -12,7 +12,7 @@ export default function ProductSlider({ data, handleClick }) {
     speed: 3000,
     slidesToShow: 3,
     slidesToScroll: 3,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 3000,
     responsive: [
       {
