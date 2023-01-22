@@ -30,7 +30,7 @@ export default function Home({  data, adsdata2, adsdata3, adsdata4, adsdata5, Sl
       <Carousel />
       {/* <Advertise1 /> */}
       <AdvertiseMain data={data}/>
-      <ProductSlider data={Sliderdata1}/>
+      {/* <ProductSlider data={Sliderdata1}/> */}
       <AdvertiseMain data={adsdata2}/>
       <ProductSlider data={Sliderdata2}/>
       <AdvertiseMain data={adsdata3}/>
@@ -48,7 +48,7 @@ export default function Home({  data, adsdata2, adsdata3, adsdata4, adsdata5, Sl
 
 export async function getStaticProps() {
   // Fetch data from external API
-  const res = await fetch(`http://localhost:8080/Advertise1?_limit=4`);
+  const res = await fetch(`http://localhost:8080/Advertise1`);
   const data = await res.json();
 
   const res2 = await fetch(`http://localhost:8080/Advertise2`);
