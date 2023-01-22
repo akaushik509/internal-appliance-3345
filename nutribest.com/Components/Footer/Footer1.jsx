@@ -7,10 +7,10 @@ import watch from "./app-watch.svg";
 import tick from "./app-tick.svg";
 import apple from "./Apple.png";
 import google from "./google.png";
-import thunder from "./thunder.svg";
-import physician from "./physician.png";
-import boy from "./boy-refer.svg";
-import { BsFillArrowRightCircleFill } from 'react-icons/bs';
+// import thunder from "./thunder.svg";
+// import physician from "./physician.png";
+// import boy from "./boy-refer.svg";
+// import { BsFillArrowRightCircleFill } from 'react-icons/bs';
 
 const Footer1 = () => {
   return (
