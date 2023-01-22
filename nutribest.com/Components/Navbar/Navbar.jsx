@@ -20,6 +20,7 @@ import React, { useCallback, useEffect, useState } from "react";
 // import NutriBest from "../../public/images/logo_withname.png";
 // import logo from "../../public/images/logo.png";
 
+
 import { BsPersonLinesFill, BsSearch } from "react-icons/bs";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { MdOutlineSubject } from "react-icons/md";
@@ -33,6 +34,7 @@ import Signup from "Components/signup/Signup";
 import Link from "next/link";
 import Styles from "./Navbar.module.css";
 import { useRouter } from "next/router";
+import SignupAdmin from "Components/adminlogin/signup/SignupAdmin";
 
 
 const authWorkflow =[
@@ -85,7 +87,10 @@ const Navbar = () => {
 
 
   return (
+    
     <div className={Styles.navbar}>
+
+        
       <Flex
         justifyContent={["space-around", "space-evenly"]}
         alignItems="center"
@@ -179,6 +184,11 @@ const Navbar = () => {
         </Box>
         {/* <Box  w='180px' h='30'> */}
         <Flex justifyContent="space-evenly" w={["50%", "15%"]} h="35">
+
+          {/* <Signup /> */}
+          <SignupAdmin/>
+          {/* "40%","80%","30%" BsPersonLinesFill*/}
+
         <Menu closeOnSelect={false}>
           <MenuButton as={Button}  onClick={onOpen} colorScheme='teal'>
             Login
@@ -191,6 +201,7 @@ const Navbar = () => {
           
           </MenuList>
         </Menu>
+ 
           <Button
             w={["40px", "80px", "100px"]}
             border="none"
@@ -305,8 +316,11 @@ const Navbar = () => {
             Customer Support
           </Button>
         </Box>
-      </Flex>
+      </Flex> 
+      
+
     </div>
+  
   );
 };
 

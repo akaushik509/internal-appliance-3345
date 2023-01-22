@@ -1,7 +1,7 @@
 import Nav from 'Components/Cart/Nav'
 import Head from 'next/head'
 import React, { useEffect, useState } from 'react'
-import { Box, Heading, HStack, Image, Stack, Text, VStack } from '@chakra-ui/react'
+import { Box, Button, Heading, HStack, Image, Stack, Text, VStack } from '@chakra-ui/react'
 import Cards from 'Components/Cart/Cards'
 import { data1 } from 'Components/Cart/cart.data.js'
 import Coupan from 'Components/Cart/Coupan'
@@ -10,17 +10,25 @@ import Footer from 'Components/Cart/Footer'
 import { useDispatch, useSelector } from "react-redux"; //getCard
 import {getCard,userPrice,userMaxprice} from '../redux/card/card.action'
 import axios from "axios";
+import { useRouter } from 'next/router'
 export default function Cart() {
-    const [session,setSession] = useState([])
+    const [length,setlength] = useState(0)
     const [maxprice,setMaxprice] = useState(0)
     const [totalprice,setTotalprice] = useState(0)
 
+    const router = useRouter()
+
+    const handlerouter = ()=>{
+        router.push('/address')
+    }
+
     // redux
     const [user_id,setId]=useState(0)
+
     const {data,totalPrice,totalMaxprice} = useSelector((store)=>store.card)
     const dispatch = useDispatch()
 
-    console.log(totalPrice,totalMaxprice)
+    
 
 
     const patchCardapi =(user_id,arr) => {
@@ -101,6 +109,7 @@ export default function Cart() {
             return el
         })
 
+        
         handlepatch(user_id,arr)
 
         dispatch(getCard(user_id))
@@ -119,17 +128,14 @@ export default function Cart() {
         
         const userId = localStorage.getItem('user_id')
         setId(userId)
-       
-
         dispatch(getCard(userId))
-        
+        if(data.id == userId){
+            handleTotalprice()
+            handleMaxprice()
+           
+        }
 
-        
-
-        // handleTotalprice()
-        //  handleMaxprice()
-
-    },[])
+    },[totalprice])
   return (
     <div>
         <Head>
@@ -145,7 +151,7 @@ export default function Cart() {
 
             
                 <Box  boxShadow='md' p='9px' rounded='md' bg='white'm='auto' w={{base:'100%',lg:'60%'}} >
-                    <Heading size='md' p='10px'>shopping Cart ({0} items )</Heading>
+                    <Heading size='md' p='10px'>shopping Cart ({length} items )</Heading>
                     <Box p='0px' border={'0px'}>
                         <Cards data={data.Orders} handlequantity={handlequantity} handleDelete={handleDelete} />
                     </Box>
@@ -160,19 +166,21 @@ export default function Cart() {
                     </Box>
                     <Box p='5px' boxShadow='sm' rounded='md' bg='white' mt='10px' >
                         <Box p='5px'>
-                            <Heading  size='md'>Order Summary({0} items )</Heading>
+                            <Heading  size='md'>Order Summary({length} items )</Heading>
                         </Box>
                         <Box p='5px'>
                            <OrderSummary maxprice={totalMaxprice}  totalprice={totalPrice} />
                         </Box>
 
-                        <Box p='5px'>
-                           
+                        <Box pt='25px'>
+                            <Button w='100%' onClick={()=>{handlerouter()}}  bg={'teal.400'}color={'white'} _hover={{bg: 'teal',}}>Proceed to Pay ${parseFloat(totalprice-2).toFixed(2)}</Button>
                         </Box>
-                        
                     </Box>
                     
                 </Box>
+
+                
+                        
 
 
 
