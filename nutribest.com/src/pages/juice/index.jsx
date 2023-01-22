@@ -1,13 +1,19 @@
-import React, { useEffect , useState } from 'react'
-import Sidebar from 'Components/ProductPageComp/Sidebar'
-import { Box, Heading, Flex, onOpen, Button, SimpleGrid } from "@chakra-ui/react";
-import axios from 'axios'
-import ProductCard from 'Components/ProductPageComp/ProductCard';
-import ProductPageCarousel from 'Components/ProductPageComp/ProductPageCarousel'
-import SidebarDrawer from 'Components/ProductPageComp/SidebarDrawer'
-import { useRouter } from 'next/router';
-import Pagination from 'Components/ProductPageComp/Pagination';
-
+import React, { useCallback, useEffect, useState } from "react";
+import Sidebar from "Components/ProductPageComp/Sidebar";
+import {
+  Box,
+  Heading,
+  Flex,
+  onOpen,
+  Button,
+  SimpleGrid,
+} from "@chakra-ui/react";
+import axios from "axios";
+import ProductCard from "Components/ProductPageComp/ProductCard";
+import ProductPageCarousel from "Components/ProductPageComp/ProductPageCarousel";
+import SidebarDrawer from "Components/ProductPageComp/SidebarDrawer";
+import { useRouter } from "next/router";
+import Pagination from "Components/ProductPageComp/Pagination";
 
 const Product = () => {
   const [Healthy_Juice, setHealthy_Juice] = useState([]);
@@ -16,7 +22,7 @@ const Product = () => {
   const [PageNo, setPageNo] = useState(1); // Page State (Default value is 1)
   const [DataLimit, setDataLimit] = useState(12); // Limit State (Default value is 12);
   const [TotalPage, setTotalPage] = useState(0); // TotalPage according to limit and data;
-  const [cartArray , setcartArray] = useState([]) // For adding to cart
+  const [cartArray, setcartArray] = useState([]); // For adding to cart
 
   console.log("Healthy_Juice", Healthy_Juice); // My data Array
 
@@ -32,15 +38,13 @@ const Product = () => {
     console.log("Maxprice", maxPrice);
   };
 
-
-
   // Fiter function of Rating
   const RatingChange = (event, checkval) => {
     event = Number(event);
-   // console.log("Invoked RatingChange function");
+    // console.log("Invoked RatingChange function");
     // console.log("event", event);
     // console.log("checkval", checkval);
-    if (checkval) {;
+    if (checkval) {
       setRating(event);
     }
     console.log("Rating", Rating);
@@ -64,40 +68,37 @@ const Product = () => {
   useEffect(() => {
     FetchingDataForTotalPage();
     getData();
-  }, [PageNo, DataLimit, Rating, maxPrice,]);
+  }, [PageNo, DataLimit, Rating, maxPrice]);
 
   // Funtion to get all the categories data with certain limit
   const getData = async () => {
     let resHealthy_Juice = await axios.get(
       `http://localhost:8080/Healthy_Juice?product_star_rating_gte=${Rating}&_page=${PageNo}&_limit=${DataLimit}`
     );
-    setHealthy_Juice(resHealthy_Juice.data);
+    let res = await resHealthy_Juice.data;
+    setHealthy_Juice(res);
   };
 
-
-  
   // Function to add the product to cart
-   const AddedToCart = async (id, item) => {
-     setcartArray([...cartArray, { ...item, quantity: 1, cart: true }]);
+  const AddedToCart = async (id, item) => {
+    setcartArray([...cartArray, { ...item, quantity: 1, cart: true }]);
     console.log("cartarray", cartArray);
-    try{
-    let res = await axios(`http://localhost:8080/User-Details/${id}`, {
-      method: "patch",
-      data: { Orders: cartArray },
-    });
-    } 
-    catch(e){
-      console.log(e)
+    try {
+      let res = await axios(`http://localhost:8080/User-Details/${id}`, {
+        method: "patch",
+        data: { Orders: cartArray },
+      });
+    } catch (e) {
+      console.log(e);
     }
-   };
-
+  };
 
   //Fetching all the data for getting TotalPage for pagination
   const FetchingDataForTotalPage = async () => {
     try {
       let res = await fetch(`http://localhost:8080/Healthy_Juice`);
       let data = await res.json();
-     // console.log("Total data of this Page", data);
+      // console.log("Total data of this Page", data);
       const val = Math.ceil(data.length / DataLimit);
       setTotalPage(Number(val));
     } catch (e) {
@@ -105,11 +106,10 @@ const Product = () => {
     }
   };
 
-
   const router = useRouter(); // Navigating to Single Product Page
   const handleClick = (id) => {
-   // console.log("id", id);
-   router.push(`/juice/${id}`);
+    // console.log("id", id);
+    router.push(`/juice/${id}`);
   };
 
   return (
@@ -170,11 +170,6 @@ const Product = () => {
       </Box>
     </Box>
   );
-}
+};
 
-export default Product
-
-
-
-
-  
+export default Product;
