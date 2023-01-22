@@ -35,12 +35,25 @@ const Products = () => {
   const [mid, msetId] = useState("");
 
   // on enter Search
-  const handleKeyDown = (event) => {
-    if (event.key === "Enter") {
-      console.log(event.target.value);
+  const handleKeyDown = (e) => {
+    let data_input = e.target.value.split("");
+    let convert = data_input[0]?.toUpperCase();
+    data_input[0] = convert;
+    let searchedData = data_input.join("");
+    if (e.key === "Enter") {
+      searchTheData(searchedData);
     }
   };
-
+  const searchTheData = async (searchedData) => {
+    let res = await axios.get(`http://localhost:8080/AllProducts`);
+    let data = await res.data;
+    data = data.filter((el) => {
+      return el.product_title.match(searchedData);
+    });
+    setDatas(data);
+    // console.log(data);
+  };
+  // `````````````````````````````````toggle Status```````````````````
   const handleToggleStatus = (id, active) => {
     axios
       .patch(`http://localhost:8080/${category}/${id}`, {
