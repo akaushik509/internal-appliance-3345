@@ -12,6 +12,8 @@ import {
   InputGroup,
   InputLeftElement,
   Image,
+  MenuItemOption,
+  MenuOptionGroup,
 } from "@chakra-ui/react";
 // import Image from "next/image";
 import React, { useCallback, useEffect, useState } from "react";
@@ -32,9 +34,24 @@ import Link from "next/link";
 import Styles from "./Navbar.module.css";
 import { useRouter } from "next/router";
 
+
+const authWorkflow =[
+  {title:"Signup", page:<Signup/>},{ title:"adminSignup", page:<adminSignup/>}
+];
+
+
 const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [suggestions, setSuggestions] = useState([]);
+  const [SignUpWorkflow, setSignUpDataWorkFlow] = useState(authWorkflow[0]);
+  // const { isOpen, onOpen, onClose } = useDisclosure();
+  // const handleChangeWorkflow=(value)=>{
+  //   authWorkflow.map((el)=>{
+  //    if(el.title===value){
+  //     setSignUpDataWorkFlow(el)
+  //    }
+  //   })
+  //  }
 
   const handleSearchData = (e) => {
     let data_input = e.target.value.split("");
@@ -162,8 +179,18 @@ const Navbar = () => {
         </Box>
         {/* <Box  w='180px' h='30'> */}
         <Flex justifyContent="space-evenly" w={["50%", "15%"]} h="35">
-          <Signup />
-          {/* "40%","80%","30%" BsPersonLinesFill*/}
+        <Menu closeOnSelect={false}>
+          <MenuButton as={Button}  onClick={onOpen} colorScheme='teal'>
+            Login
+          </MenuButton>
+          <MenuList minWidth='240px' >
+            <MenuOptionGroup defaultValue='asc' title='Login' type='radio'>
+              <MenuItemOption value='asc' isOpen={isOpen} onClose={onClose}><Signup /></MenuItemOption>
+              {/* <MenuItemOption value='desc' isOpen={isOpen} onClose={onClose}><AdminSignUp /></MenuItemOption> */}
+            </MenuOptionGroup>
+          
+          </MenuList>
+        </Menu>
           <Button
             w={["40px", "80px", "100px"]}
             border="none"
