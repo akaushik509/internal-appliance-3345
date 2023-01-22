@@ -3,13 +3,10 @@ import {Box,Flex,Card,CardBody,Image,Stack,Heading,Text,Divider,CardFooter,Butto
 import { BsCart } from "react-icons/bs";
 import style from "./ProductCard.module.css"
 
-  // For veg(green) and red(Non-veg) icon;
- const Veg_Non_veg_Icon = ["https://static1.hkrtcdn.com/hknext/static/media/common/variant/Non-Vegetarian.svg","https://static1.hkrtcdn.com/hknext/static/media/common/variant/Vegetarian.svg"] 
 
-//Function to generate random icons (Veg || Non-veg)
-function generateRandomNumber(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
-}
+  // For veg(green) and red(Non-veg) icon;
+ const Veg_Nonveg_Icon = ["https://static1.hkrtcdn.com/hknext/static/media/common/variant/Non-Vegetarian.svg","https://static1.hkrtcdn.com/hknext/static/media/common/variant/Vegetarian.svg"] 
+
 
 //Function to calculate discount %
 const DiscountValue = (currVal , actualVal)=>{
@@ -19,7 +16,14 @@ const DiscountValue = (currVal , actualVal)=>{
        return (Math.floor(100 - exactVal))
 }
 
-export default function ProductCard({ product, handleClick }) {
+export default function ProductCard({ product, handleClick, AddedToCart }) {
+  const [userId, setuserId] = React.useState(0);
+
+  React.useEffect(()=>{
+    const useridentification = localStorage.getItem("user_id");
+    setuserId(useridentification)
+  },[]);
+
   const {
     product_photo,
     product_star_rating,
@@ -27,17 +31,20 @@ export default function ProductCard({ product, handleClick }) {
     product_title,
     product_price,
     product_minimum_offer_price,
+    is_prime,
+    active,
     id,
   } = product;
 
   return (
     <Card
-      onClick={()=>handleClick(id)}
+      display={active ? "block" : "none"}
+      onClick={() => handleClick(id)}
       p={"3"}
       border="0px solid red"
-      m="15px"
+      m="auto"
       h={{ base: "fit-content" }}
-      maxW="sm"
+      w={{ base: "70%", md: "auto", lg: "auto" }}
       _hover={{ boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }}
     >
       <CardBody p="0">
@@ -90,7 +97,7 @@ export default function ProductCard({ product, handleClick }) {
           >
             <Image
               h={{ base: "20px" }}
-              src={Veg_Non_veg_Icon[generateRandomNumber(0, 1)]}
+              src={is_prime ? Veg_Nonveg_Icon[0] : Veg_Nonveg_Icon[1]}
               alt="n-veg"
             />
           </Box>
@@ -145,13 +152,14 @@ export default function ProductCard({ product, handleClick }) {
               fontSize={["11px", "11px", "12px", "16px"]}
               fontWeight={"500"}
             >
-              $ {Math.floor(Number(product_price - 6))} for Premium Members
+              $ {Math.floor(Number(product_price - 1))} for Premium Members
             </Flex>
           </Flex>
         </Stack>
       </CardBody>
       <CardFooter p={"2% 2% 5% 2%"}>
         <Button
+          onClick={() => AddedToCart(1, product)}
           border={"1px solid #ff8914"}
           color={"#ff8914"}
           fontWeight={"bold"}

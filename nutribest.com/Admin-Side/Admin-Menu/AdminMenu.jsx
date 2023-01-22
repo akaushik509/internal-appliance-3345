@@ -22,7 +22,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Products from "../Products-Cat/products";
 import Orders from "../Orders/orders";
 import Customers from "../customers";
-import Discounts from "../discounts";
+// import Discounts from "../discounts";
 import AccountInfo from "../accountInfo";
 import AdminDrawer from "Admin-Side/AdminDrawer";
 import Dashboard from "Admin-Side/dashboard";
@@ -33,7 +33,7 @@ const AdminMenu = () => {
   const customerRef = useRef();
   const orderRef = useRef();
   const accountRef = useRef();
-  const discountRef = useRef();
+  // const discountRef = useRef();
   const [admin, setAdmin] = useState({});
 
   useEffect(() => {
@@ -134,7 +134,7 @@ const AdminMenu = () => {
           >
             Customers
           </Tab>
-          <Tab
+          {/* <Tab
             ref={discountRef}
             mb={"5px"}
             borderRadius={"5px"}
@@ -147,7 +147,7 @@ const AdminMenu = () => {
             }}
           >
             Discounts
-          </Tab>
+          </Tab> */}
           <Box padding={"5px 0px"}>
             <Divider />
           </Box>
@@ -188,9 +188,9 @@ const AdminMenu = () => {
           <TabPanel p={0}>
             <Customers />
           </TabPanel>
-          <TabPanel p={0}>
+          {/* <TabPanel p={0}>
             <Discounts />
-          </TabPanel>
+          </TabPanel> */}
           <TabPanel p={0}>
             <AccountInfo />
           </TabPanel>
@@ -214,7 +214,7 @@ const AdminMenu = () => {
           orderRef={orderRef}
           dashboardRef={dashboardRef}
           customerRef={customerRef}
-          discountRef={discountRef}
+          // discountRef={discountRef}
           prodRef={prodRef}
         />
         <Box>

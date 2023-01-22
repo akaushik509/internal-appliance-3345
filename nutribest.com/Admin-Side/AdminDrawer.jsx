@@ -88,7 +88,7 @@ const AdminDrawer = ({
             >
               Customers
             </Box>
-            <Box
+            {/* <Box
               mt={"20px"}
               p={"10px"}
               onClick={() => {
@@ -98,7 +98,7 @@ const AdminDrawer = ({
               _hover={{ backgroundColor: "blue.500" }}
             >
               Discounts
-            </Box>
+            </Box> */}
           </DrawerBody>
         </DrawerContent>
       </Drawer>
