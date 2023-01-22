@@ -170,7 +170,10 @@ const Navbar = () => {
             background="none"
             fontSize="28px"
           >
-            <MdPersonOutline fontSize="28px" />
+             <Link href={"/myaccount"}>
+                <MdPersonOutline fontSize="28px" />
+             </Link>
+            
           </Button>
           <Button w="30%" border="none" background="none" fontSize="28px">
             <Link href={"/cart"}>
