@@ -1,54 +1,94 @@
-import React, { useCallback, useEffect , useState } from 'react'
-import Sidebar from 'Components/ProductPageComp/Sidebar'
+import React, { useCallback, useEffect, useState } from "react";
+import Sidebar from "Components/ProductPageComp/Sidebar";
 import { Box, Heading, Flex, onOpen, Button } from "@chakra-ui/react";
-import ProductSlider from 'Components/ProductPageComp/ProductSlider'
-import axios from 'axios'
-import ProductPageCarousel from 'Components/ProductPageComp/ProductPageCarousel'
-import SidebarDrawer from 'Components/ProductPageComp/SidebarDrawer'
-
+import ProductSlider from "Components/ProductPageComp/ProductSlider";
+import axios from "axios";
+import ProductPageCarousel from "Components/ProductPageComp/ProductPageCarousel";
+import SidebarDrawer from "Components/ProductPageComp/SidebarDrawer";
 
 const Product = () => {
-  const [WheyProtien,setWheyProtien] = useState([]);
-  const [Ayurvedic ,setAyurvedic ] = useState([]);
-  const [Healthy_Juice ,setHealthy_Juice ] = useState([]);
-  const [Gainers ,setGainers ] = useState([]);
-  const [maxPrice, setmaxPrice] = useState(Infinity)   //Setting the maxprice for filter
+  const [WheyProtien, setWheyProtien] = useState([]);
+  const [Ayurvedic, setAyurvedic] = useState([]);
+  const [Healthy_Juice, setHealthy_Juice] = useState([]);
+  const [Gainers, setGainers] = useState([]);
+  const [maxPrice, setmaxPrice] = useState(0); //Setting the maxprice for filter
+  const [Rating, setRating] = useState(1); //Setting the Rating for filter
+  const [cartArray, setcartArray] = useState([]); // For adding to cart
+  const [Review, setReview] = useState(0); // For setting the review;
 
-  console.log("WheyProtien",WheyProtien)
-  console.log("Ayurvedic",Ayurvedic)
-  console.log("Healthy_Juice",Healthy_Juice)
-  console.log("Gainers",Gainers)
+  console.log("WheyProtien", WheyProtien);
+  console.log("Ayurvedic", Ayurvedic);
+  console.log("Healthy_Juice", Healthy_Juice);
+  console.log("Gainers", Gainers);
 
-
-  const PriceChange = (event , checkval) =>
-  {
+  // Filter function of Product Price
+  const PriceChange = (event, checkval) => {
     event = Number(event);
-    checkval = Number(checkval);
+    //console.log("Invoked PriceChange function");
+    // console.log("event", event);
+    // console.log("checkval", checkval);
+    if (checkval) {
+      setmaxPrice(event);
+    }
+    console.log("Maxprice", maxPrice);
+  };
 
-    console.log('invoked index')
+  // Fiter function of Rating
+  const RatingChange = (event, checkval) => {
+    event = Number(event);
+    // console.log("Invoked RatingChange function");
+    // console.log("event", event);
+    // console.log("checkval", checkval);
+    if (checkval) {
+      setRating(event);
+    }
+    console.log("Rating", Rating);
+  };
+
+  //Filter Function for Review
+  const changeReview = (event, checkval) => {
+    event = Number(event);
+    console.log("Invoked Review function");
     console.log("event", event);
-    console.log('checkval', checkval);
-  }
 
+    if (checkval) {
+      setReview(event);
+    }
+  };
 
+  // Function to add the product to cart
+  const AddedToCart = async (id, item) => {
+    setcartArray([...cartArray, { ...item, quantity: 1, cart: true }]);
+    console.log("cartarray", cartArray);
+    try {
+      let res = await axios(`http://localhost:8080/User-Details/${id}`, {
+        method: "patch",
+        data: { Orders: cartArray },
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  
 
-  useEffect(()=>{
-    getData()
-  },[])
+  useEffect(() => {
+    getData();
+  }, [Rating, maxPrice, Review]);
 
   // Funtion to get all the categories data with certain limit
   const getData = async () => {
     let resWheyProtien = await axios.get(
-      "http://localhost:8080/WheyProtien?_limit=15"
+      `http://localhost:8080/WheyProtien?product_num_ratings_gte=${Review}&product_star_rating_gte=${Rating}&product_price_gte=${maxPrice}&_limit=15`
     );
     let resAyurvedic = await axios.get(
-      "http://localhost:8080/Ayurvedic?_limit=15"
+      `http://localhost:8080/Ayurvedic?product_num_ratings_gte=${Review}&product_star_rating_gte=${Rating}&product_price_gte=${maxPrice}&_limit=15`
     );
     let resHealthy_Juice = await axios.get(
-      "http://localhost:8080/Healthy_Juice?_limit=15"
+      `http://localhost:8080/Healthy_Juice?product_num_ratings_gte=${Review}&product_star_rating_gte=${Rating}&product_price_gte=${maxPrice}&_limit=15`
     );
     let resGainers = await axios.get(
-      "http://localhost:8080/Gainers?_limit=15");
+      `http://localhost:8080/Gainers?product_num_ratings_gte=${Review}&product_star_rating_gte=${Rating}&product_price_gte=${maxPrice}&_limit=15`
+    );
 
     setWheyProtien(resWheyProtien.data);
     setAyurvedic(resAyurvedic.data);
@@ -56,16 +96,23 @@ const Product = () => {
     setGainers(resGainers.data);
   };
 
-
   return (
     <>
-      <SidebarDrawer PriceChange={PriceChange} />
+      <SidebarDrawer
+        RatingChange={RatingChange}
+        PriceChange={PriceChange}
+        changeReview={changeReview}
+      />
 
       <Box
         style={{ display: "flex" }}
         mt={{ base: "0px", md: "120px", lg: "120px" }}
       >
-        <Sidebar PriceChange={PriceChange} />
+        <Sidebar
+          RatingChange={RatingChange}
+          PriceChange={PriceChange}
+          changeReview={changeReview}
+        />
 
         <Box
           w={{ base: "100%", md: "75%", lg: "80%" }}
@@ -83,7 +130,7 @@ const Product = () => {
               Trending Now
             </Heading>
           </Flex>
-          <ProductSlider data={WheyProtien} />
+          <ProductSlider data={WheyProtien} AddedToCart={AddedToCart} />
 
           <Flex m={"2"} border={"0px solid black"} w={"100%"}>
             <Heading
@@ -94,7 +141,7 @@ const Product = () => {
               Top Selling Supplements
             </Heading>
           </Flex>
-          <ProductSlider data={Ayurvedic} />
+          <ProductSlider data={Ayurvedic} AddedToCart={AddedToCart} />
 
           <Flex m={"2"} border={"0px solid black"} w={"100%"}>
             <Heading
@@ -105,7 +152,7 @@ const Product = () => {
               Top Selling In Multivitamins
             </Heading>
           </Flex>
-          <ProductSlider data={Healthy_Juice} />
+          <ProductSlider data={Healthy_Juice} AddedToCart={AddedToCart} />
 
           <Flex m={"2"} border={"0px solid black"} w={"100%"}>
             <Heading
@@ -116,7 +163,7 @@ const Product = () => {
               Top Selling In Gainers
             </Heading>
           </Flex>
-          <ProductSlider data={Gainers} />
+          <ProductSlider data={Gainers} AddedToCart={AddedToCart} />
 
           <Flex m={"2"} border={"0px solid black"} w={"100%"}>
             <Heading
@@ -127,11 +174,11 @@ const Product = () => {
               Top Selling In Ayurvedic
             </Heading>
           </Flex>
-          <ProductSlider data={Ayurvedic} />
+          <ProductSlider data={Ayurvedic} AddedToCart={AddedToCart} />
         </Box>
       </Box>
     </>
   );
-}
+};
 
-export default Product
+export default Product;

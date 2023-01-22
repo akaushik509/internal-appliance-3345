@@ -11,14 +11,14 @@ import {
   Heading,
   InputGroup,
   InputLeftElement,
-  Spacer,
-  Stack,
-  VStack,
-  HStack,
   Image,
+  MenuItemOption,
+  MenuOptionGroup,
 } from "@chakra-ui/react";
 // import Image from "next/image";
 import React, { useCallback, useEffect, useState } from "react";
+// import NutriBest from "../../public/images/logo_withname.png";
+// import logo from "../../public/images/logo.png";
 
 
 import { BsPersonLinesFill, BsSearch } from "react-icons/bs";
@@ -36,9 +36,24 @@ import Styles from "./Navbar.module.css";
 import { useRouter } from "next/router";
 import SignupAdmin from "Components/adminlogin/signup/SignupAdmin";
 
+
+const authWorkflow =[
+  {title:"Signup", page:<Signup/>},{ title:"adminSignup", page:<adminSignup/>}
+];
+
+
 const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [suggestions, setSuggestions] = useState([]);
+  const [SignUpWorkflow, setSignUpDataWorkFlow] = useState(authWorkflow[0]);
+  // const { isOpen, onOpen, onClose } = useDisclosure();
+  // const handleChangeWorkflow=(value)=>{
+  //   authWorkflow.map((el)=>{
+  //    if(el.title===value){
+  //     setSignUpDataWorkFlow(el)
+  //    }
+  //   })
+  //  }
 
   const handleSearchData = (e) => {
     let data_input = e.target.value.split("");
@@ -66,6 +81,11 @@ const Navbar = () => {
     router.push(`/product/${id}`);
   };
 
+  const handlePage = (page) => {
+    router.push(`/${page}`);
+  };
+
+
   return (
     
     <div className={Styles.navbar}>
@@ -87,6 +107,7 @@ const Navbar = () => {
         <Box
           display={{ base: "none", md: "block" }}
           w={["100px", "100px", "180px"]}
+          onClick={() => handlePage("")}
         >
           {/* <Image src={NutriBest} alt="NutriBest" ></Image> */}
           <Image
@@ -98,6 +119,7 @@ const Navbar = () => {
           display={{ base: "block", md: "none" }}
           w={["50px", "80px", "180px"]}
           float="left"
+          onClick={() => handlePage("")}
         >
           <Image
             src={"https://i.ibb.co/C2pCDcf/logo.png"}
@@ -162,16 +184,34 @@ const Navbar = () => {
         </Box>
         {/* <Box  w='180px' h='30'> */}
         <Flex justifyContent="space-evenly" w={["50%", "15%"]} h="35">
+
           {/* <Signup /> */}
           <SignupAdmin/>
           {/* "40%","80%","30%" BsPersonLinesFill*/}
+
+        <Menu closeOnSelect={false}>
+          <MenuButton as={Button}  onClick={onOpen} colorScheme='teal'>
+            Login
+          </MenuButton>
+          <MenuList minWidth='240px' >
+            <MenuOptionGroup defaultValue='asc' title='Login' type='radio'>
+              <MenuItemOption value='asc' isOpen={isOpen} onClose={onClose}><Signup /></MenuItemOption>
+              {/* <MenuItemOption value='desc' isOpen={isOpen} onClose={onClose}><AdminSignUp /></MenuItemOption> */}
+            </MenuOptionGroup>
+          
+          </MenuList>
+        </Menu>
+ 
           <Button
             w={["40px", "80px", "100px"]}
             border="none"
             background="none"
             fontSize="28px"
           >
-            <MdPersonOutline fontSize="28px" />
+             <Link href={"/myaccount"}>
+                <MdPersonOutline fontSize="28px" />
+             </Link>
+            
           </Button>
           <Button w="30%" border="none" background="none" fontSize="28px">
             <Link href={"/cart"}>
@@ -211,13 +251,13 @@ const Navbar = () => {
             Shop by Category
           </MenuButton>
           <MenuList>
-            <MenuItem>Sports Nutrition</MenuItem>
-            <MenuItem>Vitamins & Supplements</MenuItem>
+            <MenuItem onClick={() => handlePage("ayurvedic")}>Ayurvedic</MenuItem>
+            <MenuItem onClick={() => handlePage("equipments")}>Equipments</MenuItem>
             {/* <MenuDivider /> */}
-            <MenuItem>Ayurveda & Herbs</MenuItem>
-            <MenuItem>Health Food & Drinks</MenuItem>
-            <MenuItem>Fitness</MenuItem>
-            <MenuItem>Wellness</MenuItem>
+            <MenuItem onClick={() => handlePage("gainers")}>Gainers</MenuItem>
+            <MenuItem onClick={() => handlePage("juice")}>Health Food & Drinks</MenuItem>
+            <MenuItem onClick={() => handlePage("protienfoods")}>Protien foods</MenuItem>
+            <MenuItem onClick={() => handlePage("wheyprotien")}>Whey protien</MenuItem>
           </MenuList>
         </Menu>
         <Box display={{ base: "none", md: "flex" }}>
