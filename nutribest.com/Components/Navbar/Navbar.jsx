@@ -19,6 +19,8 @@ import {
 } from "@chakra-ui/react";
 // import Image from "next/image";
 import React, { useCallback, useEffect, useState } from "react";
+// import NutriBest from "../../public/images/logo_withname.png";
+// import logo from "../../public/images/logo.png";
 
 import { BsPersonLinesFill, BsSearch } from "react-icons/bs";
 import { AiOutlineShoppingCart } from "react-icons/ai";
