@@ -11,7 +11,12 @@ import {
 } from "@chakra-ui/react";
 
 
-const SideBarContent = ({ PriceChange, RatingChange }) => {
+const SideBarContent = ({
+  PriceChange,
+  RatingChange,
+  changeReview,
+  changeDiscount,
+}) => {
   // For Price Update
   const myPricevalchange = (e) => {
     // console.log("Invoked")
@@ -24,6 +29,18 @@ const SideBarContent = ({ PriceChange, RatingChange }) => {
     // console.log("Invoked Rating");
     //console.log(e.target.value, e.target.checked);
     RatingChange(e.target.value, e.target.checked);
+  };
+
+  // For Review Update
+  const myReviewChange = (e) => {
+    console.log("Invoked Review");
+    changeReview(e.target.value, e.target.checked);
+  };
+
+  // For Discount Update
+  const myDiscountChange = (e,accTo) => {
+   // console.log("Invoked Discount");
+    changeDiscount(e.target.value, e.target.checked, accTo);
   };
 
   return (
@@ -134,18 +151,22 @@ const SideBarContent = ({ PriceChange, RatingChange }) => {
             </h2>
             <AccordionPanel pb={4}>
               <Checkbox onChange={(e) => myPricevalchange(e)} value={10}>
-                Upto $10
+                Above $10
               </Checkbox>
               <br />
               <Checkbox onChange={(e) => myPricevalchange(e)} value={20}>
-                Upto $20
+                Above $20
               </Checkbox>
               <br />
               <Checkbox onChange={(e) => myPricevalchange(e)} value={35}>
-                Upto $35
+                Above $35
               </Checkbox>
               <br />
-              <Checkbox onChange={(e) => myPricevalchange(e)} value={Infinity}>
+              <Checkbox onChange={(e) => myPricevalchange(e)} value={45}>
+                Above $45
+              </Checkbox>
+              <br />
+              <Checkbox onChange={(e) => myPricevalchange(e)} value={0}>
                 Reset
               </Checkbox>
               <br />
@@ -170,13 +191,18 @@ const SideBarContent = ({ PriceChange, RatingChange }) => {
               </AccordionButton>
             </h2>
             <AccordionPanel pb={4}>
-              <Checkbox>0-20%</Checkbox>
+              <Checkbox onChange={(e) => myDiscountChange(e, "lte")} value={20}>
+                0-20%
+              </Checkbox>
               <br />
-              <Checkbox>20% And Above</Checkbox>
+              <Checkbox onChange={(e) => myDiscountChange(e, "gte")} value={20}>
+                Above 20%
+              </Checkbox>
+              <br />
             </AccordionPanel>
           </AccordionItem>
 
-          {/* Gender */}
+          {/* Reviews */}
 
           <AccordionItem>
             <h2>
@@ -188,16 +214,31 @@ const SideBarContent = ({ PriceChange, RatingChange }) => {
                   flex="1"
                   textAlign="left"
                 >
-                  Gender
+                  Reviews
                 </Heading>
                 <AccordionIcon />
               </AccordionButton>
             </h2>
             <AccordionPanel pb={4}>
-              <Checkbox>Male</Checkbox>
+              <Checkbox onChange={(e) => myReviewChange(e)} value={1000}>
+                Above 1000
+              </Checkbox>{" "}
               <br />
-              <Checkbox>Female</Checkbox>
+              <Checkbox onChange={(e) => myReviewChange(e)} value={5000}>
+                Above 5000
+              </Checkbox>
               <br />
+              <Checkbox onChange={(e) => myReviewChange(e)} value={15000}>
+                Above 15000
+              </Checkbox>
+              <br />
+              <Checkbox onChange={(e) => myReviewChange(e)} value={30000}>
+                Above 30000
+              </Checkbox>
+              <br />
+              <Checkbox onChange={(e) => myReviewChange(e)} value={0}>
+                Reset
+              </Checkbox>
             </AccordionPanel>
           </AccordionItem>
 

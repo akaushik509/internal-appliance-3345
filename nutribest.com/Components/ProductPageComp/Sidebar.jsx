@@ -6,7 +6,12 @@ import {
 import SideBarContent from './SidebarContent';
 
 
-const Sidebar = ({ PriceChange, RatingChange }) => {
+const Sidebar = ({
+  PriceChange,
+  RatingChange,
+  changeReview,
+  changeDiscount,
+}) => {
   return (
     <Box
       display={{ base: "none", md: "block", lg: "block" }}
@@ -15,7 +20,12 @@ const Sidebar = ({ PriceChange, RatingChange }) => {
       mt={{ base: "0", md: "125px", lg: "125px" }}
       className={style.sidebarfixed}
     >
-      <SideBarContent RatingChange={RatingChange} PriceChange={PriceChange} />
+      <SideBarContent
+        RatingChange={RatingChange}
+        PriceChange={PriceChange}
+        changeReview={changeReview}
+        changeDiscount={changeDiscount}
+      />
     </Box>
   );
 };

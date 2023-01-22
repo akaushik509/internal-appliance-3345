@@ -4,8 +4,7 @@ import React from "react";
 import Slider from "react-slick";
 import ProductCard from "./ProductCard";
 
-
-export default function ProductSlider({ data, handleClick }) {
+export default function ProductSlider({ data, handleClick, AddedToCart }) {
   var settings = {
     dots: false,
     infinite: true,
@@ -42,17 +41,18 @@ export default function ProductSlider({ data, handleClick }) {
   };
   return (
     <Slider {...settings}>
-      {data.map((el) => 
-        {if(el.active){
+      {data.map((el) => {
+        if (el.active) {
           return (
-<ProductCard
-  handleClick={handleClick}
-  product={el}
-  key={el.product_num_ratings}
-/>)
-        }}
-        
-      )}
+            <ProductCard
+              AddedToCart={AddedToCart}
+              handleClick={handleClick}
+              product={el}
+              key={el.product_num_ratings}
+            />
+          );
+        }
+      })}
     </Slider>
   );
 }

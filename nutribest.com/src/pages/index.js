@@ -8,6 +8,7 @@ import Footer2 from "Components/Footer/Footer2";
 // import ProductCard from 'Components/ProductPageComp/ProductCard'
 import ProductSlider from "Components/ProductPageComp/ProductSlider";
 import AdvertiseMain from "Components/Advertise/AdvertiseMain";
+import { Box } from "@chakra-ui/react";
 // import Chat from "Components/Chat";
 // import styles from '@/styles/Home.module.css'
 
@@ -30,13 +31,21 @@ export default function Home({  data, adsdata2, adsdata3, adsdata4, adsdata5, Sl
       <Carousel />
       {/* <Advertise1 /> */}
       <AdvertiseMain data={data}/>
-      <ProductSlider data={Sliderdata1}/>
+      <Box width="80%" margin={"auto"} marginTop="65px" padding="10px" justifyContent='center'>
+          <ProductSlider data={Sliderdata1}/>
+      </Box>
       <AdvertiseMain data={adsdata2}/>
-      <ProductSlider data={Sliderdata2}/>
+      <Box width="80%" margin={"auto"} marginTop="65px" padding="10px" justifyContent='center'>
+        <ProductSlider data={Sliderdata2}/>
+      </Box>
       <AdvertiseMain data={adsdata3}/>
-      <ProductSlider data={Sliderdata3}/>
+      <Box width="80%" margin={"auto"} marginTop="65px" padding="10px" justifyContent='center'>
+        <ProductSlider data={Sliderdata3}/>
+      </Box>
       <AdvertiseMain data={adsdata4}/>
-      <ProductSlider data={Sliderdata4}/>
+      <Box width="80%" margin={"auto"} marginTop="65px" padding="10px" justifyContent='center'>
+        <ProductSlider data={Sliderdata4}/>
+      </Box>
       <AdvertiseMain data={adsdata5}/>
       <Footer1 />
       <Footer2 />

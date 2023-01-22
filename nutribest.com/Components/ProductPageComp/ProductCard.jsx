@@ -39,7 +39,6 @@ export default function ProductCard({ product, handleClick, AddedToCart }) {
   return (
     <Card
       display={active ? "block" : "none"}
-      onClick={() => handleClick(id)}
       p={"3"}
       border="0px solid red"
       m="auto"
@@ -49,6 +48,7 @@ export default function ProductCard({ product, handleClick, AddedToCart }) {
     >
       <CardBody p="0">
         <Image
+          onClick={() => handleClick(id)}
           bg={"#F7F7F7"}
           p={["3% 33% 3% 33%", "15% 32% 15% 32%", "15% 32% 15% 32%"]}
           src={product_photo}
@@ -128,7 +128,11 @@ export default function ProductCard({ product, handleClick, AddedToCart }) {
               fontSize="14px"
               fontWeight={"600"}
             >
-              {DiscountValue(+product_minimum_offer_price, +product_price)}% off
+              {DiscountValue(
+                +product_minimum_offer_price - Math.random(),
+                +product_price
+              )}
+              % off
             </Box>
           </Flex>
 
@@ -142,7 +146,7 @@ export default function ProductCard({ product, handleClick, AddedToCart }) {
           >
             <Box h={"100%"} w={["15px", "20px"]} pt={["0px", "2px", "2px"]}>
               <Image
-                src="https://static1.hkrtcdn.com/hknext/static/media/common/premium_member.svg"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQmGpp8HRJlnETF6qiFXaW3RKMKAr5V4IYYA&usqp=CAU"
                 alt="star for Prime members"
               />
             </Box>
@@ -159,7 +163,7 @@ export default function ProductCard({ product, handleClick, AddedToCart }) {
       </CardBody>
       <CardFooter p={"2% 2% 5% 2%"}>
         <Button
-          onClick={() => AddedToCart(1, product)}
+          onClick={() => AddedToCart(userId, product)}
           border={"1px solid #ff8914"}
           color={"#ff8914"}
           fontWeight={"bold"}

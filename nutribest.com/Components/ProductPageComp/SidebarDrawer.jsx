@@ -14,7 +14,12 @@ import SideBarContent from "./SidebarContent";
 
 
 
-function SidebarDrawer({ PriceChange, RatingChange }) {
+function SidebarDrawer({
+  PriceChange,
+  RatingChange,
+  changeReview,
+  changeDiscount,
+}) {
   const btnRef = React.useRef();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [placement, setPlacement] = React.useState("left");
@@ -37,6 +42,8 @@ function SidebarDrawer({ PriceChange, RatingChange }) {
               <SideBarContent
                 RatingChange={RatingChange}
                 PriceChange={PriceChange}
+                changeReview={changeReview}
+                changeDiscount={changeDiscount}
               />
             </DrawerBody>
           </DrawerContent>
