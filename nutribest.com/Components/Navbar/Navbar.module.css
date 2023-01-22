@@ -1,3 +1,5 @@
+
+
 .navbar{
     position: -webkit-sticky;
     position: fixed;
@@ -6,4 +8,45 @@
     width: 100%;
     z-index: 1;
     background-color: white;
+}
+
+/* #main-img {
+  
+    height: 250px;
+    width:100%
+  } 
+
+@media (min-width: 992px) {      
+    #main-img{        
+        background-image: url(public\images\logo.png);
+    } 
+}
+@media (min-width: 1200px) {    
+   #main-img{         
+       background-image: url(public\images\logo_withname.png);
+   } 
+} */
+
+/* Avinash*/
+
+.autocomplete {
+	width: 100vw;
+	background: white;
+	border-radius: 5px;
+	box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    height: 500px;
+    overflow: scroll;
+    z-index: 99999;
+     /* Hide vertical scrollbar */
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+
+.autocompleteItems {
+	border-bottom: 1px solid #e6e6e6;
+	padding: 10px 5px;
+	cursor: pointer;
+}
+
+.autocompleteItems:hover {
+	background: rgb(228, 226, 226);
 }

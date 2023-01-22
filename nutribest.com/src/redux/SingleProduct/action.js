@@ -1,9 +1,13 @@
 import { ADDPRODUCT, REMOVEPRODUCT, GETPRODUCT } from "./types";
 import axios from "axios";
- export const addProduct = (item) => ({
-  type: ADDPRODUCT,
-  payload: item,
-});
+ export const addProduct = async(item) => {
+  try{
+      let res = await axios.get("http://localhost:8080/Cart");
+      dispatch({ type:ADDPRODUCT, payload:item });
+  }catch(e){
+      console.log(e)
+  }
+};
 
 export const deleteWatch = (id) => ({
   type: REMOVEPRODUCT,

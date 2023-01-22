@@ -1,20 +1,44 @@
 
 import Head from "next/head";
-import Image from "next/image";
 import { Inter } from "@next/font/google";
 import Carousel from "Components/Carousel/Carousel";
-// import AdvertiseSmall from 'Components/Advertise/AdvertiseSmall'
 import Footer1 from "Components/Footer/Footer1";
 import Footer2 from "Components/Footer/Footer2";
-// import ProductCard from 'Components/ProductPageComp/ProductCard'
 import ProductSlider from "Components/ProductPageComp/ProductSlider";
 import AdvertiseMain from "Components/Advertise/AdvertiseMain";
+import { Box } from "@chakra-ui/react";
+import { useState } from "react";
+// import { useRouter } from "next/router";
+// import Chat from "Components/Chat";
 // import styles from '@/styles/Home.module.css'
-
+// import { NextPage } from 'next'
+// const  ComponentName = dynamic(() => import('../components/ComponentName'), { ssr: false })
 const inter = Inter({ subsets: ["latin"] });
 
+ 
 
 export default function Home({  data, adsdata2, adsdata3, adsdata4, adsdata5, Sliderdata1, Sliderdata2, Sliderdata3, Sliderdata4 }) {
+  const [cartArray, setcartArray] = useState([]);
+  // const router = useRouter(); // Navigating to Single Product Page
+  // const handleClick = (id) => {
+  //   // console.log("id", id);
+  //   router.push(`/juice/${id}`);
+  // };
+   // Function to add the product to cart
+   const AddedToCart = async (id, item) => {
+    
+    setcartArray([...cartArray, { ...item, quantity: 1, cart: true }]);
+    console.log("cartarray", cartArray);
+    try {
+      let res = await axios(`http://localhost:8080/User-Details/${id}`, {
+        method: "patch",
+        data: { Orders: cartArray },
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
 
   return (
     <>
@@ -32,15 +56,20 @@ export default function Home({  data, adsdata2, adsdata3, adsdata4, adsdata5, Sl
       <AdvertiseMain data={data}/>
       {/* <ProductSlider data={Sliderdata1}/> */}
       <AdvertiseMain data={adsdata2}/>
-      <ProductSlider data={Sliderdata2}/>
+      <Box width="80%" margin={"auto"} marginTop="65px" padding="10px" justifyContent='center'>
+        <ProductSlider data={Sliderdata2} AddedToCart={AddedToCart}/>
+      </Box>
       <AdvertiseMain data={adsdata3}/>
-      <ProductSlider data={Sliderdata3}/>
+      <Box width="80%" margin={"auto"} marginTop="65px" padding="10px" justifyContent='center'>
+        <ProductSlider data={Sliderdata3} AddedToCart={AddedToCart}/>
+      </Box>
       <AdvertiseMain data={adsdata4}/>
-      <ProductSlider data={Sliderdata4}/>
-      {/* <AdvertiseSmall data={adsdata5}/> */}
+      <Box width="80%" margin={"auto"} marginTop="65px" padding="10px" justifyContent='center'>
+        <ProductSlider data={Sliderdata4} AddedToCart={AddedToCart}/>
+      </Box>
+      <AdvertiseMain data={adsdata5}/>
       <Footer1 />
       <Footer2 />
-
       </main>
     </>
   );
@@ -61,7 +90,7 @@ export async function getStaticProps() {
   const adsdata4 = await res4.json();
 
 
-  const res5 = await fetch(`http://localhost:8080/Advertise5`)
+  const res5 = await fetch(`http://localhost:8080/Advertise5?_limit=4`)
   const adsdata5 = await res5.json()
   // console.log(adsdata2);
 

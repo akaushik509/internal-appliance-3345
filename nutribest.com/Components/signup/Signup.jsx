@@ -11,7 +11,7 @@ export default function Signup() {
  
   return (
     <>
-      <Button onClick={onOpen} color='white' bg='teal.400'_hover={{bg:'teal'}} display={isLoggdIn?'none':'block'}>Login</Button>
+      <Button onClick={onOpen}  color='white' bg='teal.400'_hover={{bg:'teal'}} display={isLoggdIn?'none':'block'}>User Login</Button>
 
       <Modal isOpen={isOpen && !isLoggdIn} onClose={onClose} size='4xl'>
         <ModalOverlay />

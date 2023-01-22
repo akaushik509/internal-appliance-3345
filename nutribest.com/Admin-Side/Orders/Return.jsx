@@ -11,7 +11,7 @@ import axios from "axios";
 import React from "react";
 const Return = ({ GetUserOrderDetails, userDetails }) => {
   const toast = useToast();
-
+  const date = new Date();
   const handleShipOrder = async (oID, uID) => {
     let response = await GetUserOrderDetails();
     let UData = response;
@@ -124,7 +124,7 @@ const Return = ({ GetUserOrderDetails, userDetails }) => {
       </Box>
       {userDetails.map((user) =>
         user.Orders.map((order) =>
-          order.Order_status === "Cancelled" ? (
+          order.Order_status === "Cancelled" && order.isOrdered == false ? (
             <Box
               key={Math.random()}
               boxShadow="rgba(0, 0, 0, 0.4) 0px 1px 4px, rgba(0, 0, 0, 0.3) 0px 5px 10px -1px, rgba(0, 0, 0, 0.2) 0px -1px 0px inset"
@@ -178,7 +178,7 @@ const Return = ({ GetUserOrderDetails, userDetails }) => {
                   fontSize={{ base: "12px", md: "12px", lg: "14px" }}
                   textAlign={"center"}
                 >
-                  <Text>{order.date}</Text>
+                  <Text>{date[Symbol.toPrimitive]("string")}</Text>
                 </Box>
                 <Box width={{ base: "20%", md: "15%" }} textAlign={"center"}>
                   <Button

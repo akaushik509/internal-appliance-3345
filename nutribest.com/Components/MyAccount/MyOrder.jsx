@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector,useDispatch } from 'react-redux';
-import axios from "axios";
+import Styles from "./myOrder.module.css"
 import {
   Box,
   Button,
@@ -11,66 +11,132 @@ import {
   Th,
   Thead,
   Tr,
+  Select,
+  background,
+  AlertIcon,Alert,AlertTitle,AlertDescription,useToast,
 } from "@chakra-ui/react";
-import { deleteWatch } from "@/redux/SingleProduct/action";
-import { getProduct } from "@/redux/SingleProduct/action";
+
+
+
+const deleteTodo = (id) => {
+  return fetch(
+    `https://thawing-eyrie-70822.herokuapp.com/api/todo_Item/${id}`,
+    {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }
+  ).then((res) => res.json());
+};
+
+
 
 const MyOrder = () => {
-    const productlist = useSelector((store) => store.addProductAvi.productlist);
-    const dispatch = useDispatch();
+      
     
     const [data, setData] = useState();
-    const getData = () => {
-        return axios.get(`http://localhost:8080/User-Details`)
-    }
-    /* useEffect(() => {
-        getData().then((res) => {
-            setData(res.data[0].Orders)});
-    }, []);  */
+    const toast = useToast()
 
-    useEffect(()=>{
-      getProduct(dispatch);
-      console.log(productlist);
-    },[]);
-
-     const handleDelete = (id) => {
+    const getData = (userid) => {
+      return fetch(
+        `http://localhost:8080/User-Details/${userid}`
+      ).then((res) => res.json());
+    };
+    useEffect(() => {
+      let userid = localStorage.getItem("user_id");
+      
+      getData(userid).then((res) => {
+            //console.log(res.Orders)
+            setData(res.Orders)});
         
-          const res = axios.delete(`http://localhost:8080/User-Details/${id}`);
+    }, [data]);
+    
+      const handleDelete = (id) => {
+        data.map((e)=>{
+          if(e.id==id){
+            e.Order_status="Cancelled";
+            e.isOrdered=false; 
+          }
+          setData(data)
           
-      }; 
+        })
+        console.log(data)
+        
+        /* const afterUpdate = data.filter((p)=>p.id!==id);*/
+        setData(data)  
+        let userid = localStorage.getItem("user_id");
+        return fetch(`http://localhost:8080/User-Details/${userid}`,{
+          method:"PATCH",
+          headers:{
+            "Content-Type":"application/json"
+          },
+          body: JSON.stringify({Orders:data})
+        }).then((res)=>{
+          toast({
+            title: 'Cancelled.',
+            status: 'success',
+            duration: 5000,
+            isClosable: true,
+          })
+          res.json()
+        }); 
+
+      };
+
+      /*  */
+      const breakpoints = {
+        sm: '30em',
+        md: '48em',
+        lg: '62em',
+        xl: '80em',
+        '2xl': '96em',
+      }
+     
 
   return (
     <div>
-        <Box id="myorderbox1">
-          <Table>
+      <Box>
+        <Table>
+        <Box>
           <Thead>
-            <Tr>
-              <Th>S.NO.</Th>
-              <Th>IMAGE</Th>
-              <Th>PRODUCT NAME</Th>
-              <Th>PRICE</Th>
-              <Th>RATING</Th>
-              <Th>DELETE</Th>
-            </Tr>
+            
+              <Tr width={{base:"25px", sm:"10px", lg:"56px"}}>
+                <Th>S.NO.</Th>
+                <Th>IMAGE</Th>
+                <Th>PRODUCT NAME</Th>
+                <Th>PRICE</Th>
+                <Th>STATUS</Th>
+                <Th>DELETE</Th>
+              </Tr>
+            
+            
           </Thead>
-          <Tbody>
-            {productlist?.map((el, i) => (
-              <Tr key={el.id}>
+          
+          
+          <Tbody >
+            
+            {data?.map((el, i) => (
+               ( <Tr key={el.id}>
                 <Td>{i + 1}</Td>
                 <Td width="15%">
-                  <Image width="100%" src={el.product_photo} alt="img"></Image>
+                  <Image width="50%" src={el.product_photo} alt="img"></Image>
                 </Td>
                 <Td>{el.product_title}</Td>
-                
-                <Td>{el.product_price}</Td>
-                <Td>{el.product_star_rating}</Td>
+                <Td>${el.product_price}</Td>               
+                <Td><Alert status='success' backgroundColor={el.Order_status=="Cancelled"?"red.500":el.Order_status=="Shipped"?"teal.500":el.Order_status=="Pending"?"yellow.500":"green.500"} color="white" borderRadius={"10px"}>{el.Order_status}</Alert>{/* <Button backgroundColor={el.Order_status=="Cancelled"?"red.500":el.Order_status=="Shipped"?"teal.500":el.Order_status=="Pending"?"yellow.500":"green.500"} isDisabled={true} >{el.Order_status}</Button> */}</Td>
                 <Td>
-                  <Button onClick={()=>dispatch(deleteWatch(el.id))}>Delete</Button>
+                  <Button backgroundColor={el.Order_status=="Cancelled"?"red.500":el.Order_status=="Shipped"?"teal.500":el.Order_status=="Pending"?"yellow.500":"green.500"} isDisabled={el.Order_status=="Completed"?true:el.Order_status=="Cancelled"?true:false} color="white" onClick={() => {handleDelete(el.id)}}>Cancel</Button>
                 </Td>
-              </Tr> 
+              </Tr> )
+              
+              
             ))}
+            
           </Tbody>
+          </Box>
         </Table>
+          
         </Box>
     </div>
   )

@@ -1,9 +1,79 @@
-import { Heading } from '@chakra-ui/react'
+import { Box, Heading, Stack } from '@chakra-ui/react'
+import AddressForm from 'Components/Address/AddressForm'
+import Footer from 'Components/Cart/Footer'
 import Nav from 'Components/Cart/Nav'
+import OrderSummary from 'Components/Cart/OrderSummary'
+import Form from 'Components/signup/Form'
 import Head from 'next/head'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from "axios";
+import { useDispatch, useSelector } from 'react-redux'
+import { getCard, userMaxprice, userPrice } from '@/redux/card/card.action'
 
 export default function Address() {
+  const [maxprice,setMaxprice] = useState(0)
+  const [totalprice,setTotalprice] = useState(0)
+  const {data,totalPrice,totalMaxprice} = useSelector((store)=>store.card)
+  const dispatch = useDispatch() 
+
+    // console.log("address",data)
+    const patchCardapi =(user_id,address) => {
+      return axios(`http://localhost:8080/User-Details/${user_id}`,{
+        method: "patch",
+        data:{Address: address}
+      });
+    }
+
+    const handlepatch = async (user_id,address)=>{
+
+      try{
+
+          let res = await patchCardapi(user_id,address)
+
+      }
+      catch(err){
+          console.log(err)
+      }
+
+  }
+
+
+  
+    const handleTotalprice = ()=>{
+      let ans = 0
+      data.Orders.map((el)=>{
+          return ans+= el.product_price * el.quantity
+      })
+
+      setTotalprice(ans)
+      dispatch(userPrice(totalprice))
+
+  }
+
+  const handleMaxprice = ()=>{
+      let ans = 0
+      data.Orders.map((el)=>{
+          return ans+= (el.product_minimum_offer_price) * el.quantity
+      })
+
+      setMaxprice(ans)
+      dispatch(userMaxprice(maxprice))
+
+  }
+
+  
+    useEffect(()=>{
+
+      const userId = localStorage.getItem('user_id')
+      
+      dispatch(getCard(userId))
+      if(data.id == userId){
+        handleTotalprice()
+        handleMaxprice()
+       
+    }
+
+    },[data])
   return (
     <div>
         <Head>
@@ -14,8 +84,19 @@ export default function Address() {
         </Head>
         <main>
             <Nav/>
-            <Heading>Address page</Heading>
+            <Box bg='#F4F4F4'>
+              <Stack direction={{base:'column',lg:'row'}} m='auto' columnGap={'20px'} border={'0px'} justifyContent='center'>
+                <Box m='auto' w={{base:'100%',lg:'60%'}}>
+                  <AddressForm {...data} handlepatch={handlepatch} />
+                </Box>
 
+                <Box m='auto' w={{base:'100%',lg:'40%'}} p='20px'>
+                  <OrderSummary maxprice={totalMaxprice}  totalprice={totalPrice}/>
+                </Box>
+              </Stack>
+
+            </Box>
+            <Footer/>
         </main>
     </div>
   )
