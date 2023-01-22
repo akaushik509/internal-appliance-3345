@@ -46,6 +46,8 @@ export default function Form() {
   const [email, setEmail] = useState("");
   const [password, setPass] = useState("");
 
+  const [id, setId] = useState();
+
   const { Name, Phone, Email, Password } = signCreds;
 
   const getCardapi = async () => {
@@ -108,6 +110,9 @@ export default function Form() {
     let flag = false
     users.forEach(function(el) {
       if (email === el.Email && password === el.Password) {
+        console.log(el.id)
+        localStorage.setItem("user_id",JSON.stringify(el.id));
+        
         return flag=true
       }
 
@@ -121,7 +126,7 @@ export default function Form() {
           isClosable: true,
         });
 
-        sessionStorage.setItem('myCat', 'key');
+        
 
 
     }else{

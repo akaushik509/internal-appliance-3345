@@ -35,5 +35,6 @@
     "redux-thunk": "^2.4.2",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.6"
-  }
+  },
+  "homepage": "."
 }

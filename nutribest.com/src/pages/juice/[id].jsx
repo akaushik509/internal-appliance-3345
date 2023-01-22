@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { addProduct } from '@/redux/SingleProduct/action';
 import { Flex, Box, Heading, Button, Text, useToast  } from '@chakra-ui/react';
+import axios from 'axios';
 
 import Footer2 from 'Components/Footer/Footer2';
 
@@ -42,6 +43,9 @@ const workflow1 = [
 const Page = ({product}) => {
   
   const [dataWorkflow, setDataWorkFlow] = useState(workflow1[0]);
+  const [cartArray, setcartArray] = useState([]);
+  const [userId, setuserId] = React.useState(0);
+
   const toast = useToast()
     const handleChangeWorkflow=(value)=>{
         workflow1.map((el)=>{
@@ -51,7 +55,7 @@ const Page = ({product}) => {
         })
        }
 
-       const handleAddToCart = (id, newCartStatus) => {
+      /*  const handleAddToCart = (id, newCartStatus) => {
         
         return fetch(`http://localhost:8080/Healthy_Juice/${id}`, {
           method: "PATCH",
@@ -70,6 +74,30 @@ const Page = ({product}) => {
         });
         
 
+      }; */
+
+      /*  */
+
+      React.useEffect(()=>{
+        const useridentification = localStorage.getItem("user_id");
+        console.log(product)
+        setuserId(useridentification)
+      },[]);
+
+
+      const AddedToCart = async (id, item) => {
+        console.log(id,item)
+        setcartArray([...cartArray, { ...item, quantity: 1, cart: true }]);
+        //console.log("cartarray", cartArray);
+        try {
+          let res = await axios(`http://localhost:8080/User-Details/${id}`, {
+            method: "patch",
+            data: { Orders: cartArray },
+          });
+          console.log("Hello",cartArray)
+        } catch (e) {
+          console.log(e);
+        } 
       };
 
     /* console.log(product); */
@@ -93,7 +121,7 @@ const Page = ({product}) => {
                     <Heading size={"md"} id={style.head} marginBottom="20px"> Star Rating ⭐⭐⭐⭐{product_star_rating}</Heading>
                     <Heading size={"md"} id={style.head} marginBottom="20px"> Min. Price: $ {(product_minimum_offer_price)}</Heading>
                     <Heading size={"md"} id={style.head} marginBottom="20px"> Price: $ {(product_price)}</Heading>
-                    <center><Button marginBottom="20px"  onClick={()=>handleAddToCart(id,true)}><img src="https://static1.hkrtcdn.com/hknext/static/media/pdp/Buy.svg" />Add To Cart</Button></center> 
+                    <center><Button marginBottom="20px"  onClick={() => AddedToCart(userId, product)}><img src="https://static1.hkrtcdn.com/hknext/static/media/pdp/Buy.svg" />Add To Cart</Button></center> 
                     {/* <Flex gap={"30px"}>
                       <img src="https://static1.hkrtcdn.com/hknext/static/media/pdp/weight.svg" alt="err" />
                       <Heading id={style.head} size={"md"} marginTop="7px"> Weight</Heading>
