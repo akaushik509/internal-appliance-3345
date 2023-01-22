@@ -124,14 +124,7 @@ const Navbar = () => {
             alt="NutriBest"
           ></Image>
         </Box>
-        {/* <Box  w={['100px','100px','180px']}> */}
-        {/* <picture>
-                    <source media="(max-width: 799px)" srcset={logo} />
-                    <source media="(min-width: 800px)" srcset={NutriBest} />
-                    <img src={NutriBest} alt="NutriBest" />
-                </picture> */}
-        {/* </Box> */}
-        {/* <Image src={NutriBest} alt="NutriBest" width='10px' /> */}
+
         <Box
           onClick={() => {
             onClose();

@@ -2,10 +2,8 @@
 import Head from "next/head";
 import { Inter } from "@next/font/google";
 import Carousel from "Components/Carousel/Carousel";
-// import AdvertiseSmall from 'Components/Advertise/AdvertiseSmall'
 import Footer1 from "Components/Footer/Footer1";
 import Footer2 from "Components/Footer/Footer2";
-// import ProductCard from 'Components/ProductPageComp/ProductCard'
 import ProductSlider from "Components/ProductPageComp/ProductSlider";
 import AdvertiseMain from "Components/Advertise/AdvertiseMain";
 import { Box } from "@chakra-ui/react";
@@ -13,7 +11,8 @@ import { useState } from "react";
 // import { useRouter } from "next/router";
 // import Chat from "Components/Chat";
 // import styles from '@/styles/Home.module.css'
-
+// import { NextPage } from 'next'
+// const  ComponentName = dynamic(() => import('../components/ComponentName'), { ssr: false })
 const inter = Inter({ subsets: ["latin"] });
 
  
