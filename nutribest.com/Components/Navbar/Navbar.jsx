@@ -85,7 +85,7 @@ const Navbar = () => {
 
 
   return (
-    <div className={Styles.navbar}>
+    <Box className={Styles.navbar}>
       <Flex
         justifyContent={["space-around", "space-evenly"]}
         alignItems="center"
@@ -306,7 +306,7 @@ const Navbar = () => {
           </Button>
         </Box>
       </Flex>
-    </div>
+    </Box>
   );
 };
 

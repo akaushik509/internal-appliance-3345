@@ -9,13 +9,37 @@ import Footer2 from "Components/Footer/Footer2";
 import ProductSlider from "Components/ProductPageComp/ProductSlider";
 import AdvertiseMain from "Components/Advertise/AdvertiseMain";
 import { Box } from "@chakra-ui/react";
+import { useState } from "react";
+// import { useRouter } from "next/router";
 // import Chat from "Components/Chat";
 // import styles from '@/styles/Home.module.css'
 
 const inter = Inter({ subsets: ["latin"] });
 
+ 
 
 export default function Home({  data, adsdata2, adsdata3, adsdata4, adsdata5, Sliderdata1, Sliderdata2, Sliderdata3, Sliderdata4 }) {
+  const [cartArray, setcartArray] = useState([]);
+  // const router = useRouter(); // Navigating to Single Product Page
+  // const handleClick = (id) => {
+  //   // console.log("id", id);
+  //   router.push(`/juice/${id}`);
+  // };
+   // Function to add the product to cart
+   const AddedToCart = async (id, item) => {
+    
+    setcartArray([...cartArray, { ...item, quantity: 1, cart: true }]);
+    console.log("cartarray", cartArray);
+    try {
+      let res = await axios(`http://localhost:8080/User-Details/${id}`, {
+        method: "patch",
+        data: { Orders: cartArray },
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
 
   return (
     <>
@@ -32,19 +56,19 @@ export default function Home({  data, adsdata2, adsdata3, adsdata4, adsdata5, Sl
       {/* <Advertise1 /> */}
       <AdvertiseMain data={data}/>
       <Box width="80%" margin={"auto"} marginTop="65px" padding="10px" justifyContent='center'>
-          <ProductSlider data={Sliderdata1}/>
+          <ProductSlider data={Sliderdata1} AddedToCart={AddedToCart}/>
       </Box>
       <AdvertiseMain data={adsdata2}/>
       <Box width="80%" margin={"auto"} marginTop="65px" padding="10px" justifyContent='center'>
-        <ProductSlider data={Sliderdata2}/>
+        <ProductSlider data={Sliderdata2} AddedToCart={AddedToCart}/>
       </Box>
       <AdvertiseMain data={adsdata3}/>
       <Box width="80%" margin={"auto"} marginTop="65px" padding="10px" justifyContent='center'>
-        <ProductSlider data={Sliderdata3}/>
+        <ProductSlider data={Sliderdata3} AddedToCart={AddedToCart}/>
       </Box>
       <AdvertiseMain data={adsdata4}/>
       <Box width="80%" margin={"auto"} marginTop="65px" padding="10px" justifyContent='center'>
-        <ProductSlider data={Sliderdata4}/>
+        <ProductSlider data={Sliderdata4} AddedToCart={AddedToCart}/>
       </Box>
       <AdvertiseMain data={adsdata5}/>
       <Footer1 />
