@@ -94,7 +94,7 @@ const Footer2 = () => {
                     {/* <Image src={apple} alt="apple" width="200" ></Image>
                     <Image src={google} alt="google" width="190" ></Image> */}
                     <Button onClick={onOpen} colorScheme='teal'>Talk to Customer Care 👨‍💻</Button>
-                    {/* <Modal isOpen={isOpen} onClose={onClose}>
+                    <Modal isOpen={isOpen} onClose={onClose}>
                         <ModalOverlay />
                         <ModalContent w={"400px"}>
                             <ModalHeader>Speak With Customer Service</ModalHeader>
@@ -103,8 +103,8 @@ const Footer2 = () => {
                                     <Chat />
                                 </ModalBody>
                         </ModalContent>
-                    </Modal> */}
-                    {/* <Chat /> */}
+                    </Modal> 
+                    {/* /* <Chat /> */}
             </GridItem>
         </SimpleGrid>
         <Stack direction={['column','column', 'row']} marginTop={["280px", "100px", "20px"]} >

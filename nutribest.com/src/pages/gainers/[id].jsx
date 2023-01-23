@@ -51,26 +51,26 @@ const Page = ({product}) => {
         })
        }
 
-       const handleAddToCart = (id, newCartStatus) => {
+      //  const handleAddToCart = (id, newCartStatus) => {
         
-        return fetch(`http://localhost:8080/Gainers/${id}`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body:JSON.stringify({cart:newCartStatus})
-        }).then((res) =>{ 
-          res.json()   
-          toast({
-            title: 'Added To Cart.',
-            status: 'success',
-            duration: 5000,
-            isClosable: true,
-          })
-        });
+      //   return fetch(`http://localhost:8080/Gainers/${id}`, {
+      //     method: "PATCH",
+      //     headers: {
+      //       "Content-Type": "application/json"
+      //     },
+      //     body:JSON.stringify({cart:newCartStatus})
+      //   }).then((res) =>{ 
+      //     res.json()   
+      //     toast({
+      //       title: 'Added To Cart.',
+      //       status: 'success',
+      //       duration: 5000,
+      //       isClosable: true,
+      //     })
+      //   });
         
 
-      };
+      // };
 
     /* console.log(product); */
     const {active,id,product_title,product_price,product_star_rating,climate_pledge_friendly,product_num_ratings,product_photo,product_minimum_offer_price,is_best_seller,cart} = product[0];

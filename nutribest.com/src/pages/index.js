@@ -54,7 +54,9 @@ export default function Home({  data, adsdata2, adsdata3, adsdata4, adsdata5, Sl
       <Carousel />
       {/* <Advertise1 /> */}
       <AdvertiseMain data={data}/>
-      {/* <ProductSlider data={Sliderdata1}/> */}
+      <Box width="80%" margin={"auto"} marginTop="65px" padding="10px" justifyContent='center'>
+      <ProductSlider data={Sliderdata1} AddedToCart={AddedToCart}/>
+      </Box>
       <AdvertiseMain data={adsdata2}/>
       <Box width="80%" margin={"auto"} marginTop="65px" padding="10px" justifyContent='center'>
         <ProductSlider data={Sliderdata2} AddedToCart={AddedToCart}/>
@@ -77,7 +79,7 @@ export default function Home({  data, adsdata2, adsdata3, adsdata4, adsdata5, Sl
 
 export async function getStaticProps() {
   // Fetch data from external API
-  const res = await fetch(`http://localhost:8080/Advertise1`);
+  const res = await fetch(`http://localhost:8080/Advertise1?_limit=4`);
   const data = await res.json();
 
   const res2 = await fetch(`http://localhost:8080/Advertise2`);
