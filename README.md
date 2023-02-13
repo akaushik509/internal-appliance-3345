@@ -7,6 +7,7 @@ We're a young start-up of around 400 people that work for your needs in fitness 
   - Next.js
   - CSS
   - Chakra UI
+  - Redux
   
 # Completed By 5 developers in five days
  - Avinash Kaushik
