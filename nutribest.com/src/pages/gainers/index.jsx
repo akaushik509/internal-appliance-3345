@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
-import Sidebar from "Components/ProductPageComp/Sidebar";
+import React, { useCallback, useEffect, useState } from "react";
+import Sidebar from "../../Components/ProductPageComp/Sidebar";
 import { Box, Heading, Flex, SimpleGrid } from "@chakra-ui/react";
 import axios from "axios";
-import ProductCard from "Components/ProductPageComp/ProductCard";
-import ProductPageCarousel from "Components/ProductPageComp/ProductPageCarousel";
-import SidebarDrawer from "Components/ProductPageComp/SidebarDrawer";
+import ProductCard from "../../Components/ProductPageComp/ProductCard";
+import ProductPageCarousel from "../../Components/ProductPageComp/ProductPageCarousel";
+import SidebarDrawer from "../../Components/ProductPageComp/SidebarDrawer";
 import { useRouter } from "next/router";
-import Pagination from "Components/ProductPageComp/Pagination";
+import Pagination from "../../Components/ProductPageComp/Pagination";
 
 const Product = () => {
-  const [Gainers, setGainers] = useState([]);
+  const [gainers, setGainers] = useState([]);
   const [maxPrice, setmaxPrice] = useState(0); //Setting the maxprice for filter
   const [Rating, setRating] = useState(1); //Setting the Rating for filter
   const [PageNo, setPageNo] = useState(1); // Page State (Default value is 1)
@@ -20,7 +20,7 @@ const Product = () => {
   const [Discount, setDiscount] = useState(0); // For setting the discount;
   const [DiscountAccordingTo, setDiscountAccordingTo] = useState(""); // For setting the DiscountAccordingTo;
 
-  console.log("Gainers", Gainers); // My data Array
+  console.log("gainers", gainers); // My data Array
 
   // Filter function of Product Price
   const PriceChange = (event, checkval) => {
@@ -91,17 +91,18 @@ const Product = () => {
   }, [PageNo, DataLimit, Rating, maxPrice, Review]);
 
   // Funtion to get data of Healty juice
-  const getData = async () => {
-    let resGainers = await axios.get(
-      `http://localhost:8080/Gainers?product_num_ratings_gte=${Review}&product_star_rating_gte=${Rating}&product_price_gte=${maxPrice}&_page=${PageNo}&_limit=${DataLimit}`
-    );
-    setGainers(resGainers.data);
-  };
+  const getData = useCallback(() => {
+    axios
+      .get(
+        `http://localhost:8080/Gainers?product_num_ratings_gte=${Review}&product_star_rating_gte=${Rating}&product_price_gte=${maxPrice}&_page=${PageNo}&_limit=${DataLimit}`
+      )
+      .then((res) => setGainers(res.data));
+  }, [DataLimit, PageNo, Rating, Review, maxPrice]);
 
   // Function to add the product to cart
   const AddedToCart = async (id, item) => {
     setcartArray([...cartArray, { ...item, quantity: 1, cart: true }]);
-    console.log("cartarray", cartArray);
+    // console.log("cartarray", cartArray);
     try {
       let res = await axios(`http://localhost:8080/User-Details/${id}`, {
         method: "patch",
@@ -127,6 +128,7 @@ const Product = () => {
 
   const router = useRouter(); // Navigating to Single Product Page
   const handleClick = (id) => {
+    console.log("inside");
     // console.log("id", id);
     router.push(`/gainers/${id}`);
   };
@@ -163,7 +165,7 @@ const Product = () => {
               fontWeight={["600", "500"]}
               fontSize={["21px", "23px", "30px"]}
             >
-              Gainers
+              GAINERS
             </Heading>
           </Flex>
           <SimpleGrid
@@ -171,10 +173,10 @@ const Product = () => {
             spacing="20px"
             border={"0px solid green"}
           >
-            {Gainers.map((item) => (
+            {gainers?.map((item) => (
               <ProductCard
                 AddedToCart={AddedToCart}
-                product={item}
+                {...item}
                 key={item.id}
                 handleClick={handleClick}
               />

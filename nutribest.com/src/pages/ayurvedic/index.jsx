@@ -1,17 +1,12 @@
-import React, { useEffect, useState } from "react";
-import Sidebar from "Components/ProductPageComp/Sidebar";
-import {
-  Box,
-  Heading,
-  Flex,
-  SimpleGrid,
-} from "@chakra-ui/react";
+import React, { useCallback, useEffect, useState } from "react";
+import Sidebar from "../../Components/ProductPageComp/Sidebar";
+import { Box, Heading, Flex, SimpleGrid, useToast } from "@chakra-ui/react";
 import axios from "axios";
-import ProductCard from "Components/ProductPageComp/ProductCard";
-import ProductPageCarousel from "Components/ProductPageComp/ProductPageCarousel";
-import SidebarDrawer from "Components/ProductPageComp/SidebarDrawer";
+import ProductCard from "../../Components/ProductPageComp/ProductCard";
+import ProductPageCarousel from "../../Components/ProductPageComp/ProductPageCarousel";
+import SidebarDrawer from "../../Components/ProductPageComp/SidebarDrawer";
 import { useRouter } from "next/router";
-import Pagination from "Components/ProductPageComp/Pagination";
+import Pagination from "../../Components/ProductPageComp/Pagination";
 
 const Product = () => {
   const [Ayurvedic, setAyurvedic] = useState([]);
@@ -22,34 +17,29 @@ const Product = () => {
   const [TotalPage, setTotalPage] = useState(0); // TotalPage according to limit and data;
   const [cartArray, setcartArray] = useState([]); // For adding to cart
   const [Review, setReview] = useState(0); // For setting the review;
-  const [Discount , setDiscount] = useState(0) // For setting the discount;
-  const [DiscountAccordingTo, setDiscountAccordingTo] = useState(''); // For setting the DiscountAccordingTo;
+  const [Discount, setDiscount] = useState(0); // For setting the discount;
+  const [DiscountAccordingTo, setDiscountAccordingTo] = useState(""); // For setting the DiscountAccordingTo;
+  const [currentUserId, setCurrentUserId] = useState(0); // get current user id
+  const toast = useToast();
 
+  const [getcart, setgetcart] = useState([])
 
-  console.log("Ayurvedic", Ayurvedic); // My data Array
-
-  // Filter function of Product Price
   const PriceChange = (event, checkval) => {
     event = Number(event);
-    //console.log("Invoked PriceChange function");
-    // console.log("event", event);
-    // console.log("checkval", checkval);
+ 
     if (checkval) {
       setmaxPrice(event);
     }
-   // console.log("Maxprice", maxPrice);
+
   };
 
-  // Fiter function of Rating
   const RatingChange = (event, checkval) => {
     event = Number(event);
-    // console.log("Invoked RatingChange function");
-    // console.log("event", event);
-    // console.log("checkval", checkval);
+    
     if (checkval) {
       setRating(event);
     }
-   // console.log("Rating", Rating);
+  
   };
 
   //Filter Function for Review
@@ -63,13 +53,12 @@ const Product = () => {
     }
   };
 
-
   //Filter Function for Discount  (Cuuently not using this function we dont have discount key in backend)
-  const changeDiscount = (event, checkval,accordingTo) => {
+  const changeDiscount = (event, checkval, accordingTo) => {
     event = Number(event);
     console.log("Invoked Discount function");
     console.log("event", event);
-     console.log("accordingTo", accordingTo);
+    console.log("accordingTo", accordingTo);
 
     if (checkval) {
       setReview(event);
@@ -92,32 +81,36 @@ const Product = () => {
     setPageNo(changeBy);
   };
 
-  useEffect(() => {
-    FetchingDataForTotalPage();
-    getData();
-  }, [PageNo, DataLimit, Rating, maxPrice, Review]);
-
   // Funtion to get data of Healty juice
-  const getData = async () => {
-    let resAyurvedic = await axios.get(
-      `http://localhost:8080/Ayurvedic?product_num_ratings_gte=${Review}&product_star_rating_gte=${Rating}&product_price_gte=${maxPrice}&_page=${PageNo}&_limit=${DataLimit}`
-    );
-    setAyurvedic(resAyurvedic.data);
+  const getData = useCallback(() => {
+    axios
+      .get(
+        `http://localhost:8080/Ayurvedic?product_num_ratings_gte=${Review}&product_star_rating_gte=${Rating}&product_price_gte=${maxPrice}&_page=${PageNo}&_limit=${DataLimit}`
+      )
+      .then((res) => setAyurvedic(res.data));
+  }, [DataLimit, PageNo, Rating, Review, maxPrice]);
+
+let a = [];
+  const AddedToCart = async(userId, id, newCartStatus, product) => {
+
+    // console.log("asdfasdf", product)
+    a = [...a, product]
+    let userid = sessionStorage.getItem("LoggedUser_id") || "";
+    //setgetcart([...getcart, { ...product, quantity: 1, cart: true }]);
+    
+     await axios.patch(`http://localhost:8080/User-Details/${userid}`,{
+      Orders: a
+    }) 
+    console.log("after",a)
+    
+
+
+
   };
 
-  // Function to add the product to cart
-  const AddedToCart = async (id, item) => {
-    setcartArray([...cartArray, { ...item, quantity: 1, cart: true }]);
-    console.log("cartarray", cartArray);
-    try {
-      let res = await axios(`http://localhost:8080/User-Details/${id}`, {
-        method: "patch",
-        data: { Orders: cartArray },
-      });
-    } catch (e) {
-      console.log(e);
-    }
-  };
+
+
+ 
 
   //Fetching all the data for getting TotalPage for pagination
   const FetchingDataForTotalPage = async () => {
@@ -134,9 +127,24 @@ const Product = () => {
 
   const router = useRouter(); // Navigating to Single Product Page
   const handleClick = (id) => {
-    // console.log("id", id);
+   
     router.push(`/ayurvedic/${id}`);
   };
+
+  const getorders = async() =>{
+    let userid = sessionStorage.getItem("LoggedUser_id") || "";
+    let res = await axios.get(`http://localhost:8080/User-Details/${userid}`)
+    setgetcart(res.data.Orders)
+    
+  }
+
+  useEffect(() => {
+    FetchingDataForTotalPage();
+    getData();
+    getorders()
+    
+    // GetUserOrders();
+  }, [PageNo, DataLimit, Rating, maxPrice, Review]);
 
   return (
     <Box>
@@ -170,7 +178,7 @@ const Product = () => {
               fontWeight={["600", "500"]}
               fontSize={["21px", "23px", "30px"]}
             >
-              Ayurvedic
+              AYURVEDIC
             </Heading>
           </Flex>
           <SimpleGrid
@@ -178,12 +186,13 @@ const Product = () => {
             spacing="20px"
             border={"0px solid green"}
           >
-            {Ayurvedic.map((item) => (
+            {Ayurvedic?.map((item) => (
               <ProductCard
                 AddedToCart={AddedToCart}
-                product={item}
+                {...item}
                 key={item.id}
                 handleClick={handleClick}
+                product={item}
               />
             ))}
           </SimpleGrid>

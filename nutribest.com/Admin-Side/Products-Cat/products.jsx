@@ -30,7 +30,7 @@ const Products = () => {
   const [category, setCategory] = useState("WheyProtien");
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [title, setTitle] = useState("");
-  const [price, setPrice] = useState();
+  const [price, setPrice] = useState(0);
   const [image, SetImage] = useState("");
   const [mid, msetId] = useState("");
 

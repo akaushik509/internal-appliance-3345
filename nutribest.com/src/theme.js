@@ -3,6 +3,7 @@ const styles = {
   global: {
     body: {
       fontFamily: "`Montserrat`,sans-serif",
+      backgroundColor: "white",
     },
   },
 };

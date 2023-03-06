@@ -4,7 +4,7 @@
       "active": true,
       "id": "B000QSNYGI",
       "product_title": "Optimum Nutrition Gold Standard 100% Whey Protein Powder, Double Rich Chocolate, 5 Pound (Packaging May Vary)",
-      "product_price": 49.99,
+      "product_price": 50,
       "product_original_price": null,
       "currency": "USD",
       "product_star_rating": 4.7,
@@ -2255,7 +2255,7 @@
       "active": true,
       "id": "B07WTX6PC4",
       "product_title": "Ayurvedic Herbs (All-in-1) Supplement Formula Pills - Ayurveda Mind, Body, Spirit Supplements - Herbal Blend/Complex - Easy to Swallow 30 Capsules",
-      "product_price": 33.32,
+      "product_price": 45,
       "product_original_price": "39.00",
       "currency": "USD",
       "product_star_rating": 4.4,
@@ -2269,8 +2269,9 @@
       "climate_pledge_friendly": false,
       "Order_status": "Pending",
       "category": "Ayurvedic",
-      "cart": false,
-      "isOrdered": false
+      "cart": true,
+      "isOrdered": false,
+      "quantity": 1
     },
     {
       "active": true,
@@ -2290,7 +2291,7 @@
       "climate_pledge_friendly": false,
       "Order_status": "Pending",
       "category": "Ayurvedic",
-      "cart": false,
+      "cart": true,
       "isOrdered": false
     },
     {
@@ -2353,7 +2354,7 @@
       "climate_pledge_friendly": false,
       "Order_status": "Pending",
       "category": "Ayurvedic",
-      "cart": false,
+      "cart": true,
       "isOrdered": false
     },
     {
@@ -2395,8 +2396,9 @@
       "climate_pledge_friendly": false,
       "Order_status": "Pending",
       "category": "Ayurvedic",
-      "cart": false,
-      "isOrdered": false
+      "cart": true,
+      "isOrdered": false,
+      "quantity": 1
     },
     {
       "active": true,
@@ -5404,7 +5406,7 @@
       "climate_pledge_friendly": false,
       "Order_status": "Pending",
       "category": "Gainers",
-      "cart": false,
+      "cart": true,
       "isOrdered": false
     },
     {
@@ -13182,42 +13184,6 @@
   ],
   "User-Details": [
     {
-      "id": 1674393675928,
-      "Name": "test",
-      "Phone": "32222229",
-      "Email": "test@email.com",
-      "Image": "",
-      "Password": "13121111",
-      "IsPrime": false,
-      "IsAuth": false,
-      "Address": "",
-      "Orders": []
-    },
-    {
-      "id": 1674393823574,
-      "Name": "tseeee",
-      "Phone": "123",
-      "Email": "test2@com",
-      "Image": "",
-      "Password": "edsd",
-      "IsPrime": false,
-      "IsAuth": false,
-      "Address": "",
-      "Orders": []
-    },
-    {
-      "id": 1674395012037,
-      "Name": "a",
-      "Phone": "123",
-      "Email": "aa",
-      "Image": "",
-      "Password": "f",
-      "IsPrime": false,
-      "IsAuth": false,
-      "Address": "",
-      "Orders": []
-    },
-    {
       "id": 1674404802558,
       "Name": "b",
       "Phone": "1",
@@ -13225,48 +13191,26 @@
       "Image": "https://avatars.githubusercontent.com/u/26029251?v=4",
       "Password": "b",
       "IsPrime": false,
-      "Address": "asdf",
+      "Address": "asf",
       "Orders": [
         {
           "active": true,
-          "id": "B00JYG1IRA",
-          "product_title": "Suja Organic Cold-Pressed Sweet Beets, Vegetable & Fruit Juice Blend Smoothie with No Additives, Excellent Source of Vitamin C & Potassium, Vegan, Plant-Based & USDA Certified (12 Fl Oz)",
-          "product_price": 4.19,
-          "product_original_price": null,
+          "id": "B07WTX6PC4",
+          "product_title": "Ayurvedic Herbs (All-in-1) Supplement Formula Pills - Ayurveda Mind, Body, Spirit Supplements - Herbal Blend/Complex - Easy to Swallow 30 Capsules",
+          "product_price": 45,
+          "product_original_price": "39.00",
           "currency": "USD",
-          "product_star_rating": 4.6,
-          "product_num_ratings": 1293,
-          "product_url": "https://www.amazon.com/dp/B00JYG1IRA",
-          "product_photo": "https://m.media-amazon.com/images/I/71TJXl3eEpL._AC_UL960_QL65_.jpg",
+          "product_star_rating": 4.4,
+          "product_num_ratings": 115,
+          "product_url": "https://www.amazon.com/dp/B07WTX6PC4",
+          "product_photo": "https://m.media-amazon.com/images/I/71O4kEyqnqL._AC_UL960_QL65_.jpg",
           "product_num_offers": 1,
-          "product_minimum_offer_price": "4.19",
+          "product_minimum_offer_price": "27.43",
           "is_best_seller": false,
-          "is_prime": false,
-          "climate_pledge_friendly": true,
+          "is_prime": true,
+          "climate_pledge_friendly": false,
           "Order_status": "Pending",
-          "category": "Healthy_Juice",
-          "cart": true,
-          "isOrdered": false,
-          "quantity": 1
-        },
-        {
-          "active": true,
-          "id": "B00MEDQWGC",
-          "product_title": "Suja Green Delight, Organic & Cold-Pressed Fruit and Vegetable Juice Smoothie, 12 oz",
-          "product_price": 4.19,
-          "product_original_price": null,
-          "currency": "USD",
-          "product_star_rating": 4.6,
-          "product_num_ratings": 2519,
-          "product_url": "https://www.amazon.com/dp/B00MEDQWGC",
-          "product_photo": "https://m.media-amazon.com/images/I/71Pw7RFGHFL._AC_UL960_QL65_.jpg",
-          "product_num_offers": 1,
-          "product_minimum_offer_price": "4.19",
-          "is_best_seller": false,
-          "is_prime": false,
-          "climate_pledge_friendly": true,
-          "Order_status": "Pending",
-          "category": "Healthy_Juice",
+          "category": "Ayurvedic",
           "cart": true,
           "isOrdered": false,
           "quantity": 1
@@ -13274,37 +13218,79 @@
       ]
     },
     {
-      "id": 1674404929594,
-      "Name": "e",
+      "id": 1678000542105,
+      "Name": "om",
       "Phone": "123456789",
-      "Email": "e",
-      "Image": "",
-      "Password": "e",
-      "IsPrime": false,
-      "Address": "",
-      "Orders": []
-    },
-    {
-      "id": 1674407368508,
-      "Name": "sdfg",
-      "Phone": "435",
-      "Email": "sdfg",
-      "Image": "",
-      "Password": "123456789",
-      "IsPrime": false,
-      "Address": "",
-      "Orders": []
-    },
-    {
-      "id": 1674455077466,
-      "Name": "a",
-      "Phone": "963258741",
-      "Email": "a",
-      "Image": "",
+      "Email": "om@gmail.com",
       "Password": "cityslicka",
-      "IsPrime": false,
-      "Address": "",
       "Orders": []
+    },
+    {
+      "id": 1678002784686,
+      "Name": "rohan",
+      "Phone": "8529631470",
+      "Email": "rohan@gmail.com",
+      "Password": "abc12345",
+      "Orders": [
+        {
+          "active": true,
+          "id": "B00W0VIT8M",
+          "product_title": "Allevi8 - Ayurvedic Medicine, Frankincense, Turmeric, Ginger, Black Pepper, Vitamin D3, 2 Months Supply, Natural Pain Relief, Joint Support, Low Mood, Anxiety, Digestion, Bloating, Immune System",
+          "product_price": 20,
+          "product_original_price": null,
+          "currency": "USD",
+          "product_star_rating": 4,
+          "product_num_ratings": 9,
+          "product_url": "https://www.amazon.com/dp/B00W0VIT8M",
+          "product_photo": "https://m.media-amazon.com/images/I/61Rv3ileGvL._AC_UL960_QL65_.jpg",
+          "product_num_offers": 1,
+          "product_minimum_offer_price": "20.00",
+          "is_best_seller": false,
+          "is_prime": true,
+          "climate_pledge_friendly": false,
+          "Order_status": "Pending",
+          "category": "Ayurvedic",
+          "cart": true,
+          "isOrdered": false
+        }
+      ]
+    },
+    {
+      "id": 1678087472195,
+      "Name": "avinash",
+      "Phone": "1234512345",
+      "Email": "avinash@gmail.com",
+      "Password": "abcd1234",
+      "Orders": [
+        {
+          "active": true,
+          "id": "B00W0VIT8M",
+          "product_title": "Allevi8 - Ayurvedic Medicine, Frankincense, Turmeric, Ginger, Black Pepper, Vitamin D3, 2 Months Supply, Natural Pain Relief, Joint Support, Low Mood, Anxiety, Digestion, Bloating, Immune System",
+          "product_price": 20,
+          "product_original_price": null,
+          "currency": "USD",
+          "product_star_rating": 4,
+          "product_num_ratings": 9,
+          "product_url": "https://www.amazon.com/dp/B00W0VIT8M",
+          "product_photo": "https://m.media-amazon.com/images/I/61Rv3ileGvL._AC_UL960_QL65_.jpg",
+          "product_num_offers": 1,
+          "product_minimum_offer_price": "20.00",
+          "is_best_seller": false,
+          "is_prime": true,
+          "climate_pledge_friendly": false,
+          "Order_status": "Pending",
+          "category": "Ayurvedic",
+          "cart": true,
+          "isOrdered": false
+        }
+      ]
+    },
+    {
+      "id": 1678095802707,
+      "Name": "rohan",
+      "Phone": "1234567890",
+      "Email": "rohan@gmail.com",
+      "Password": "abcd1234"
     }
   ],
   "carousel": [
@@ -13349,11 +13335,6 @@
       "id": 4,
       "img_url": "https://img7.hkrtcdn.com/22823/bnr_2282266_o.jpg",
       "caption": "sale4"
-    },
-    {
-      "id": 5,
-      "img_url": "https://img9.hkrtcdn.com/22823/bnr_2282268_o.jpg",
-      "caption": "sale5"
     }
   ],
   "Advertise2": [

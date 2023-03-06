@@ -31,7 +31,7 @@ const AccountInfo = () => {
   const initialRef = React.useRef(null);
   const [details, setDetails] = useState([]);
   const [show, setShow] = useState(false);
-  const [ids, setIds] = useState();
+  const [ids, setIds] = useState(0);
   let adminDetails = {};
   const handleSetData = (name, email, pass, image, phone, id) => {
     setIds(id);
@@ -42,16 +42,20 @@ const AccountInfo = () => {
       Password: pass,
       Image: image,
     };
-    setUpdateData(adminDetails);
+    if (adminDetails.length != 0) {
+      setUpdateData(adminDetails);
+    }
   };
 
   const [updateData, setUpdateData] = useState([]);
   const handleClick = () => setShow(!show);
-  console.log(updateData);
+  // console.log(up);
   const getDetails = () => {
-    axios
-      .get(`http://localhost:8080/Admin-Details`)
-      .then((res) => setDetails(res.data));
+    axios.get(`http://localhost:8080/Admin-Details`).then((res) => {
+      if (res.data) {
+        setDetails(res.data);
+      }
+    });
   };
   useEffect(() => {
     getDetails();
@@ -78,7 +82,7 @@ const AccountInfo = () => {
         });
       });
   };
-  console.log(details);
+  // console.log(details);
   return (
     <Box
       color={"white"}
@@ -111,7 +115,7 @@ const AccountInfo = () => {
               readOnly
               pr="4.5rem"
               type={show ? "text" : "password"}
-              value={details.Password}
+              value={details?.Password}
             />
             <InputRightElement width="4.5rem">
               <Box onClick={handleClick} cursor={"pointer"}>
@@ -166,7 +170,7 @@ const AccountInfo = () => {
                   <FormLabel>Name</FormLabel>
                   <Input
                     ref={initialRef}
-                    value={updateData.Name}
+                    value={updateData?.Name}
                     onChange={(e) => {
                       setUpdateData({ ...updateData, Name: e.target.value });
                     }}
@@ -186,7 +190,7 @@ const AccountInfo = () => {
                 <FormControl>
                   <FormLabel>Phone No.</FormLabel>
                   <Input
-                    value={updateData.Phone}
+                    value={updateData?.Phone}
                     onChange={(e) => {
                       setUpdateData({ ...updateData, Phone: e.target.value });
                     }}
