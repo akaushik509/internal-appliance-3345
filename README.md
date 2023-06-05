@@ -8,7 +8,7 @@ We're a young start-up of around 400 people that work for your needs in fitness 
 
 # Tech Stack Used
   - Next.js
-  - CSS
+  - ReactJs
   - Chakra UI
   - Redux
   
